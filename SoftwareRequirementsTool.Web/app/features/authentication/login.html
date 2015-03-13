@@ -1,0 +1,21 @@
+﻿<div ng-controller="loginCtrl as login">
+
+
+    <form name="loginForm">
+        <input type="text" required ng-model="login.user.name" />
+        <input type="password" ng-model="login.user.pass" />
+
+        chkBox: <input type="checkbox" ng-change="login.chkBoxChanged()" ng-model="chkBox" value="" />
+
+
+        <button type="submit"
+                ng-click="login.loginClick(loginForm)"
+                ng-disabled="loginForm.$invalid">
+            Login
+        </button>
+        <button type="reset">Reset</button>
+
+        <input type="text" ng-model="login.xyz" />
+        {{login.xyz}}
+    </form>
+</div>
