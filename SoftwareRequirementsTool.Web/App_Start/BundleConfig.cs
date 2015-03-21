@@ -32,13 +32,9 @@ namespace SoftwareRequirementsTool.Web
                       "~/Content/Angular.css"));
 
 
-            //RaphaelJs
-            bundles.Add(new ScriptBundle("~/bundles/raphael").Include(
-                      "~/Scripts/raphael-min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/fabricjs").Include(
-                      "~/Scripts/fabricjs-min.js"));
-
+            bundles.Add(new ScriptBundle("~/bundles/d3").Include(
+                      "~/Scripts/d3/d3.min.js"));
 
 
             var softReqToolApp = new ScriptBundle("~/bundles/softReqToolApp");

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg height="140" width="500">
+    <g>
+
+        <ellipse cx="200" cy="80" rx="100" ry="50" draggable="true">
+            <text>Text</text>
+        </ellipse>
+
+    </g>
+</svg>

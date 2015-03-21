@@ -23,8 +23,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
-    @*@Scripts.Render("~/bundles/raphael")*@
-    @*@Scripts.Render("~/bundles/fabricjs")*@
+    @Scripts.Render("~/bundles/d3")
+    
 
 
     @Scripts.Render("~/bundles/softReqToolApp")
@@ -34,50 +34,47 @@
 
 
 
-
-    @* ReSharper disable once Html.TagNotResolved *@
-    <svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
-        <rect width="300" height="120" y="20" fill="green" />
-        <rect width="80" height="150" x="20" y="30" fill="red" />
-        <rect width="140" height="80" x="50" y="50" fill="blue" />
-    </svg>
+    <div ng-controller="testCtrl">
 
 
-    <div class="row">
 
-        <div id="modeling-toolbar" class="col-md-3">
-            mod toolbar
-        </div>
+        <div class="row">
 
-        <div class="col-md-6" style="">
-            <div id="modeling-area">
+            @* Modelling Toolbar *@
+            <div id="modeling-toolbar" class="col-md-3">
+                mod toolbar
+            </div>
 
-                @* ng-style="height: 100px; width: 200px;" *@
-                <div class="resizable-container"
-                     style="height: 100px; width: 200px;">
+            @* Modelling Area *@
+            <div class="col-md-6">
 
-                    <div class="ellipsis-text">
-                        I'm an Oval!
-                    </div>
-                    <div class="ellipsis-after"></div>
+                <div id="modeling-area">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">
+
+                        <use-case usecaseview="usecaseview"/>
+
+
+                    </svg>
+
+
 
                 </div>
 
-                <button onclick="createLineCss3('#modeling-area', 681, 121, 1126, 453)">crLine</button>
+            </div>
 
-                <div class="manual-line"></div>
+            @* Project Tree *@
+            <div class="project-tree col-md-3">
+                project tree
 
             </div>
-        </div>
-
-        <div class="project-tree col-md-3">
-            project tree
 
         </div>
-
     </div>
 
     <script>
+
+
+
 
         function createLineCss3(ParentSelector, x1, y1, x2, y2) {
             var length = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));

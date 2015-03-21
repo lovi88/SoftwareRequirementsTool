@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     ng-attr-x="{{usecaseview.diagram.x}}"
+     ng-attr-y="{{usecaseview.diagram.y}}"
+     ng-attr-width="{{usecaseview.diagram.width}}"
+     ng-attr-height="{{usecaseview.diagram.height}}"
+     >
+
+    <g>
+        <ellipse class="modeling-element modeling-element-use-case"
+                 ng-attr-cx="{{usecaseview.diagram.cx}}"
+                 ng-attr-cy="{{usecaseview.diagram.cy}}"
+                 ng-attr-rx="{{usecaseview.diagram.rx}}"
+                 ng-attr-ry="{{usecaseview.diagram.ry}}" />
+
+
+        <text class="diagram-text"
+              ng-attr-x="{{usecaseview.elementText.x}}"
+              ng-attr-y="{{usecaseview.elementText.y}}">
+            {{usecaseview.elementText.text}}
+        </text>
+    </g>
+
+</svg>

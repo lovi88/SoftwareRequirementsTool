@@ -25,7 +25,7 @@ namespace SoftwareRequirementsTool.Data
         public List<IElement> ConnectedElements { get; set; }
 
         public List<AbsViewElement> ConnectedViews { get; set; }
-
+        
 
         public int CompareTo(IComparableByAbstraction other)
         {
