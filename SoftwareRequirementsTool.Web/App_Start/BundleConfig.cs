@@ -20,15 +20,25 @@ namespace SoftwareRequirementsTool.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
             
-            //Angular
+            //AngularJS
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/angular.min.js",
                       "~/Scripts/angular-ui-router.min.js", 
                       "~/Scripts/angular-route.min.js",
                       "~/Scripts/angular-animate.min.js"
                       ));
+
             bundles.Add(new StyleBundle("~/Content/angularCss").Include(
                       "~/Content/Angular.css"));
+
+
+            //RaphaelJs
+            bundles.Add(new ScriptBundle("~/bundles/raphael").Include(
+                      "~/Scripts/raphael-min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/fabricjs").Include(
+                      "~/Scripts/fabricjs-min.js"));
+
 
 
             var softReqToolApp = new ScriptBundle("~/bundles/softReqToolApp");

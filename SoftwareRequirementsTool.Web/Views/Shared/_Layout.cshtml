@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
-<head> 
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
 
@@ -9,19 +9,95 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/angularCss")
-    
+
     @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/modelling.css" rel="stylesheet" />
+
 </head>
 <body ng-app="app" ng-cloak>
+
 
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
+    @*@Scripts.Render("~/bundles/raphael")*@
+    @*@Scripts.Render("~/bundles/fabricjs")*@
+
+
     @Scripts.Render("~/bundles/softReqToolApp")
 
 
     @RenderSection("scripts", required: false)
+
+
+
+
+    @* ReSharper disable once Html.TagNotResolved *@
+    <svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
+        <rect width="300" height="120" y="20" fill="green" />
+        <rect width="80" height="150" x="20" y="30" fill="red" />
+        <rect width="140" height="80" x="50" y="50" fill="blue" />
+    </svg>
+
+
+    <div class="row">
+
+        <div id="modeling-toolbar" class="col-md-3">
+            mod toolbar
+        </div>
+
+        <div class="col-md-6" style="">
+            <div id="modeling-area">
+
+                @* ng-style="height: 100px; width: 200px;" *@
+                <div class="resizable-container"
+                     style="height: 100px; width: 200px;">
+
+                    <div class="ellipsis-text">
+                        I'm an Oval!
+                    </div>
+                    <div class="ellipsis-after"></div>
+
+                </div>
+
+                <button onclick="createLineCss3('#modeling-area', 681, 121, 1126, 453)">crLine</button>
+
+                <div class="manual-line"></div>
+
+            </div>
+        </div>
+
+        <div class="project-tree col-md-3">
+            project tree
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function createLineCss3(ParentSelector, x1, y1, x2, y2) {
+            var length = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+            var angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            var transform = 'rotate(' + angle + 'deg)';
+
+            var line = $('<div>')
+                .appendTo(ParentSelector)
+                .addClass('line')
+                .css({
+                    'position': 'absolute',
+                    'transform': transform
+                })
+                .width(length)
+                .offset({ left: x1 < x2 ? x1 : x1 - (x1 - x2), top: y1 < y2 ? y1 : y1 - (y1 - y2) });
+
+            return line;
+        }
+
+    </script>
+
 </body>
 </html>

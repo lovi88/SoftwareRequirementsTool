@@ -30,23 +30,74 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TypeLite">
+      <HintPath>..\packages\TypeLite.1.1.1.0\lib\net4\TypeLite.dll</HintPath>
+    </Reference>
+    <Reference Include="TypeLite.Net4">
+      <HintPath>..\packages\TypeLite.1.1.1.0\lib\net4\TypeLite.Net4.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Entities\ViewElements\AbsUMLDiagramViewElement.cs" />
+    <Compile Include="Data\Entities\Actor.cs" />
+    <Compile Include="Data\Entities\BusinessValue.cs" />
+    <Compile Include="Data\Entities\Diagram.cs" />
+    <Compile Include="Data\Entities\AbsElement.cs" />
+    <Compile Include="Data\Entities\IElement.cs" />
+    <Compile Include="Data\Entities\ViewElements\IViewElement.cs" />
+    <Compile Include="Data\Entities\Project.cs" />
+    <Compile Include="Data\Entities\Requirement.cs" />
+    <Compile Include="Data\Entities\UseCase.cs" />
+    <Compile Include="Data\Entities\UserStory.cs" />
+    <Compile Include="Data\Entities\ViewElements\AbsViewElement.cs" />
+    <Compile Include="Data\Entities\ViewElements\UseCaseViewElement.cs" />
+    <Compile Include="Data\IComparableByAbstraction.cs" />
+    <Compile Include="Utilities\IGenericCRUD.cs" />
+    <Compile Include="Data\SoftwareRequirementsToolContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\GenericEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Business\" />
-    <Folder Include="Data\" />
+    <Folder Include="Data\Repositories\" />
     <Folder Include="Providers\" />
     <Folder Include="Services\" />
-    <Folder Include="Utilities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Scripts\Manager.ttinclude" />
+    <None Include="Scripts\TypeLite.Net4.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TypeLite.Net4.d.ts</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Enums.ts">
+      <DependentUpon>TypeLite.Net4.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Scripts\TypeLite.Net4.d.ts">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TypeLite.Net4.tt</DependentUpon>
+    </TypeScriptCompile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
