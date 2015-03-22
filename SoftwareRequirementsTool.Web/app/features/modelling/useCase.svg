@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg"
+     class="draggable"
      ng-attr-x="{{usecaseview.diagram.x}}"
      ng-attr-y="{{usecaseview.diagram.y}}"
      ng-attr-width="{{usecaseview.diagram.width}}"
-     ng-attr-height="{{usecaseview.diagram.height}}"
-     >
+     ng-attr-height="{{usecaseview.diagram.height}}">
 
     <g>
         <ellipse class="modeling-element modeling-element-use-case"

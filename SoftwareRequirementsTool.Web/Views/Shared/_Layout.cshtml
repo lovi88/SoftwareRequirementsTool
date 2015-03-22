@@ -24,7 +24,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/d3")
-    
+
 
 
     @Scripts.Render("~/bundles/softReqToolApp")
@@ -41,19 +41,19 @@
         <div class="row">
 
             @* Modelling Toolbar *@
-            <div id="modeling-toolbar" class="col-md-3">
+            <div id="modeling-toolbar" class="col-md-2">
                 mod toolbar
             </div>
 
             @* Modelling Area *@
-            <div class="col-md-6">
+            <div class="col-md-8" style="">
 
                 <div id="modeling-area">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000">
 
-                        <use-case usecaseview="usecaseview"/>
+                        <use-case usecaseview="usecaseview" />
 
-
+                        <use-case usecaseview="usecaseview2" />
                     </svg>
 
 
@@ -63,7 +63,7 @@
             </div>
 
             @* Project Tree *@
-            <div class="project-tree col-md-3">
+            <div class="project-tree col-md-2">
                 project tree
 
             </div>
