@@ -220,15 +220,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\blocks\DragNDrop\myDraggable.js" />
     <Content Include="app\blocks\drawing\drawing.js" />
     <Content Include="app\blocks\filters\filter01.js" />
     <Content Include="app\blocks\replace_utility\replaceUtilities.js" />
     <Content Include="app\features\authentication\login.html" />
     <Content Include="app\features\authentication\loginCtrl.js" />
+    <Content Include="app\features\modelling\association.js" />
     <Content Include="app\features\modelling\class.svg" />
+    <Content Include="app\features\modelling\association.svg" />
     <Content Include="app\features\modelling\modelingArea.js" />
     <Content Include="app\features\modelling\modelling-area.html" />
     <Content Include="app\blocks\svg_modelling_elements\UseCase.svg" />
+    <Content Include="app\features\modelling\testDirective.html" />
+    <Content Include="app\features\modelling\testDirective.js" />
     <Content Include="app\features\modelling\useCase.js" />
     <Content Include="app\features\modelling\useCase.svg" />
     <Content Include="app\features\projects\project-jumbotron.html" />

@@ -16,11 +16,13 @@
             x: 10,      //x of containing svg
             y: 10,
             width: 302, //w/h of the containing svg
-            height:102,
+            height: 102,
             cx: 151,    //center of the ellipse
             cy: 51,
             rx: 150,    //radius
-            ry: 50
+            ry: 50,
+            center_x: 10,
+            center_y: 10
         }
 
         var elementText = {
@@ -37,13 +39,15 @@
             cx: 151,    //center of the ellipse
             cy: 51,
             rx: 150,    //radius
-            ry: 50
+            ry: 50,
+            center_x: 10,
+            center_y: 10
         }
 
         var elementText2 = {
             x: 160,
             y: 55,
-            text: "Text2"
+            text: "Text2alma"
         }
 
 
@@ -52,12 +56,24 @@
             elementText: elementText
         }
 
-        $scope.usecaseview2 = {
+        $scope.alma = {
             diagram: diagram2,
             elementText: elementText2
         }
 
-        
+
+        $scope.sc1 = {
+            name: "sc1",
+            num: 5
+
+        }
+
+        $scope.sc2 = {
+            name: "sc2",
+            num: 10
+
+        }
+
         activate();
 
         function activate() { }
