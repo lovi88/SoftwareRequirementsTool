@@ -53,7 +53,7 @@
             });
 
 
-            drag(scope, element);
+            //drag(scope, element);
         }
 
         function drag(scope, element) {

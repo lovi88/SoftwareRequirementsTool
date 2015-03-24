@@ -226,9 +226,11 @@
     <Content Include="app\blocks\replace_utility\replaceUtilities.js" />
     <Content Include="app\features\authentication\login.html" />
     <Content Include="app\features\authentication\loginCtrl.js" />
+    <Content Include="app\features\modelling\actor.js" />
     <Content Include="app\features\modelling\association.js" />
     <Content Include="app\features\modelling\class.svg" />
     <Content Include="app\features\modelling\association.svg" />
+    <Content Include="app\features\modelling\actor.svg" />
     <Content Include="app\features\modelling\modelingArea.js" />
     <Content Include="app\features\modelling\modelling-area.html" />
     <Content Include="app\blocks\svg_modelling_elements\UseCase.svg" />
@@ -1115,6 +1117,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="app\features\modelling\Elements\Element.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
