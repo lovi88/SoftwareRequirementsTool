@@ -1,12 +1,11 @@
 ﻿module Modelling {
-    export class Base {
-        constructor(object?: any) {
-            if (object) {
-                this.initFromObj(object);
-            }
-        }
+    export class BaseInitFromObj {
 
-        private initFromObj(obj: any): void {
+        initFromObj(obj?: any): void {
+            if (!obj) {
+                return;
+            }
+
             for (var attrKey in obj) {
                 if (obj.hasOwnProperty(attrKey)) {
                     this[attrKey] = obj[attrKey];

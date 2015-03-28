@@ -1,9 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg">
-    <line ng-attr-x1="{{elementFrom.diagram.center_x}}"
-          ng-attr-y1="{{elementFrom.diagram.center_y}}"
-          ng-attr-x2="{{elementTo.diagram.center_x}}"
-          ng-attr-y2="{{elementTo.diagram.center_y}}"
+    <line ng-attr-x1="{{elementFrom.view.center.x}}"
+          ng-attr-y1="{{elementFrom.view.center.y}}"
+          ng-attr-x2="{{elementTo.view.center.x}}"
+          ng-attr-y2="{{elementTo.view.center.y}}"
           style="stroke:rgb(0,0,0); stroke-width:2" />
 
-    <!--<line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />-->
 </svg>

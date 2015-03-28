@@ -1,22 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      class="draggable"
-     ng-attr-x="{{usecaseview.diagram.x}}"
-     ng-attr-y="{{usecaseview.diagram.y}}"
-     ng-attr-width="{{usecaseview.diagram.width}}"
-     ng-attr-height="{{usecaseview.diagram.height}}">
+     ng-attr-x="{{diagramElement.view.coordinates.x}}"
+     ng-attr-y="{{diagramElement.view.coordinates.y}}"
+     ng-attr-width="{{diagramElement.view.width}}"
+     ng-attr-height="{{diagramElement.view.height}}">
 
     <g>
         <ellipse class="modeling-element modeling-element-use-case"
-                 ng-attr-cx="{{usecaseview.diagram.cx}}"
-                 ng-attr-cy="{{usecaseview.diagram.cy}}"
-                 ng-attr-rx="{{usecaseview.diagram.rx}}"
-                 ng-attr-ry="{{usecaseview.diagram.ry}}" />
+                 ng-attr-cx="{{diagramElement.view.cx}}"
+                 ng-attr-cy="{{diagramElement.view.cy}}"
+                 ng-attr-rx="{{diagramElement.view.rx}}"
+                 ng-attr-ry="{{diagramElement.view.ry}}" />
 
 
         <text class="diagram-text"
-              ng-attr-x="{{usecaseview.elementText.x}}"
-              ng-attr-y="{{usecaseview.elementText.y}}">
-            {{usecaseview.elementText.text}}
+              ng-attr-x="{{diagramElement.view.textPosition.x}}"
+              ng-attr-y="{{diagramElement.view.textPosition.y}}">
+            {{diagramElement.data.name}}
         </text>
     </g>
 

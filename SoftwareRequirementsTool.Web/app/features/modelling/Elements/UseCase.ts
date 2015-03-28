@@ -1,8 +1,19 @@
-﻿/// <reference path="abselement.ts" />
+﻿/// <reference path="baseelement.ts" />
 
 module Modelling {
 
-    export class UseCaseView extends BaseElementView {
+    export class UseCase extends BaseElement {
+        constructor(element: IElement) {
+            super(element);
+        }
+
+        init() {
+            this.data = new BaseElementData();
+            this.view = new UseCaseView();
+        }
+    }
+
+    export class UseCaseView extends BaseElementView implements IUseCaseView {
         
         cx: number = 151;    //center of the ellipse
         cy: number = 51;

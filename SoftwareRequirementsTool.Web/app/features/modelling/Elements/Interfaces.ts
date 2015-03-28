@@ -36,9 +36,17 @@ interface IElementView {
     width: number;
     height: number;
     center: IPoint;
+    textPosition: IPoint;
 
     recalculateCenter(): void;
 
+}
+
+interface IUseCaseView extends IElementView {
+    cx: number;    //the center of the ellipse
+    cy: number;
+    rx: number;    //radius
+    ry: number;
 }
 
 interface IElementData {
@@ -50,4 +58,9 @@ interface IElementData {
 interface IElement {
     data: IElementData;
     view: IElementView;
+}
+
+interface IConnection {
+    from: IElement;
+    to: IElement;
 }

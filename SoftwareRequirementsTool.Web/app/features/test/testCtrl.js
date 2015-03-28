@@ -12,67 +12,21 @@
 
         $scope.title = 'testCtrl';
 
-        var diagram = {
-            x: 10,      //x of containing svg
-            y: 10,
-            width: 302, //w/h of the containing svg
-            height: 102,
-            cx: 151,    //center of the ellipse
-            cy: 51,
-            rx: 150,    //radius
-            ry: 50,
-            center_x: 10,
-            center_y: 10
-        }
 
-        var elementText = {
-            x: 160,
-            y: 55,
-            text: "Text"
-        }
+        var usv = new Modelling.UseCase();
+        usv.data.name = "US01";
 
-        var diagram2 = {
-            x: 100,      //x of containing svg
-            y: 100,
-            width: 302, //w/h of the containing svg
-            height: 102,
-            cx: 151,    //center of the ellipse
-            cy: 51,
-            rx: 150,    //radius
-            ry: 50,
-            center_x: 10,
-            center_y: 10
-        }
-
-        var elementText2 = {
-            x: 160,
-            y: 55,
-            text: "Text2alma"
-        }
+        $scope.usecaseview = usv;
 
 
-        $scope.usecaseview = {
-            diagram: diagram,
-            elementText: elementText
-        }
+        var alma = new Modelling.UseCase();
+        alma.data.name = "US02 alma";
+        alma.view.coordinates.x += 500;
+        alma.view.recalculateCenter();
 
-        $scope.alma = {
-            diagram: diagram2,
-            elementText: elementText2
-        }
+        $scope.alma = alma;
 
-
-        $scope.sc1 = {
-            name: "sc1",
-            num: 5
-
-        }
-
-        $scope.sc2 = {
-            name: "sc2",
-            num: 10
-
-        }
+        
 
         activate();
 

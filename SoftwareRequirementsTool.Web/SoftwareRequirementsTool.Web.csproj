@@ -21,7 +21,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <TypeScriptToolsVersion>1.1</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.4</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -236,7 +236,7 @@
     <Content Include="app\blocks\svg_modelling_elements\UseCase.svg" />
     <Content Include="app\features\modelling\testDirective.html" />
     <Content Include="app\features\modelling\testDirective.js" />
-    <Content Include="app\features\modelling\useCase.js" />
+    <Content Include="app\features\modelling\useCaseDir.js" />
     <Content Include="app\features\modelling\useCase.svg" />
     <Content Include="app\features\projects\project-jumbotron.html" />
     <Content Include="app\features\projects\projectJumbotron.js" />
@@ -1089,7 +1089,9 @@
     <Content Include="Scripts\raphael.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1119,8 +1121,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\features\modelling\Elements\AbsBase.ts" />
-    <TypeScriptCompile Include="app\features\modelling\Elements\AbsElement.ts" />
+    <TypeScriptCompile Include="app\features\modelling\Elements\BaseInitFromObj.ts" />
+    <TypeScriptCompile Include="app\features\modelling\Elements\BaseElement.ts" />
+    <TypeScriptCompile Include="app\features\modelling\Elements\Connections.ts" />
     <TypeScriptCompile Include="app\features\modelling\Elements\Interfaces.ts" />
     <TypeScriptCompile Include="app\features\modelling\Elements\Point.ts" />
     <TypeScriptCompile Include="app\features\modelling\Elements\UseCase.ts" />
@@ -1130,6 +1133,9 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
