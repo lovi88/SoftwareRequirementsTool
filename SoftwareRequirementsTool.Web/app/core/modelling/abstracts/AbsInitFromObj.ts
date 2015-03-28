@@ -1,5 +1,5 @@
 ﻿module Modelling {
-    export class BaseInitFromObj {
+    export class AbsInitFromObj {
 
         initFromObj(obj?: any): void {
             if (!obj) {

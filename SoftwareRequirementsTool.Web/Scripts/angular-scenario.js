@@ -7569,7 +7569,7 @@ try {
 // Segment location into parts
 ajaxLocParts = rurl.exec( ajaxLocation.toLowerCase() ) || [];
 
-// BaseInitFromObj "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
+// AbsInitFromObj "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
 function addToPrefiltersOrTransports( structure ) {
 
 	// dataTypeExpression is optional and defaults to "*"
@@ -7601,7 +7601,7 @@ function addToPrefiltersOrTransports( structure ) {
 	};
 }
 
-// BaseInitFromObj inspection function for prefilters and transports
+// AbsInitFromObj inspection function for prefilters and transports
 function inspectPrefiltersOrTransports( structure, options, originalOptions, jqXHR ) {
 
 	var inspected = {},

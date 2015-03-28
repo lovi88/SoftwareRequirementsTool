@@ -1,41 +1,6 @@
-﻿/// <reference path="baseinitfromobj.ts" />
-/// <reference path="interfaces.ts" />
+﻿module Modelling {
 
-module Modelling {
-
-    export class BaseElement implements IElement, ISavable {
-
-        data: IElementData;
-        view: IElementView;
-
-
-        constructor(element: IElement) {
-            if (element) {
-                this.data = new BaseElementData(element.data);
-                this.view = new BaseElementView(element.view);
-            } else {
-                this.init();
-            }
-        }
-
-        //in next version of TS- it should be protected
-        init() {
-            this.data = new BaseElementData();
-            this.view = new BaseElementView();
-        }
-
-        save(): void {
-            (<BaseElementData> this.data).save();
-            (<BaseElementView> this.view).save();
-        }
-
-        rollback(): void {
-            (<BaseElementData> this.data).rollback();
-            (<BaseElementView> this.view).rollback();
-        }
-    }
-
-    export class BaseElementData extends BaseInitFromObj implements IElementData, ISavable {
+    export class BaseElementData extends AbsInitFromObj implements IElementData, ISavable {
         id: number;
         name: string;
         description: string;
@@ -51,9 +16,10 @@ module Modelling {
         rollback() { throw new Error("Not implemented"); }
     }
 
+
     declare var d3: any;
     export class BaseElementView
-        extends BaseInitFromObj
+        extends AbsInitFromObj
         implements IElementView, ISavable, IDraggable {
 
         id: number;
@@ -88,15 +54,14 @@ module Modelling {
                 this.height = 102;
 
                 this.recalculateCenter();
-                this.recalculateTextPosition(4);
+                this.recalculateTextPosition(10);
             }
 
 
         }
 
-
         recalculateTextPosition(txtLen?: number): void {
-            this.textPosition.x = (this.width / 2);
+            this.textPosition.x = (this.width / 2) -30;
             if (txtLen) {
                 this.textPosition.x -= txtLen;
             }
@@ -217,6 +182,42 @@ module Modelling {
             this.dragEndCallbacks.push(callback);
         }
     }
+
+
+    export class BaseElement implements IElement, ISavable {
+
+        data: IElementData;
+        view: IElementView;
+
+
+        constructor(element: IElement) {
+            if (element) {
+                this.data = new BaseElementData(element.data);
+                this.view = new BaseElementView(element.view);
+            } else {
+                this.init();
+            }
+        }
+
+        //in next version of TS- it should be protected
+        init() {
+            this.data = new BaseElementData();
+            this.view = new BaseElementView();
+        }
+
+        save(): void {
+            (<BaseElementData> this.data).save();
+            (<BaseElementView> this.view).save();
+        }
+
+        rollback(): void {
+            (<BaseElementData> this.data).rollback();
+            (<BaseElementView> this.view).rollback();
+        }
+    }
+
+
+ 
 
 
 }

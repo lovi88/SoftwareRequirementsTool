@@ -31,11 +31,14 @@
         function link(scope, element, attrs) {
 
             scope.$watch('diagramElement.view.x', function (oldVal, newVal) {
-                if (oldVal===newVal) {
+                console.log("changed")
+
+                if (oldVal === newVal) {
                     return;
                 }
                 
                 scope.diagramElement.view.recalculateCenter();
+                scope.$apply();
             });
 
             scope.$watch('diagramElement.view.y', function (oldVal, newVal) {
@@ -47,6 +50,19 @@
             });
 
             scope.diagramElement.view.applyDraggable(element);
+
+
+            var draggingListener = {
+                occured: function(from, data) {
+                    scope.diagramElement.view.recalculateCenter();
+                    scope.$apply();
+                }
+            }
+
+            scope.diagramElement.view.addDraggingEventListener(draggingListener);
+
+            //scope.diagramElement.view.addDraggingEventCallback(draggingListener.occured);
+
 
         }
 

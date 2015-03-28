@@ -1121,12 +1121,12 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\features\modelling\Elements\BaseInitFromObj.ts" />
-    <TypeScriptCompile Include="app\features\modelling\Elements\BaseElement.ts" />
-    <TypeScriptCompile Include="app\features\modelling\Elements\Connections.ts" />
-    <TypeScriptCompile Include="app\features\modelling\Elements\Interfaces.ts" />
-    <TypeScriptCompile Include="app\features\modelling\Elements\Point.ts" />
-    <TypeScriptCompile Include="app\features\modelling\Elements\UseCase.ts" />
+    <TypeScriptCompile Include="app\core\modelling\abstracts\AbsInitFromObj.ts" />
+    <TypeScriptCompile Include="app\core\modelling\abstracts\BaseElement.ts" />
+    <TypeScriptCompile Include="app\core\modelling\concretes\Connections.ts" />
+    <TypeScriptCompile Include="app\core\modelling\abstracts\Interfaces.ts" />
+    <TypeScriptCompile Include="app\core\modelling\concretes\Point.ts" />
+    <TypeScriptCompile Include="app\core\modelling\concretes\UseCase.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

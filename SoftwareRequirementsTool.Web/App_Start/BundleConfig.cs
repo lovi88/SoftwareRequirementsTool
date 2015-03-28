@@ -20,7 +20,7 @@ namespace SoftwareRequirementsTool.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
             
-            //AngularJS
+            // AngularJS
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/angular.min.js",
                       "~/Scripts/angular-ui-router.min.js", 
@@ -37,9 +37,16 @@ namespace SoftwareRequirementsTool.Web
                       "~/Scripts/d3/d3.min.js"));
 
 
+            // App Files
             var softReqToolApp = new ScriptBundle("~/bundles/softReqToolApp");
 
             softReqToolApp.Include("~/app/app.js");
+
+            // The sequence of .TS file is matters (warning !!!)
+            softReqToolApp.IncludeDirectory("~/app/core/modelling/abstracts", "*.js", true);
+            softReqToolApp.IncludeDirectory("~/app/core/modelling/concretes", "*.js", true);
+
+
             softReqToolApp.IncludeDirectory("~/app/blocks", "*.js", true);
             softReqToolApp.IncludeDirectory("~/app/features", "*.js", true);
             softReqToolApp.IncludeDirectory("~/app/layout", "*.js", true);

@@ -1,6 +1,4 @@
-﻿/// <reference path="baseelement.ts" />
-
-module Modelling {
+﻿module Modelling {
 
     export class UseCase extends BaseElement {
         constructor(element: IElement) {
