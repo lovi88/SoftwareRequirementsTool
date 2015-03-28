@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .directive('useCase', useCase);
+        .directive('useCaseDir', useCaseDir);
 
     //useCase.$inject = ['$window', '$compile'];
 
-    function useCase() {
+    function useCaseDir() {
         // Usage:
         //     <use-case></use-case>
         // Creates: A UseCase diagram element
@@ -53,7 +53,7 @@
             });
 
 
-            //drag(scope, element);
+            drag(scope, element);
         }
 
         function drag(scope, element) {

@@ -14,7 +14,7 @@
         // 
         var directive = {
             link: link,
-            restrict: 'EA'
+            restrict: "EA"
         };
         return directive;
 
