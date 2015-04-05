@@ -44,10 +44,16 @@
     <Reference Include="Microsoft.AspNet.SignalR.Core">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.2.2\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rabbit.Bootstrap">
+      <HintPath>..\packages\Rabbit.Bootstrap.MVC.1.1.0.0\lib\net40\Rabbit.Bootstrap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -205,11 +211,14 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Hubs\SoftwareRequirementsToolHub.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -231,6 +240,7 @@
     <Content Include="app\features\modelling\class.svg" />
     <Content Include="app\features\modelling\association.svg" />
     <Content Include="app\features\modelling\actor.svg" />
+    <Content Include="app\features\modelling\draggingService.js" />
     <Content Include="app\features\modelling\modelingArea.js" />
     <Content Include="app\features\modelling\modelling-area.html" />
     <Content Include="app\blocks\svg_modelling_elements\UseCase.svg" />
@@ -243,8 +253,12 @@
     <Content Include="app\features\projects\projectsList.html" />
     <Content Include="app\features\projects\projectsListerCtrl.js" />
     <Content Include="app\features\test\testCtrl.js" />
+    <Content Include="app\hubs.js" />
     <Content Include="app\layout\mainmenu\main-menu.html" />
     <Content Include="app\layout\mainmenu\mainMenu.js" />
+    <Content Include="app\layout\modelling-page\modelling-page.html" />
+    <Content Include="app\layout\projects-page\projects-page.html" />
+    <Content Include="app\layout\requirements-page\requirements-page.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\Angular.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -1108,25 +1122,30 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Chat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\features\specificaton\" />
     <Folder Include="app\services\" />
     <Folder Include="app\widgets\" />
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Hubs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\core\api_signalr\abstracts\ISaving.ts" />
+    <TypeScriptCompile Include="app\core\api_signalr\concretes\SignalRSaver.ts" />
     <TypeScriptCompile Include="app\core\modelling\abstracts\AbsInitFromObj.ts" />
     <TypeScriptCompile Include="app\core\modelling\abstracts\BaseElement.ts" />
     <TypeScriptCompile Include="app\core\modelling\concretes\Connections.ts" />
     <TypeScriptCompile Include="app\core\modelling\abstracts\Interfaces.ts" />
     <TypeScriptCompile Include="app\core\modelling\concretes\Point.ts" />
     <TypeScriptCompile Include="app\core\modelling\concretes\UseCase.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\signalr\signalr.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

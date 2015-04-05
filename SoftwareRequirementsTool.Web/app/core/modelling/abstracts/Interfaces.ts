@@ -1,5 +1,4 @@
-﻿
-interface IEventCallback {
+﻿interface IEventCallback {
     (from: any, data: any): any;
 }
 
@@ -12,10 +11,6 @@ interface IPoint {
     y: number;
 }
 
-interface ISavable {
-    save(): void;
-    rollback(): void;
-}
 
 interface IDraggable {
     applyDraggable(domElement: any): void;

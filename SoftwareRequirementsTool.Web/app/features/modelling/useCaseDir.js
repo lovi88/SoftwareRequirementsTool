@@ -1,13 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular
-        .module('app')
-        .directive('useCase', useCaseDir);
-
-    //useCase.$inject = ['$window', '$compile'];
-
-    function useCaseDir() {
+    function useCaseDir(draggingService) {
         // Usage:
         //     <use-case></use-case>
         // Creates: A UseCase diagram element
@@ -27,45 +21,27 @@
         };
 
         return directive;
-        
+
         function link(scope, element, attrs) {
+            var view = scope.diagramElement.view;
 
-            scope.$watch('diagramElement.view.x', function (oldVal, newVal) {
-                console.log("changed")
-
-                if (oldVal === newVal) {
-                    return;
-                }
-                
-                scope.diagramElement.view.recalculateCenter();
-                scope.$apply();
-            });
-
-            scope.$watch('diagramElement.view.y', function (oldVal, newVal) {
-                if (oldVal === newVal) {
-                    return;
-                }
-
-                scope.diagramElement.view.recalculateCenter();
-            });
-
-            scope.diagramElement.view.applyDraggable(element);
-
+            draggingService.applyDraggable(element, view);
 
             var draggingListener = {
-                occured: function(from, data) {
+                occured: function (from, data) {
                     scope.diagramElement.view.recalculateCenter();
                     scope.$apply();
                 }
             }
 
-            scope.diagramElement.view.addDraggingEventListener(draggingListener);
-
-            //scope.diagramElement.view.addDraggingEventCallback(draggingListener.occured);
-
-
+            draggingService.addDraggingEventListener(view, draggingListener);
         }
 
     }
 
+    angular
+        .module('app')
+        .directive('useCase', useCaseDir);
+
+    useCaseDir.$inject = ["draggingService"];
 })();

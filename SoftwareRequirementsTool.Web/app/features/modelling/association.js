@@ -1,12 +1,6 @@
 ﻿(function() {
     'use strict';
 
-    angular
-        .module('app')
-        .directive('association', association);
-
-    association.$inject = ['$window'];
-    
     function association ($window) {
         // Usage:
         //     <association></association>
@@ -33,4 +27,9 @@
         }
     }
 
+    angular
+        .module('app')
+        .directive('association', association);
+
+    association.$inject = ['$window'];
 })();

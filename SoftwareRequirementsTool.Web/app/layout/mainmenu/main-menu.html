@@ -22,15 +22,22 @@
 
             <!--data-bind="foreach: router.navigationModel"-->
             <ul class="nav navbar-nav">
-
-                
-                <!--data-bind="css: { active: isActive }"-->
-                <li>
-                    <!--data-bind="attr: { href: hash }, html: title"-->
-                    <a>Specification</a>
+                <li ui-sref-active="active">
+                    <a ui-sref="projects">
+                        Projects
+                    </a>
                 </li>
-                <li>
-                     <a class="active">Modelling</a>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="requirements">
+                        Requirements
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="modelling">
+                        Modelling
+                    </a>
                 </li>
             </ul>
 

@@ -1,12 +1,6 @@
 ﻿(function () {
     'use strict';
 
-    angular
-        .module('app')
-        .directive('projectJumbotron', projectJumbotron);
-
-    projectJumbotron.$inject = ['$window'];
-
     function projectJumbotron($window) {
         // Usage:
         //     <project-jumbotron></project-jumbotron>
@@ -14,8 +8,8 @@
         // 
         var directive = {
             link: link,
-            restrict: 'EA',
-            templateUrl: '/app/features/projects/project-jumbotron.html',
+            restrict: "EA",
+            templateUrl: "/app/features/projects/project-jumbotron.html",
             replace: true
         };
 
@@ -26,8 +20,14 @@
         return directive;
 
         function link(scope, element, attrs) {
+
         }
 
     }
 
+    angular
+        .module("app")
+        .directive("projectJumbotron", projectJumbotron);
+
+    projectJumbotron.$inject = ["$window"];
 })();

@@ -1,12 +1,6 @@
 ﻿(function () {
     'use strict';
 
-    angular
-        .module('app')
-        .controller('testCtrl', testCtrl);
-
-    testCtrl.$inject = ['$scope'];
-
     function testCtrl($scope) {
         /* jshint validthis:true */
 
@@ -26,10 +20,27 @@
 
         $scope.alma = alma;
 
+        var hub = $.connection.softwareRequirementsToolHub;
+
         
 
-        activate();
+        //hub.client.logMsg = function(name, msg) {
+        //    console.log(name);
+        //    console.log(msg);
+        //}
+
+        //$.connection.hub.start().done(function() {
+        //    hub.server.send("alma","korte");
+        //});
 
         function activate() { }
+        activate();
     }
+
+    testCtrl.$inject = ['$scope'];
+
+    angular
+        .module('app')
+        .controller('testCtrl', testCtrl);
+
 })();

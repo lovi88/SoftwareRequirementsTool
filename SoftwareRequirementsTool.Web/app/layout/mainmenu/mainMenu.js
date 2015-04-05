@@ -15,7 +15,7 @@
         var directive = {
             link: link,
             restrict: 'EA',
-            templateUrl: '/app/layout/mainmenu/main-menu.html',
+            templateUrl: "/app/layout/mainmenu/main-menu.html",
             replace: true
         };
         return directive;

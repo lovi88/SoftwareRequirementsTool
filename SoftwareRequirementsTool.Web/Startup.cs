@@ -13,6 +13,7 @@ namespace SoftwareRequirementsTool.Web
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            app.MapSignalR();
         }
     }
 }

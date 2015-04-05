@@ -1,19 +1,24 @@
-﻿module Modelling {
-
+﻿/// <reference path="../../api_signalr/abstracts/isaving.ts" />
+module Modelling {
+    
     export class BaseElementData extends AbsInitFromObj implements IElementData, ISavable {
         id: number;
         name: string;
         description: string;
 
+        private saver: ISaver;
+
         constructor(elementData?: IElementData) {
             super();
 
             super.initFromObj(elementData);
+
+            this.saver = new API.SignalR.SignalRSaver();
         }
 
-        save() { throw new Error("Not implemented"); }
+        save() { this.saver.save(this); }
 
-        rollback() { throw new Error("Not implemented"); }
+        rollback() { this.saver.rollback(this); }
     }
 
 
@@ -37,6 +42,8 @@
         private draggingCallbacks: Array<IEventCallback> = new Array<IEventCallback>();
         private dragEndCallbacks: Array<IEventCallback> = new Array<IEventCallback>();
 
+        private saver: ISaver;
+
         constructor(elementView?: IElementView) {
             super();
 
@@ -57,7 +64,7 @@
                 this.recalculateTextPosition(10);
             }
 
-
+            this.saver = new API.SignalR.SignalRSaver();
         }
 
         recalculateTextPosition(txtLen?: number): void {
@@ -112,7 +119,7 @@
         dragging(domElement: any): void {
 
             this.d3Dragging(domElement);
-            if (this.dragCnt % 5 === 0) {
+            if (this.dragCnt % 2 === 0) {
                 this.save();
             }
 
@@ -154,9 +161,14 @@
             this.save();
         }
 
-        save(): void { }
 
-        rollback(): void { }
+        save(): void {
+            this.saver.save(this);
+        }
+
+        rollback(): void {
+            this.saver.save(this);
+        }
 
         addDragStartEventListener(listener: IOccurationListener) {
             this.dragStartListeners.push(listener);

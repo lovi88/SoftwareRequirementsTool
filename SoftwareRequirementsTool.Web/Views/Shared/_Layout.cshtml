@@ -22,9 +22,11 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/d3")
+    @Scripts.Render("~/bundles/SignalR")
+    <script src="~/signalr/hubs"></script>
 
+    @Scripts.Render("~/bundles/angular")
 
 
     @Scripts.Render("~/bundles/softReqToolApp")
@@ -34,70 +36,26 @@
 
 
 
-    <div ng-controller="testCtrl">
+<script>
 
+    $(function() {
+        var toolHub = $.connection.softwareRequirementsToolHub;
 
-
-        <div class="row">
-
-            @* Modelling Toolbar *@
-            <div id="modeling-toolbar" class="col-md-2">
-                mod toolbar
-            </div>
-
-            @* Modelling Area *@
-            <div class="col-md-8" style="">
-
-                <div id="modeling-area">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000">
-
-                        <association element-from="usecaseview" element-to="alma" />
-
-                        <use-case diagram-element="alma" />
-
-                        <use-case diagram-element="usecaseview" />
-
-
-                    </svg>
-
-                    @*<test-directive sc="sc1"/>
-
-                        <test-directive sc="sc2"/>*@
-
-                </div>
-
-            </div>
-
-            @* Project Tree *@
-            <div class="project-tree col-md-2">
-                project tree
-
-            </div>
-
-        </div>
-    </div>
-
-    <script>
-
-        function createLineCss3(parentSelector, x1, y1, x2, y2) {
-            var length = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-            var angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-            var transform = 'rotate(' + angle + 'deg)';
-
-            var line = $('<div>')
-                .appendTo(parentSelector)
-                .addClass('line')
-                .css({
-                    'position': 'absolute',
-                    'transform': transform
-                })
-                .width(length)
-                .offset({ left: x1 < x2 ? x1 : x1 - (x1 - x2), top: y1 < y2 ? y1 : y1 - (y1 - y2) });
-
-            return line;
+        toolHub.client.addNewMessageToPage = function (name, message) {
+            console.log("n: " + name);
+            console.log("m: " + message);
         }
 
-    </script>
+        $.connection.hub.start(function() {
+            console.log("hub started");
+            toolHub.server.send("Lovi", "alma");
+        });
+
+        
+    });
+
+
+</script>
 
 </body>
 </html>
