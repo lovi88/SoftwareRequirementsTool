@@ -1,3 +1,9 @@
 ﻿<div>
-    <projects-list></projects-list>   
+    <div ng-controller="projectsListerCtrl as prjLister">
+
+        <div ng-repeat="project in prjLister.projects">
+            <project-jumbotron project="project" />
+        </div>
+
+    </div>
 </div>

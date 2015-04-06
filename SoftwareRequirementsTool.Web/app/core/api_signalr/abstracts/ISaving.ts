@@ -4,11 +4,7 @@
     deleted(element: any);
 }
 
-interface ICrudSubject {
-    getElement(element: any);
-    getAllElemens(): Array<any>;
-    createElement(element: any);
-    modifyElement(element: any);
+interface ICrudObservableSubject {
     registerObserver(observer: ICrudObserver);
     unregisterObserver(observer: ICrudObserver);
 }

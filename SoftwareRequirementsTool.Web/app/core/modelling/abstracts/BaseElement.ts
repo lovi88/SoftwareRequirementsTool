@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../api_signalr/abstracts/isaving.ts" />
 module Modelling {
-    
+
     export class BaseElementData extends AbsInitFromObj implements IElementData, ISavable {
         id: number;
         name: string;
@@ -68,7 +68,7 @@ module Modelling {
         }
 
         recalculateTextPosition(txtLen?: number): void {
-            this.textPosition.x = (this.width / 2) -30;
+            this.textPosition.x = (this.width / 2) - 30;
             if (txtLen) {
                 this.textPosition.x -= txtLen;
             }
@@ -211,8 +211,7 @@ module Modelling {
             }
         }
 
-        //in next version of TS- it should be protected
-        init() {
+        protected init() {
             this.data = new BaseElementData();
             this.view = new BaseElementView();
         }
@@ -229,7 +228,7 @@ module Modelling {
     }
 
 
- 
+
 
 
 }

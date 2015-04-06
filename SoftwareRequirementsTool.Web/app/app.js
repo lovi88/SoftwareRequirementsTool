@@ -19,6 +19,10 @@
                 templateUrl: "/app/layout/projects-page/projects-page.html"
             })
 
+            .state("projects.active", {
+                url: "/projects/:projectId"
+            })
+
             .state("requirements", {
                 url: "/requirements",
                 templateUrl: "/app/layout/requirements-page/requirements-page.html"

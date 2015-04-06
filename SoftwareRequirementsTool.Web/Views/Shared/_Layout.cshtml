@@ -39,17 +39,7 @@
 <script>
 
     $(function() {
-        var toolHub = $.connection.softwareRequirementsToolHub;
-
-        toolHub.client.addNewMessageToPage = function (name, message) {
-            console.log("n: " + name);
-            console.log("m: " + message);
-        }
-
-        $.connection.hub.start(function() {
-            console.log("hub started");
-            toolHub.server.send("Lovi", "alma");
-        });
+        
 
         
     });
