@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Entities\IEntity.cs" />
     <Compile Include="Data\Entities\ViewElements\AbsUMLDiagramViewElement.cs" />
     <Compile Include="Data\Entities\Actor.cs" />
     <Compile Include="Data\Entities\BusinessValue.cs" />
@@ -66,6 +67,11 @@
     <Compile Include="Data\Entities\ViewElements\AbsViewElement.cs" />
     <Compile Include="Data\Entities\ViewElements\UseCaseViewElement.cs" />
     <Compile Include="Data\IComparableByAbstraction.cs" />
+    <Compile Include="Data\Repositories\GenericRepository.cs" />
+    <Compile Include="Data\Repositories\IGenericRepository.cs" />
+    <Compile Include="Data\Repositories\ProjectRepository.cs" />
+    <Compile Include="Data\Repositories\UnitOfWork.cs" />
+    <Compile Include="Data\Repositories\UserStoryRepository.cs" />
     <Compile Include="Utilities\IGenericCRUD.cs" />
     <Compile Include="Data\SoftwareRequirementsToolContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,7 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Business\" />
-    <Folder Include="Data\Repositories\" />
     <Folder Include="Providers\" />
     <Folder Include="Services\" />
   </ItemGroup>

@@ -1,12 +1,4 @@
-﻿interface IEventCallback {
-    (from: any, data: any): any;
-}
-
-interface IOccurationListener {
-    occured(from: any, data: any): void;
-}
-
-interface IPoint {
+﻿interface IPoint {
     x: number;
     y: number;
 }

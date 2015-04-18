@@ -24,6 +24,7 @@ namespace SoftwareRequirementsTool.Web
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/angular.min.js",
                       "~/Scripts/angular-ui-router.min.js",
+                      "~/Scripts/angular-ui/ui-bootstrap-tpls.js",
                       "~/Scripts/angular-route.min.js",
                       "~/Scripts/angular-animate.min.js"
                       ));
@@ -38,23 +39,29 @@ namespace SoftwareRequirementsTool.Web
 
             bundles.Add(new ScriptBundle("~/bundles/SignalR").Include(
                     "~/Scripts/jquery.signalR-2.2.0.min.js"
-                    //"~/app/hubs.js"
                 )
             );
 
 
             // App Files
             var softReqToolApp = new ScriptBundle("~/bundles/softReqToolApp");
+            
+            // The Core Business Logic
+            // The sequence of .js file is matters, because of inheritence (warning !!!)
+            softReqToolApp.IncludeDirectory("~/app/core/utils", "*.js", true);
+            
+            softReqToolApp.IncludeDirectory("~/app/core/api/abstracts", "*.js", true);
+            softReqToolApp.IncludeDirectory("~/app/core/api/concrete", "*.js", true);
 
-            softReqToolApp.Include("~/app/app.js");
-
-            // The sequence of .TS file is matters (warning !!!)
-            softReqToolApp.IncludeDirectory("~/app/core/api_signalr/abstracts", "*.js", true);
-            softReqToolApp.IncludeDirectory("~/app/core/api_signalr/concretes", "*.js", true);
+            softReqToolApp.IncludeDirectory("~/app/core/entities/abstracts", "*.js", true);
+            softReqToolApp.IncludeDirectory("~/app/core/entities/concrete", "*.js", true);
 
             softReqToolApp.IncludeDirectory("~/app/core/modelling/abstracts", "*.js", true);
-            softReqToolApp.IncludeDirectory("~/app/core/modelling/concretes", "*.js", true);
+            softReqToolApp.IncludeDirectory("~/app/core/modelling/concrete", "*.js", true);
 
+
+            // Logic and AngularJs setups
+            softReqToolApp.Include("~/app/app.js");
 
             softReqToolApp.IncludeDirectory("~/app/blocks", "*.js", true);
             softReqToolApp.IncludeDirectory("~/app/features", "*.js", true);
@@ -62,10 +69,11 @@ namespace SoftwareRequirementsTool.Web
             softReqToolApp.IncludeDirectory("~/app/services", "*.js", true);
             softReqToolApp.IncludeDirectory("~/app/widgets", "*.js", true);
 
-
             bundles.Add(softReqToolApp);
 
 
+
+            //Design
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-theme.min.css",
@@ -73,5 +81,6 @@ namespace SoftwareRequirementsTool.Web
                       "~/Content/site.css"));
 
         }
+
     }
 }

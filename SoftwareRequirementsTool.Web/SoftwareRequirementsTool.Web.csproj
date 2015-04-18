@@ -230,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\blocks\dialogs\dialogs.js" />
     <Content Include="app\blocks\DragNDrop\myDraggable.js" />
     <Content Include="app\blocks\drawing\drawing.js" />
     <Content Include="app\blocks\filters\filter01.js" />
@@ -249,15 +250,19 @@
     <Content Include="app\features\modelling\testDirective.js" />
     <Content Include="app\features\modelling\useCaseDir.js" />
     <Content Include="app\features\modelling\useCase.svg" />
-    <Content Include="app\features\projects\project-jumbotron.html" />
-    <Content Include="app\features\projects\projectJumbotron.js" />
-    <Content Include="app\features\projects\projectsList.html" />
-    <Content Include="app\features\projects\projectsListerCtrl.js" />
+    <Content Include="app\layout\partial-pages\entity-jumbotron.html" />
+    <Content Include="app\features\projects\projectsController.js" />
+    <Content Include="app\blocks\dialogs\nameDescDialogController.js" />
+    <Content Include="app\layout\partial-pages\entityJumbotron.js" />
+    <Content Include="app\features\projects\projectService.js" />
+    <Content Include="app\features\project\projectController.js" />
     <Content Include="app\features\test\testCtrl.js" />
     <Content Include="app\hubs.js" />
     <Content Include="app\layout\mainmenu\main-menu.html" />
     <Content Include="app\layout\mainmenu\mainMenu.js" />
     <Content Include="app\layout\modelling-page\modelling-page.html" />
+    <Content Include="app\layout\project-page\project-page.html" />
+    <Content Include="app\blocks\dialogs\name-desc-dialog.html" />
     <Content Include="app\layout\projects-page\projects-page.html" />
     <Content Include="app\layout\requirements-page\requirements-page.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -297,6 +302,10 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular-ui-router.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -1128,6 +1137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\blocks\utils\" />
+    <Folder Include="app\core\api\angularServices\" />
     <Folder Include="app\features\specificaton\" />
     <Folder Include="app\services\" />
     <Folder Include="app\widgets\" />
@@ -1139,17 +1149,28 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\core\api_signalr\abstracts\Context.ts" />
-    <TypeScriptCompile Include="app\core\api_signalr\abstracts\ISaving.ts" />
-    <TypeScriptCompile Include="app\core\api_signalr\concretes\SignalRSaver.ts" />
-    <TypeScriptCompile Include="app\core\modelling\abstracts\AbsInitFromObj.ts" />
+    <TypeScriptCompile Include="app\core\api\abstracts\BaseSignalRService.ts" />
+    <TypeScriptCompile Include="app\core\api\abstracts\CommunicationInterfaces.ts" />
+    <TypeScriptCompile Include="app\core\api\concrete\ProjectsService.ts" />
+    <TypeScriptCompile Include="app\core\entities\abstracts\EntityInterfaces.ts" />
+    <TypeScriptCompile Include="app\core\entities\concrete\Project.ts" />
+    <TypeScriptCompile Include="app\core\utils\ArrayHelpers.ts" />
+    <TypeScriptCompile Include="app\core\utils\EventHandlingInterfaces.ts" />
     <TypeScriptCompile Include="app\core\modelling\abstracts\BaseElement.ts" />
-    <TypeScriptCompile Include="app\core\modelling\concretes\Connections.ts" />
-    <TypeScriptCompile Include="app\core\modelling\abstracts\Interfaces.ts" />
-    <TypeScriptCompile Include="app\core\modelling\concretes\Point.ts" />
-    <TypeScriptCompile Include="app\core\modelling\concretes\UseCase.ts" />
+    <TypeScriptCompile Include="app\core\modelling\concrete\Connections.ts" />
+    <TypeScriptCompile Include="app\core\modelling\abstracts\ModellingInterfaces.ts" />
+    <TypeScriptCompile Include="app\core\modelling\concrete\Point.ts" />
+    <TypeScriptCompile Include="app\core\modelling\concrete\UseCase.ts" />
+    <TypeScriptCompile Include="app\core\utils\objectHelpers.ts" />
+    <TypeScriptCompile Include="app\core\utils\TypeChecks.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\signalr\signalr.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SoftwareRequirementsTool\SoftwareRequirementsTool.csproj">
+      <Project>{c2ba4bed-1378-471d-9571-8a793b9be7a2}</Project>
+      <Name>SoftwareRequirementsTool</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1158,6 +1179,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptModuleKind>none</TypeScriptModuleKind>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

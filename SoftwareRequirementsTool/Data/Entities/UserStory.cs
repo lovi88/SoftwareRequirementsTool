@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SoftwareRequirementsTool.Data
 {
-    class UserStory : AbsElement
+    public class UserStory : AbsElement
     {
 
         public string Story { get; set; }
@@ -16,12 +16,12 @@ namespace SoftwareRequirementsTool.Data
         public BusinessValue BusinessValue { get; set; }
 
 
-        float abstractionLevel = 1;
+        float _abstractionLevel = 1;
 
         public override float AbstractionLevel
         {
-            get { return abstractionLevel; }
-            set { abstractionLevel = value; }
+            get { return _abstractionLevel; }
+            set { _abstractionLevel = value; }
         }
     }
 }

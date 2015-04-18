@@ -1,30 +1,21 @@
-﻿/// <reference path="../../api_signalr/abstracts/isaving.ts" />
-module Modelling {
+﻿module Modelling {
 
-    export class BaseElementData extends AbsInitFromObj implements IElementData, ISavable {
+    export class BaseElementData implements IElementData, ISavable {
         id: number;
         name: string;
         description: string;
 
-        private saver: ISaver;
-
         constructor(elementData?: IElementData) {
-            super();
 
-            super.initFromObj(elementData);
-
-            this.saver = new API.SignalR.SignalRSaver();
         }
 
-        save() { this.saver.save(this); }
-
-        rollback() { this.saver.rollback(this); }
+        save() { }
+        rollback() { }
     }
 
 
     declare var d3: any;
     export class BaseElementView
-        extends AbsInitFromObj
         implements IElementView, ISavable, IDraggable {
 
         id: number;
@@ -34,22 +25,17 @@ module Modelling {
         center: IPoint;
         textPosition: IPoint;
 
-        private dragStartListeners: Array<IOccurationListener> = new Array<IOccurationListener>();
-        private dragingListeners: Array<IOccurationListener> = new Array<IOccurationListener>();
-        private dragEndListeners: Array<IOccurationListener> = new Array<IOccurationListener>();
+        private dragStartListeners = new Array<IOccurationListener>();
+        private dragingListeners = new Array<IOccurationListener>();
+        private dragEndListeners = new Array<IOccurationListener>();
 
-        private dragStartCallbacks: Array<IEventCallback> = new Array<IEventCallback>();
-        private draggingCallbacks: Array<IEventCallback> = new Array<IEventCallback>();
-        private dragEndCallbacks: Array<IEventCallback> = new Array<IEventCallback>();
+        private dragStartCallbacks = new Array<IEventCallback>();
+        private draggingCallbacks = new Array<IEventCallback>();
+        private dragEndCallbacks = new Array<IEventCallback>();
 
-        private saver: ISaver;
 
         constructor(elementView?: IElementView) {
-            super();
-
             if (elementView) {
-                super.initFromObj(elementView);
-
             } else {
                 this.coordinates = new Point();
                 this.center = new Point();
@@ -64,7 +50,6 @@ module Modelling {
                 this.recalculateTextPosition(10);
             }
 
-            this.saver = new API.SignalR.SignalRSaver();
         }
 
         recalculateTextPosition(txtLen?: number): void {
@@ -86,20 +71,20 @@ module Modelling {
             var that = this;
             var drag: any = d3.behavior.drag()
                 .on("dragstart", function (d) {
-                //do some drag start stuff...
-                //this : actual domElement
-                that.dragStart();
-            })
+                    //do some drag start stuff...
+                    //this : actual domElement
+                    that.dragStart();
+                })
                 .on("drag", function (d) {
-                //hey we're dragging, let's update some stuff
+                    //hey we're dragging, let's update some stuff    
+                    // ReSharper disable once SuspiciousThisUsage
+                    that.dragging(this);
 
-                that.dragging(this);
-
-            })
+                })
                 .on("dragend", function () {
-                //we're done, end some stuff
-                that.dragEnd();
-            });
+                    //we're done, end some stuff
+                    that.dragEnd();
+                });
 
             d3.selectAll(domElement.toArray()).call(drag);
         }
@@ -136,11 +121,11 @@ module Modelling {
 
         private d3Dragging(domElement: any): void {
             var sel = d3.select(domElement);
-            var x = sel.attr('x');
-            var y = sel.attr('y');
+            var x = sel.attr("x");
+            var y = sel.attr("y");
 
-            var xNext = parseInt(x) + d3.event.dx;
-            var yNext = parseInt(y) + d3.event.dy;
+            var xNext = parseInt(x, 10) + d3.event.dx;
+            var yNext = parseInt(y, 10) + d3.event.dy;
 
             sel.attr("x", xNext);
             sel.attr("y", yNext);
@@ -163,11 +148,11 @@ module Modelling {
 
 
         save(): void {
-            this.saver.save(this);
+
         }
 
         rollback(): void {
-            this.saver.save(this);
+
         }
 
         addDragStartEventListener(listener: IOccurationListener) {
@@ -196,7 +181,7 @@ module Modelling {
     }
 
 
-    export class BaseElement implements IElement, ISavable {
+    export class BaseDiagramElement implements IElement, ISavable {
 
         data: IElementData;
         view: IElementView;

@@ -1,0 +1,27 @@
+﻿<div class="col-md-4">
+    <div class="jumbotron">
+        <h1>{{entity.Name}}</h1>
+
+        <div style="word-wrap: break-word; height: 10em; overflow: hidden">
+            {{entity.Description}}
+        </div>
+
+        <p>
+            <button class="btn btn-primary btn-lg"
+                    ng-click="open()"
+                    ng-hide="isActive()">
+                Open
+            </button>
+
+            <button class="btn btn-warning btn-lg"
+                    ng-click="close()"
+                    ng-show="isActive()">
+                Close
+            </button>
+
+            <button class="btn btn-info btn-lg" ng-click="modify()">
+                Modify
+            </button>
+        </p>
+    </div>
+</div>

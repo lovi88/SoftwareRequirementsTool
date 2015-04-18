@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SoftwareRequirementsTool.Data
 {
-    class Diagram: AbsElement
+    public class Diagram: AbsElement
     {
         float abstractionLevel = 0.5f;
 

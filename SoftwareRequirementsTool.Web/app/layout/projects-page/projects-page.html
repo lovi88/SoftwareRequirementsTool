@@ -1,9 +1,18 @@
-﻿<div>
-    <div ng-controller="projectsListerCtrl as prjLister">
+﻿<div ng-controller="projectsController">
 
-        <div ng-repeat="project in prjLister.projects">
-            <project-jumbotron project="project" />
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <button ng-click="create()" class="btn btn-success btn-lg">Create New</button>
         </div>
-
     </div>
+
+    <div ng-repeat="project in projects">
+        <entity-jumbotron entity="project"
+                          is-active="projectsService.isActive(entity)"
+                          open="projectsService.open(entity)"
+                          close="projectsService.close(entity)"
+                          modify="modify(entity)">
+        </entity-jumbotron>
+    </div>
+
 </div>

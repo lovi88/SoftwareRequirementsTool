@@ -1,6 +1,6 @@
 ﻿module Modelling {
 
-    export class UseCase extends BaseElement {
+    export class UseCase extends BaseDiagramElement {
         constructor(element: IElement) {
             super(element);
         }

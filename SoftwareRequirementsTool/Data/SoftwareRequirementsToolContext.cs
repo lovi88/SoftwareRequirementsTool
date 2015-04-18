@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace SoftwareRequirementsTool.Data
 {
-    class SoftwareRequirementsToolContext: DbContext 
+    public class SoftwareRequirementsToolContext: DbContext 
     {
         //TODO: prop DataSet
+        
     }
+
 }

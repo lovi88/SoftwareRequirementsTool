@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace SoftwareRequirementsTool.Data
+namespace SoftwareRequirementsTool.Data.Entities
 {
-    class Project : AbsElement
+    public class Project : AbsElement
     {
         public override float AbstractionLevel
         {

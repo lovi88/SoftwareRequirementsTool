@@ -9,17 +9,10 @@ interface ICrudObservableSubject {
     unregisterObserver(observer: ICrudObserver);
 }
 
-
-interface ISaver {
-    save(element: any): void;
-    rollback(element: any): void;
+interface IEventCallback {
+    (from: any, data: any): any;
 }
 
-interface ISavable {
-    save(): void;
-    rollback(): void;
-}
-
-module API.SignalR {
-
+interface IOccurationListener {
+    occured(from: any, data: any): void;
 }

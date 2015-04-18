@@ -1,10 +1,14 @@
 ﻿(function () {
     'use strict';
 
+    CoreServices.BaseSignalRService.startConnections(function () {
+        console.log("services started");
+    });
+
     var app = angular.module("app", [
         // Angular modules 
-        "ui.router"
-
+        "ui.router",
+        "ui.bootstrap"
         // Custom modules 
 
         // 3rd Party Modules
@@ -19,8 +23,10 @@
                 templateUrl: "/app/layout/projects-page/projects-page.html"
             })
 
-            .state("projects.active", {
-                url: "/projects/:projectId"
+            .state("project", {
+                url: "/project/:projectId",
+                templateUrl: "/app/layout/project-page/project-page.html",
+                controller: "projectController"
             })
 
             .state("requirements", {

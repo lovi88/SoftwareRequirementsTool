@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftwareRequirementsTool.Data
 {
-    class BusinessValue: AbsElement
+    public class BusinessValue: AbsElement
     {
         float abstractionLevel = 2;
 
