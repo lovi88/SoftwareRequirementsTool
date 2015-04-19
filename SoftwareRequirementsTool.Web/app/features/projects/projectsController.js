@@ -12,7 +12,7 @@
         vm.projectsService = projectService;
 
         var changeEventHandler = function (from, data) {
-            $scope.$apply();
+            AngularUtils.safeApply($scope);
         };
 
         function activated() {
@@ -55,7 +55,7 @@
                     //modification occured
                     console.log("saved");
                 });
-
+                
             }, function () {
                 //cancel
             });

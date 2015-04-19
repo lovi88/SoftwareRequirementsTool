@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 using TypeLite;
 
-namespace SoftwareRequirementsTool.Data
+namespace SoftwareRequirementsTool.Data.Entities.Elements
 {
     [TsClass]
-    public abstract class AbsElement : IElement
+    public abstract class AbsElement : AbsEntity, IElement
     {
-        public object Id { get; set; }
         public string Name { get; set; }
 
-        public string ShortDescription { get; set; }
-
+        [NotMapped]
         public string TypeName
         {
             get { return GetType().Name; }
@@ -24,14 +19,9 @@ namespace SoftwareRequirementsTool.Data
 
         public abstract float AbstractionLevel { get; set; }
 
-        //~USER
+        //Todo: ~USER
         public string Author { get; set; }
-
-        public List<IElement> ConnectedElements { get; set; }
-
-        public List<AbsViewElement> ConnectedViews { get; set; }
-
-
+        
         public int CompareTo(IComparableByAbstraction other)
         {
             if (other == null)

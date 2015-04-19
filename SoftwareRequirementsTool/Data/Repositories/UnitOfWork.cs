@@ -7,6 +7,7 @@ namespace SoftwareRequirementsTool.Data.Repositories
         protected readonly SoftwareRequirementsToolContext Context = new SoftwareRequirementsToolContext();
         private ProjectRepository _projectRepository;
         private UserStoryRepository _userStoryRepository;
+        private DiagramRepository _diagramRepository;
 
         public ProjectRepository ProjectRepository
         {
@@ -26,7 +27,16 @@ namespace SoftwareRequirementsTool.Data.Repositories
             }
         }
 
-        public void Save()
+        public DiagramRepository DiagramRepository
+        {
+            get 
+            { 
+                return _diagramRepository
+                    ?? (_diagramRepository = new DiagramRepository(Context));
+            }
+        }
+
+        public void SaveChanges()
         {
             Context.SaveChanges();
         }

@@ -1,6 +1,6 @@
 ﻿module Utils {
-    export  class TypeChecker {
-       static isFunction(fnc?): boolean {
+    export class TypeChecker {
+        static isFunction(fnc?): boolean {
             if (!fnc) {
                 return false;
             }

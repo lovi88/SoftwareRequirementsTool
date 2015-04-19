@@ -12,9 +12,9 @@ namespace SoftwareRequirementsTool.Data
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");
 
-        TEntity GetById(object id, string includeProperties = "");
+        TEntity GetById(int id, string includeProperties = "");
         void Insert(TEntity entity);
-        void Delete(object id);
+        void Delete(int id);
         void Delete(TEntity entityToDelete);
         void Update(TEntity entityToUpdate);
     }

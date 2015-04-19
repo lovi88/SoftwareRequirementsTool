@@ -21,30 +21,36 @@
             //console.log("projectService.open",project)
 
             activeProject = project;
-
+            //TODO: CoreServices.projectsServiceInstance.open(project)
             //TODO: CoreServices.diagramServiceInstance.loadByProject(project)
             //TODO: CoreServices.requirementsServiceInstance.loadByProject(project)
         }
 
         function close(project) {
-            console.log("service.close")
+            //TODO: CoreServices.projectsServiceInstance.close(project)
+            
             activeProject = null;
         }
 
         function create(project) {
-
+            service.create(project);
         }
 
         function modify(project) {
-            console.log("modify")
-            console.log(project)
+            service.modify(project);
+        }
+
+        function deleteEntity(project) {
+            service.deleteEntity(project)
         }
 
         this.isActive = isActive;
         this.open = open;
         this.close = close;
         this.modify = modify;
-
+        this.delete = deleteEntity;
+        this.create = create;
+        
         //privates
         function paramneterAsserations(parameter) {
             //if (Utils.TypeChecker.isUndefined(parameter)) {

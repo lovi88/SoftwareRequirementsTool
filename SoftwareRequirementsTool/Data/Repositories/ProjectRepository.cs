@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SoftwareRequirementsTool.Data.Entities;
+using SoftwareRequirementsTool.Data.Entities.Elements;
 
 namespace SoftwareRequirementsTool.Data.Repositories
 {

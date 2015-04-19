@@ -10,7 +10,7 @@
             BaseSignalRService.activeChildServices.push(this);
         }
 
-        projects = new Array<IProject>();
+        projects = new Array<any>();
 
         getAll(callback: IArrayWaitCallback) {
             super.getAll(result => {
@@ -31,10 +31,9 @@
         init() {
             
             this.getAll(result => {
-
                 for (var rKey in result) {
                     if (result.hasOwnProperty(rKey)) {
-                        this.projects[rKey] = result[rKey];
+                        this.projects.push(result[rKey]);
                     }
                 }
 

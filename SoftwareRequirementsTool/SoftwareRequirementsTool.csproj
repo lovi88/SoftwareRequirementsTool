@@ -52,24 +52,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Entities\AbsEntity.cs" />
+    <Compile Include="Data\Entities\Connections\Connection.cs" />
+    <Compile Include="Data\Entities\ViewElements\ActorView.cs" />
+    <Compile Include="Data\Entities\ViewElements\DiagramElement.cs" />
     <Compile Include="Data\Entities\IEntity.cs" />
-    <Compile Include="Data\Entities\ViewElements\AbsUMLDiagramViewElement.cs" />
-    <Compile Include="Data\Entities\Actor.cs" />
-    <Compile Include="Data\Entities\BusinessValue.cs" />
-    <Compile Include="Data\Entities\Diagram.cs" />
-    <Compile Include="Data\Entities\AbsElement.cs" />
-    <Compile Include="Data\Entities\IElement.cs" />
-    <Compile Include="Data\Entities\ViewElements\IViewElement.cs" />
-    <Compile Include="Data\Entities\Project.cs" />
-    <Compile Include="Data\Entities\Requirement.cs" />
-    <Compile Include="Data\Entities\UseCase.cs" />
-    <Compile Include="Data\Entities\UserStory.cs" />
-    <Compile Include="Data\Entities\ViewElements\AbsViewElement.cs" />
-    <Compile Include="Data\Entities\ViewElements\UseCaseViewElement.cs" />
+    <Compile Include="Data\Entities\Elements\Actor.cs" />
+    <Compile Include="Data\Entities\Elements\Diagram.cs" />
+    <Compile Include="Data\Entities\Elements\AbsElement.cs" />
+    <Compile Include="Data\Entities\Elements\IElement.cs" />
+    <Compile Include="Data\Entities\ViewElements\IView.cs" />
+    <Compile Include="Data\Entities\Elements\Project.cs" />
+    <Compile Include="Data\Entities\Elements\UseCase.cs" />
+    <Compile Include="Data\Entities\Elements\UserStory.cs" />
+    <Compile Include="Data\Entities\ViewElements\Point.cs" />
+    <Compile Include="Data\Entities\ViewElements\Stereotype.cs" />
+    <Compile Include="Data\Entities\ViewElements\AbsView.cs" />
+    <Compile Include="Data\Entities\ViewElements\UseCaseView.cs" />
     <Compile Include="Data\IComparableByAbstraction.cs" />
+    <Compile Include="Data\Repositories\DiagramRepository.cs" />
     <Compile Include="Data\Repositories\GenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Repositories\ProjectRepository.cs" />
+    <Compile Include="Data\Repositories\SignalRObservableRepository.cs" />
     <Compile Include="Data\Repositories\UnitOfWork.cs" />
     <Compile Include="Data\Repositories\UserStoryRepository.cs" />
     <Compile Include="Utilities\IGenericCRUD.cs" />
@@ -85,24 +90,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Scripts\Manager.ttinclude" />
-    <None Include="Scripts\TypeLite.Net4.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TypeLite.Net4.d.ts</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Scripts\Enums.ts">
-      <DependentUpon>TypeLite.Net4.tt</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="Scripts\TypeLite.Net4.d.ts">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TypeLite.Net4.tt</DependentUpon>
-    </TypeScriptCompile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

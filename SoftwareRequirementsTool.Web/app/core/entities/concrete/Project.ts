@@ -24,6 +24,6 @@
     }
 
     rollback(): void {
-        this.service.resetFromServer(this);
+        //this.service.resetFromServer(this);
     }
 }

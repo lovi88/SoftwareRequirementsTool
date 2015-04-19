@@ -136,3 +136,7 @@ E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\Rabbit.Bootstrap.xml
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\Microsoft.AspNet.SignalR.Owin.dll
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\Microsoft.AspNet.SignalR.Owin.xml
+E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\SoftwareRequirementsTool.dll
+E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\TypeLite.dll
+E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\SoftwareRequirementsTool.pdb
+E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\TypeLite.pdb

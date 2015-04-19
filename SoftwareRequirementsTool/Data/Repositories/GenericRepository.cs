@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Data;
 using System.Data.Entity;
-
+using System.Linq;
 using System.Linq.Expressions;
 using SoftwareRequirementsTool.Data.Entities;
 
-namespace SoftwareRequirementsTool.Data
+namespace SoftwareRequirementsTool.Data.Repositories
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity>
         where TEntity : class, IEntity
@@ -43,7 +40,7 @@ namespace SoftwareRequirementsTool.Data
             return query;
         }
 
-        public virtual TEntity GetById(object id, string includeProperties = "")
+        public virtual TEntity GetById(int id, string includeProperties = "")
         {
             if (includeProperties == String.Empty)
             {
@@ -64,7 +61,7 @@ namespace SoftwareRequirementsTool.Data
             DbSet.Add(entity);
         }
 
-        public virtual void Delete(object id)
+        public virtual void Delete(int id)
         {
             var entityToDelete = DbSet.Find(id);
             Delete(entityToDelete);
