@@ -1,0 +1,21 @@
+﻿<div ng-controller="diagramsController">
+
+    <div class="container-fluid">
+
+        <div class="jumbotron">
+            <h2>{{title}}</h2>
+            <button ng-click="create()" class="btn btn-success btn-lg">Create New</button>
+        </div>
+    </div>
+
+    <div ng-repeat="diagram in diagrams">
+        <entity-jumbotron entity="diagram"
+                          is-active="diagramsService.isActive(entity)"
+                          open="diagramsService.open(entity)"
+                          close="diagramsService.close(entity)"
+                          modify="modify(entity)"
+                          delete="diagramsService.delete(entity)">
+        </entity-jumbotron>
+    </div>
+
+</div>

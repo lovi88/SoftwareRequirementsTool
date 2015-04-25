@@ -20,7 +20,6 @@
         vm.xyz = "";
 
         vm.loginClick = function (loginForm) {
-            console.log(loginForm);
 
             if (loginForm.$valid) {
                 alert(vm.user.name + " " + vm.user.pass);

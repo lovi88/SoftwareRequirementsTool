@@ -8,6 +8,8 @@
 
         float _abstractionLevel = 1;
 
+        public Project ContainerProject { get; set; }
+
         public override float AbstractionLevel
         {
             get { return _abstractionLevel; }

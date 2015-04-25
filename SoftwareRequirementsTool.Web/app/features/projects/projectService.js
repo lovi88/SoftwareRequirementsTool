@@ -1,50 +1,58 @@
 ﻿(function () {
     "use strict";
 
-    function projectService() {
+    function projectService(menuService, notificationService, $sessionStorage) {
         var service = CoreServices.projectsServiceInstance;
-        var activeProject = null;
+        var baseService =
+            new ServiceParts.BaseCrudOpenCloseService(service, $sessionStorage, "activeProject",
+            function (project) {
+                menuService.openProject();
+                CoreServices.diagramsServiceInstance.loadAllForEntityToProperty(project);
+                CoreServices.userStoryServiceInstance.loadAllForEntityToProperty(project);
+            },
+            function (project) {
+                CoreServices.diagramsServiceInstance.clear();
+                CoreServices.userStoryServiceInstance.clear();
+            });
+        
+        function close(project) {
+            baseService.close(project);
+            menuService.closeProject();
 
-
-        function isActive(project) {
-            //console.log("projectService.isActive", project)
-
-            if (Utils.TypeChecker.isUndefined(project)) {
-                return false;
-            }
-
-            return (project === activeProject);
+            notificationService.showInfo(project.Name + "is closed, now the requirements and the modelling menues are deactivated");
         }
+
 
         function open(project) {
-            paramneterAsserations(project);
-            //console.log("projectService.open",project)
+            baseService.open(project);
 
-            activeProject = project;
-            //TODO: CoreServices.projectsServiceInstance.open(project)
-            //TODO: CoreServices.diagramServiceInstance.loadByProject(project)
-            //TODO: CoreServices.requirementsServiceInstance.loadByProject(project)
+            notificationService.showInfo(project.Name + "is opened, now the requirements and the modelling menues are active");
         }
 
-        function close(project) {
-            //TODO: CoreServices.projectsServiceInstance.close(project)
-            
-            activeProject = null;
+        function isActive(project) {
+            return baseService.isActive(project);
+        }
+
+        function getActive() {
+            return baseService.getActive();
         }
 
         function create(project) {
-            service.create(project);
+            baseService.create(project);
         }
 
         function modify(project) {
-            service.modify(project);
+            baseService.modify(project);
         }
 
         function deleteEntity(project) {
-            service.deleteEntity(project)
+            baseService.deleteEntity(project);
         }
+        //activates
 
+        //public interface
         this.isActive = isActive;
+        this.getActive = getActive;
         this.open = open;
         this.close = close;
         this.modify = modify;
@@ -52,24 +60,7 @@
         this.create = create;
         
         //privates
-        function paramneterAsserations(parameter) {
-            //if (Utils.TypeChecker.isUndefined(parameter)) {
-            //    //undefined
-            //    throw {
-            //        message: "The active project must be a Project",
-            //        parameter: parameter,
-            //        thrownIn: "projectService"
-            //    }
-            //}
-
-            //if (!(parameter instanceof Project)) {
-            //    throw {
-            //        message: "The active project must be a Project",
-            //        parameter: parameter,
-            //        thrownIn: "projectService -> active(project)"
-            //    }
-            //}
-        }
+        //...
 
     }
 
@@ -77,5 +68,5 @@
         .module("app")
         .service("projectService", projectService);
 
-    //projectService.$inject = [""];
+    projectService.$inject = ["menuService", "notificationService", "$sessionStorage"];
 })();

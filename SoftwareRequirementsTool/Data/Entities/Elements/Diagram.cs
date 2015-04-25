@@ -3,9 +3,9 @@ using SoftwareRequirementsTool.Data.Entities.ViewElements;
 
 namespace SoftwareRequirementsTool.Data.Entities.Elements
 {
-    public class Diagram: AbsElement
+    public class Diagram: AbsElement, IDiagram
     {
-        public List<DiagramElement> DiagramElements { get; set; }
+        virtual public List<DiagramPart> DiagramElements { get; set; }
 
         float _abstractionLevel = 0.5f;
         public override float AbstractionLevel
@@ -13,7 +13,6 @@ namespace SoftwareRequirementsTool.Data.Entities.Elements
             get { return _abstractionLevel; }
             set { _abstractionLevel = value; }
         }
-
 
     }
 }

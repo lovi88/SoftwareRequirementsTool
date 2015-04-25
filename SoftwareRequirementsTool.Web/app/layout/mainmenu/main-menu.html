@@ -11,7 +11,7 @@
             </button>
 
             <!-- Brand -->
-            <a class="navbar-brand" href="#">Software Requirement Tool</a>
+            <a class="navbar-brand" ui-sref="projects">Software Requirement Tool</a>
             
         </div>
 
@@ -20,7 +20,6 @@
 
             <!--Menu Links-->
 
-            <!--data-bind="foreach: router.navigationModel"-->
             <ul class="nav navbar-nav">
                 <li ui-sref-active="active">
                     <a ui-sref="projects">
@@ -28,13 +27,19 @@
                     </a>
                 </li>
 
-                <li ui-sref-active="active">
+                <li ui-sref-active="active" ng-show="menuService.isRequirementsViseible">
                     <a ui-sref="requirements">
                         Requirements
                     </a>
                 </li>
 
-                <li ui-sref-active="active">
+                <li ui-sref-active="active" ng-show="menuService.isDiagramsVisible">
+                    <a ui-sref="diagrams">
+                        Diagrams
+                    </a>
+                </li>
+
+                <li ui-sref-active="active" ng-show="menuService.isModellingVisible">
                     <a ui-sref="modelling">
                         Modelling
                     </a>

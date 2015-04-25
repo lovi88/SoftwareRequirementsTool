@@ -3,8 +3,9 @@
 
     function projectsController($scope, dialogs, projectService) {
         /* jshint validthis:true */
+
         var vm = $scope;
-        vm.title = "projectsController";
+        vm.title = "Projects";
 
         vm.service = CoreServices.projectsServiceInstance;
         vm.projects = vm.service.projects;
@@ -23,15 +24,13 @@
         vm.create = function () {
             var modalInstance = dialogs.createCustomDialog(
                 "Create Project",
-                new Project()
+                new Entities.Project()
             );
 
             modalInstance.result.then(function (objectToSave) {
                 //save aproved
-                console.log(objectToSave);
-                vm.service.create(objectToSave, function (obj) {
+                projectService.create(objectToSave, function (obj) {
                     //creation occured
-                    console.log("saved");
                 });
 
             }, function () {
@@ -48,12 +47,8 @@
 
             modalInstance.result.then(function (objectToSave) {
                 //save aproved
-                console.log(objectToSave);
-
-
-                vm.service.modify(objectToSave, function (obj) {
+                projectService.modify(objectToSave, function (obj) {
                     //modification occured
-                    console.log("saved");
                 });
                 
             }, function () {

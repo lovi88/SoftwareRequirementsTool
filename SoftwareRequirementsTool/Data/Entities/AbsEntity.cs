@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoftwareRequirementsTool.Data.Entities
 {
-    public class AbsEntity:IEntity
+    public abstract class AbsEntity:IEntity
     {
         public int Id { get; set; }
+        [NotMapped]
+        public string TypeName
+        {
+            get { return GetType().Name; }
+        }
     }
 }

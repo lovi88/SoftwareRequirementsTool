@@ -8,7 +8,9 @@
         $scope.data = data;
 
         $scope.save = function () {
-            $modalInstance.close($scope.data);
+            if ($scope.data.Name) {
+                $modalInstance.close($scope.data);
+            }
         }
 
         $scope.cancel = function () {

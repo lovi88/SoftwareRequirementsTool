@@ -1,0 +1,14 @@
+﻿using System;
+using SoftwareRequirementsTool.Data.Entities.ViewElements;
+
+namespace SoftwareRequirementsTool.Data.Repositories
+{
+    public interface IUnitOfWork : IDisposable
+    {
+        ProjectRepository ProjectRepository { get; }
+        UserStoryRepository UserStoryRepository { get; }
+        DiagramRepository DiagramRepository { get; }
+        SignalRObservableRepository<DiagramPart> DiagramPartRepository { get; }
+        void SaveChanges();
+    }
+}

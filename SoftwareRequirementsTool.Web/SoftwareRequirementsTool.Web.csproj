@@ -41,6 +41,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
@@ -51,6 +59,9 @@
       <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="Rabbit.Bootstrap">
       <HintPath>..\packages\Rabbit.Bootstrap.MVC.1.1.0.0\lib\net40\Rabbit.Bootstrap.dll</HintPath>
     </Reference>
@@ -126,12 +137,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -214,11 +219,15 @@
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Dependencies\NinjectSignalRDependencyResolver.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\BaseCrudHub.cs" />
+    <Compile Include="Hubs\DiagramPartHub.cs" />
+    <Compile Include="Hubs\DiagramHub.cs" />
     <Compile Include="Hubs\ProjectHub.cs" />
-    <Compile Include="Hubs\SoftwareRequirementsToolHub.cs" />
+    <Compile Include="Hubs\UserStoryHub.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -233,10 +242,13 @@
     <Content Include="app\blocks\DragNDrop\myDraggable.js" />
     <Content Include="app\blocks\drawing\drawing.js" />
     <Content Include="app\blocks\filters\filter01.js" />
+    <Content Include="app\blocks\notification\notificationService.js" />
     <Content Include="app\blocks\replace_utility\replaceUtilities.js" />
     <Content Include="app\blocks\utils\angularUtils.js" />
     <Content Include="app\features\authentication\login.html" />
     <Content Include="app\features\authentication\loginCtrl.js" />
+    <Content Include="app\features\diagrams\diagramsController.js" />
+    <Content Include="app\features\diagrams\diagramsService.js" />
     <Content Include="app\features\modelling\actor.js" />
     <Content Include="app\features\modelling\association.js" />
     <Content Include="app\features\modelling\class.svg" />
@@ -250,22 +262,29 @@
     <Content Include="app\features\modelling\testDirective.js" />
     <Content Include="app\features\modelling\useCaseDir.js" />
     <Content Include="app\features\modelling\useCase.svg" />
-    <Content Include="app\layout\partial-pages\entity-jumbotron.html" />
+    <Content Include="app\features\requirements\userStoriesController.js" />
+    <Content Include="app\features\requirements\userStoriesService.js" />
+    <Content Include="app\layout\diagrams-page\diagrams-page.html" />
+    <Content Include="app\layout\mainmenu\menuRoutes.js" />
+    <Content Include="app\layout\mainmenu\menuService.js" />
+    <Content Include="app\layout\requirements-page\userstory-jumbotron.html" />
+    <Content Include="app\layout\requirements-page\userstory-jumbotron.js" />
+    <Content Include="app\widgets\entity-jumbotron.html" />
     <Content Include="app\features\projects\projectsController.js" />
     <Content Include="app\blocks\dialogs\nameDescDialogController.js" />
-    <Content Include="app\layout\partial-pages\entityJumbotron.js" />
+    <Content Include="app\widgets\entityJumbotron.js" />
     <Content Include="app\features\projects\projectService.js" />
     <Content Include="app\features\test\testCtrl.js" />
     <Content Include="app\hubs.js" />
     <Content Include="app\layout\mainmenu\main-menu.html" />
     <Content Include="app\layout\mainmenu\mainMenu.js" />
     <Content Include="app\layout\modelling-page\modelling-page.html" />
-    <Content Include="app\layout\project-page\project-page.html" />
     <Content Include="app\blocks\dialogs\name-desc-dialog.html" />
     <Content Include="app\layout\projects-page\projects-page.html" />
     <Content Include="app\layout\requirements-page\requirements-page.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\Angular.css" />
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -326,6 +345,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Scripts\bootstrap-notify.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\d3\d3.js" />
@@ -353,8 +373,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\fabricjs-min.js" />
-    <Content Include="Scripts\fabricjs.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
@@ -1108,9 +1126,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ngStorage.min.js" />
     <Content Include="Scripts\npm.js" />
-    <Content Include="Scripts\raphael-min.js" />
-    <Content Include="Scripts\raphael.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config">
@@ -1135,10 +1152,8 @@
     <Content Include="Views\Chat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\core\api\angularServices\" />
+    <Folder Include="app\core\modelling\abstracts\" />
     <Folder Include="app\features\specificaton\" />
-    <Folder Include="app\services\" />
-    <Folder Include="app\widgets\" />
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
@@ -1147,20 +1162,26 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\core\api\abstracts\BaseSignalRService.ts" />
+    <TypeScriptCompile Include="app\core\api\abstracts\BaseSignalRServices.ts" />
     <TypeScriptCompile Include="app\core\api\abstracts\CommunicationInterfaces.ts" />
-    <TypeScriptCompile Include="app\core\api\concrete\ProjectsService.ts" />
+    <TypeScriptCompile Include="app\core\api\concrete\ConcreteServices.ts" />
+    <TypeScriptCompile Include="app\core\api\instantiation\ServiceInstances.ts" />
     <TypeScriptCompile Include="app\core\entities\abstracts\EntityInterfaces.ts" />
+    <TypeScriptCompile Include="app\core\entities\concrete\BaseView.ts" />
+    <TypeScriptCompile Include="app\core\entities\concrete\Connection.ts" />
+    <TypeScriptCompile Include="app\core\entities\concrete\Diagram.ts" />
+    <TypeScriptCompile Include="app\core\entities\concrete\DiagramPart.ts" />
+    <TypeScriptCompile Include="app\core\entities\abstracts\BaseEntity.ts" />
+    <TypeScriptCompile Include="app\core\entities\concrete\EntityFactory.ts" />
     <TypeScriptCompile Include="app\core\entities\concrete\Project.ts" />
     <TypeScriptCompile Include="app\core\utils\ArrayHelpers.ts" />
     <TypeScriptCompile Include="app\core\utils\EventHandlingInterfaces.ts" />
-    <TypeScriptCompile Include="app\core\modelling\abstracts\BaseElement.ts" />
-    <TypeScriptCompile Include="app\core\modelling\concrete\Connections.ts" />
-    <TypeScriptCompile Include="app\core\modelling\abstracts\ModellingInterfaces.ts" />
-    <TypeScriptCompile Include="app\core\modelling\concrete\Point.ts" />
+    <TypeScriptCompile Include="app\core\entities\abstracts\ModellingInterfaces.ts" />
+    <TypeScriptCompile Include="app\core\entities\concrete\Point.ts" />
     <TypeScriptCompile Include="app\core\modelling\concrete\UseCase.ts" />
     <TypeScriptCompile Include="app\core\utils\objectHelpers.ts" />
     <TypeScriptCompile Include="app\core\utils\TypeChecks.ts" />
+    <TypeScriptCompile Include="app\services\baseCRUDServices.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\signalr\signalr.d.ts" />
   </ItemGroup>

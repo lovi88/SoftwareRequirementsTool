@@ -15,35 +15,28 @@
     <link href="~/Content/modelling.css" rel="stylesheet" />
 
 </head>
-<body ng-app="app" ng-cloak>
+<body>
 
 
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/d3")
+
     @Scripts.Render("~/bundles/SignalR")
     <script src="~/signalr/hubs"></script>
 
-    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/d3")
 
+    @Scripts.Render("~/bundles/softReqToolCore")
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/bundles/angular")
 
     @Scripts.Render("~/bundles/softReqToolApp")
 
 
     @RenderSection("scripts", required: false)
-
-<script>
-
-    $(function() {
-        
-
-        
-    });
-
-
-</script>
 
 </body>
 </html>

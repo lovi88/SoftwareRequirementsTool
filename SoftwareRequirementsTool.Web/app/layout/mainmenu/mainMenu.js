@@ -1,28 +1,27 @@
-﻿(function() {
-    'use strict';
+﻿(function () {
+    "use strict";
 
-    angular
-        .module('app')
-        .directive('mainMenu', mainMenu);
-
-    mainMenu.$inject = ['$window','$compile'];
-    
-    function mainMenu($window, $compile) {
+    function mainMenu($window, $compile, menuService) {
         // Usage:
         //     <main-menu></main-menu>
         // Creates:
         // 
+        function link(scope, element, attrs) {
+            scope.menuService = menuService;
+        }
+
         var directive = {
             link: link,
-            restrict: 'EA',
+            restrict: "EA",
             templateUrl: "/app/layout/mainmenu/main-menu.html",
             replace: true
         };
         return directive;
-
-        function link(scope, element, attrs) {
-
-        }
     }
 
+    angular
+        .module("app")
+        .directive("mainMenu", mainMenu);
+
+    mainMenu.$inject = ["$window", "$compile", "menuService"];
 })();

@@ -36,6 +36,10 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -54,25 +58,28 @@
   <ItemGroup>
     <Compile Include="Data\Entities\AbsEntity.cs" />
     <Compile Include="Data\Entities\Connections\Connection.cs" />
+    <Compile Include="Data\Entities\Elements\Abstracts\IDiagram.cs" />
+    <Compile Include="Data\Entities\IStereotiped.cs" />
     <Compile Include="Data\Entities\ViewElements\ActorView.cs" />
-    <Compile Include="Data\Entities\ViewElements\DiagramElement.cs" />
+    <Compile Include="Data\Entities\ViewElements\DiagramPart.cs" />
     <Compile Include="Data\Entities\IEntity.cs" />
     <Compile Include="Data\Entities\Elements\Actor.cs" />
     <Compile Include="Data\Entities\Elements\Diagram.cs" />
-    <Compile Include="Data\Entities\Elements\AbsElement.cs" />
-    <Compile Include="Data\Entities\Elements\IElement.cs" />
-    <Compile Include="Data\Entities\ViewElements\IView.cs" />
+    <Compile Include="Data\Entities\Elements\Abstracts\AbsElement.cs" />
+    <Compile Include="Data\Entities\Elements\Abstracts\IElement.cs" />
+    <Compile Include="Data\Entities\ViewElements\Abstracts\IView.cs" />
     <Compile Include="Data\Entities\Elements\Project.cs" />
     <Compile Include="Data\Entities\Elements\UseCase.cs" />
     <Compile Include="Data\Entities\Elements\UserStory.cs" />
     <Compile Include="Data\Entities\ViewElements\Point.cs" />
     <Compile Include="Data\Entities\ViewElements\Stereotype.cs" />
-    <Compile Include="Data\Entities\ViewElements\AbsView.cs" />
+    <Compile Include="Data\Entities\ViewElements\Abstracts\AbsView.cs" />
     <Compile Include="Data\Entities\ViewElements\UseCaseView.cs" />
     <Compile Include="Data\IComparableByAbstraction.cs" />
     <Compile Include="Data\Repositories\DiagramRepository.cs" />
     <Compile Include="Data\Repositories\GenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
+    <Compile Include="Data\Repositories\IUnitOfWork.cs" />
     <Compile Include="Data\Repositories\ProjectRepository.cs" />
     <Compile Include="Data\Repositories\SignalRObservableRepository.cs" />
     <Compile Include="Data\Repositories\UnitOfWork.cs" />

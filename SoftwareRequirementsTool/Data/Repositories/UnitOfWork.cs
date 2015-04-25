@@ -1,13 +1,16 @@
 ﻿using System;
+using SoftwareRequirementsTool.Data.Entities.ViewElements;
 
 namespace SoftwareRequirementsTool.Data.Repositories
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         protected readonly SoftwareRequirementsToolContext Context = new SoftwareRequirementsToolContext();
+
         private ProjectRepository _projectRepository;
         private UserStoryRepository _userStoryRepository;
         private DiagramRepository _diagramRepository;
+        private SignalRObservableRepository<DiagramPart> _diagramPartRepository;
 
         public ProjectRepository ProjectRepository
         {
@@ -36,6 +39,16 @@ namespace SoftwareRequirementsTool.Data.Repositories
             }
         }
 
+        public SignalRObservableRepository<DiagramPart> DiagramPartRepository
+        {
+            get
+            {
+                return _diagramPartRepository
+                    ?? (_diagramPartRepository = new SignalRObservableRepository<DiagramPart>(Context));
+            }
+        }
+
+
         public void SaveChanges()
         {
             Context.SaveChanges();
@@ -60,5 +73,6 @@ namespace SoftwareRequirementsTool.Data.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
     }
 }

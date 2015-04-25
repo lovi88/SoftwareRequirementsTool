@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using SoftwareRequirementsTool.Data.Entities;
 using SoftwareRequirementsTool.Data.Entities.Connections;
 using SoftwareRequirementsTool.Data.Entities.Elements;
@@ -11,7 +9,7 @@ using SoftwareRequirementsTool.Data.Entities.ViewElements;
 
 namespace SoftwareRequirementsTool.Data
 {
-    public class SoftwareRequirementsToolContext: DbContext 
+    public class SoftwareRequirementsToolContext : DbContext
     {
 
         //Bases
@@ -28,16 +26,31 @@ namespace SoftwareRequirementsTool.Data
 
         //AbsView-s
         public DbSet<ActorView> ActorViews { get; set; }
-        public DbSet<DiagramElement> DiagramElements { get; set; }
+        public DbSet<DiagramPart> DiagramElements { get; set; }
         public DbSet<UseCaseView> UseCaseViews { get; set; }
-        
+
         //Connection
         public DbSet<Connection> Connections { get; set; }
 
         //Other
         public DbSet<Point> Points { get; set; }
         public DbSet<Stereotype> Stereotypes { get; set; }
-        
+
+        public SoftwareRequirementsToolContext()
+        {
+            DeleteDb();
+        }
+
+        private static int _cnt;
+        [Conditional("DEBUG")]
+        private void DeleteDb()
+        {
+            if (_cnt++ == 0 && Database.Exists())
+            {
+                Database.Delete();
+            }
+        }
+
     }
 
 }
