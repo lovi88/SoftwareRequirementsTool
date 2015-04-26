@@ -3,16 +3,17 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using SoftwareRequirementsTool.Data.Entities;
+using SoftwareRequirementsTool.Data.Entities.ViewElements;
 
-namespace SoftwareRequirementsTool.Data.Repositories
+namespace SoftwareRequirementsTool.Data.Repositories.Abstracts
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity>
+    abstract public class GenericRepository<TEntity> : IGenericRepository<TEntity>
         where TEntity : class, IEntity
     {
         protected SoftwareRequirementsToolContext Context;
         protected DbSet<TEntity> DbSet;
 
-        public GenericRepository(SoftwareRequirementsToolContext context)
+        protected GenericRepository(SoftwareRequirementsToolContext context)
         {
             this.Context = context;
             this.DbSet = context.Set<TEntity>();
@@ -58,6 +59,9 @@ namespace SoftwareRequirementsTool.Data.Repositories
 
         public virtual void Insert(TEntity entity)
         {
+            AssertIntegrity(entity);
+            TouchDb(entity);
+
             DbSet.Add(entity);
         }
 
@@ -78,9 +82,32 @@ namespace SoftwareRequirementsTool.Data.Repositories
 
         public virtual void Update(TEntity entityToUpdate)
         {
+            AssertIntegrity(entityToUpdate);
+            TouchDb(entityToUpdate);
+
             DbSet.Attach(entityToUpdate);
             Context.Entry(entityToUpdate).State = EntityState.Modified;
         }
+
+        protected abstract void AssertIntegrity(TEntity entity);
+        abstract protected void TouchDb(TEntity entity);
+
+        protected virtual bool IsAttachNeeded(IEntity entity)
+        {
+            if (entity==null)
+            {
+                return false;
+            }
+
+            return (entity.Id != 0);
+        }
+
+
+        public void Attach(TEntity entity)
+        {
+            DbSet.Attach(entity);
+        }
+
 
         private static IQueryable<TEntity> AddQueryIncludeProperties(string includeProperties, IQueryable<TEntity> query)
         {

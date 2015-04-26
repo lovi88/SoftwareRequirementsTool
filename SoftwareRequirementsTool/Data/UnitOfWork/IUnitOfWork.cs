@@ -8,7 +8,7 @@ namespace SoftwareRequirementsTool.Data.Repositories
         ProjectRepository ProjectRepository { get; }
         UserStoryRepository UserStoryRepository { get; }
         DiagramRepository DiagramRepository { get; }
-        SignalRObservableRepository<DiagramPart> DiagramPartRepository { get; }
+        DiagramPartRepository DiagramPartRepository { get; }
         void SaveChanges();
     }
 }

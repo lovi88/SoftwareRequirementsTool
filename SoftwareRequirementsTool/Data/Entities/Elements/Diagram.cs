@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 using SoftwareRequirementsTool.Data.Entities.ViewElements;
 
 namespace SoftwareRequirementsTool.Data.Entities.Elements

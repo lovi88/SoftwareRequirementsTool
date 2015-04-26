@@ -7,11 +7,20 @@ using SoftwareRequirementsTool.Data.Entities.Elements;
 
 namespace SoftwareRequirementsTool.Data.Repositories
 {
-    public class UserStoryRepository: SignalRObservableRepository<UserStory>
+    public class UserStoryRepository: ElementRepository<UserStory>
     {
         public UserStoryRepository(SoftwareRequirementsToolContext context) : base(context)
         {
         }
 
+        protected override void TouchDb(UserStory entity)
+        {
+            base.TouchDb(entity);
+
+            if (IsAttachNeeded(entity.Role))
+            {
+                new ElementRepository<Actor>(Context).Attach(entity.Role);
+            }
+        }
     }
 }

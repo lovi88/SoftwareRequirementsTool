@@ -1,4 +1,6 @@
-﻿namespace SoftwareRequirementsTool.Data.Entities.Elements
+﻿using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
+
+namespace SoftwareRequirementsTool.Data.Entities.Elements
 {
     public class UseCase: AbsElement
     {

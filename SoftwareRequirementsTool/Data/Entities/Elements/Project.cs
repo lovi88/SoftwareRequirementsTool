@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 
 
 namespace SoftwareRequirementsTool.Data.Entities.Elements

@@ -1,4 +1,5 @@
 ﻿using System;
+using SoftwareRequirementsTool.Data.Entities.Elements;
 using SoftwareRequirementsTool.Data.Entities.ViewElements;
 
 namespace SoftwareRequirementsTool.Data.Repositories
@@ -10,45 +11,35 @@ namespace SoftwareRequirementsTool.Data.Repositories
         private ProjectRepository _projectRepository;
         private UserStoryRepository _userStoryRepository;
         private DiagramRepository _diagramRepository;
-        private SignalRObservableRepository<DiagramPart> _diagramPartRepository;
+        private DiagramPartRepository _diagramPartRepository;
+        private ElementRepository<Actor> _actorRepository;
 
         public ProjectRepository ProjectRepository
         {
-            get
-            {
-                return _projectRepository 
-                    ?? (_projectRepository = new ProjectRepository(Context));
-            }
+            get { return _projectRepository ?? (_projectRepository = new ProjectRepository(Context)); }
         }
 
         public UserStoryRepository UserStoryRepository
         {
-            get 
-            { 
-                return _userStoryRepository 
-                    ?? (_userStoryRepository = new UserStoryRepository(Context)); 
-            }
+            get { return _userStoryRepository ?? (_userStoryRepository = new UserStoryRepository(Context)); }
         }
 
         public DiagramRepository DiagramRepository
         {
-            get 
-            { 
-                return _diagramRepository
-                    ?? (_diagramRepository = new DiagramRepository(Context));
-            }
+            get { return _diagramRepository ?? (_diagramRepository = new DiagramRepository(Context)); }
         }
 
-        public SignalRObservableRepository<DiagramPart> DiagramPartRepository
+        public DiagramPartRepository DiagramPartRepository
         {
-            get
-            {
-                return _diagramPartRepository
-                    ?? (_diagramPartRepository = new SignalRObservableRepository<DiagramPart>(Context));
-            }
+            get { return _diagramPartRepository ?? (_diagramPartRepository = new DiagramPartRepository(Context)); }
         }
 
+        public ElementRepository<Actor> ActorRepository
+        {
+            get { return _actorRepository ?? (_actorRepository = new ElementRepository<Actor>(Context)); }
+        }
 
+        
         public void SaveChanges()
         {
             Context.SaveChanges();

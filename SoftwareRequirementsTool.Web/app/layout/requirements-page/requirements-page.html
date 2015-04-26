@@ -1,19 +1,42 @@
 ﻿<!-- TODO: UserStoryJumbotron - clever copy of entity-jumbotron -->
 <!-- TODO: UserStory CRUD -->
-
 <!-- TODO: UserStory Actor Auto Completeon -->
 <!-- TODO: UserStory Actor Generation -->
 <!-- TODO: UserStory Actor Navigation -->
-
 <!-- TODO: UserStory Connections box -->
 <!-- TODO: UserStory Connections CRUD -->
 <!-- TODO: UserStory Connections Navigation -->
-
 <!-- TODO: UserStory Diagram Generation -->
 <!-- TODO: UserStory Connections For Diagram -->
 
-<div>
+
+<div ng-controller="userStoriesController">
+
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h2>{{title}}</h2>
+            <button ng-click="create()" class="btn btn-success btn-lg">Create New</button>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="pityu" ng-repeat="userstory in userStories">
+            <userstory-jumbotron entity="userstory"
+                                 actors="actors"
+                                 modify="modify(entity)"
+                                 delete="delete(entity)">
+            </userstory-jumbotron>
+        </div>
+    </div>
+    <div class="container">
+        <button ng-click="create()" class="btn btn-success btn-lg">Create New</button>
+    </div>
+
+</div>
+
+
+<!--<div>
     As a SuperUser <br />
     I want to be Super <br />
     Because just because <br />
-</div>
+</div>-->

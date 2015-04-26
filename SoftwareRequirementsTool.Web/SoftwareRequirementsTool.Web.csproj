@@ -223,10 +223,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hubs\BaseCrudHub.cs" />
+    <Compile Include="Hubs\Abstracts\AbsCrudHub.cs" />
+    <Compile Include="Hubs\Abstracts\AbsOpenCloseCrudHub.cs" />
     <Compile Include="Hubs\DiagramPartHub.cs" />
     <Compile Include="Hubs\DiagramHub.cs" />
     <Compile Include="Hubs\ProjectHub.cs" />
+    <Compile Include="Hubs\SignalRObservableHubHelper.cs" />
     <Compile Include="Hubs\UserStoryHub.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -267,8 +269,9 @@
     <Content Include="app\layout\diagrams-page\diagrams-page.html" />
     <Content Include="app\layout\mainmenu\menuRoutes.js" />
     <Content Include="app\layout\mainmenu\menuService.js" />
+    <Content Include="app\layout\requirements-page\HtmlPage1.html" />
     <Content Include="app\layout\requirements-page\userstory-jumbotron.html" />
-    <Content Include="app\layout\requirements-page\userstory-jumbotron.js" />
+    <Content Include="app\layout\requirements-page\userstoryJumbotron.js" />
     <Content Include="app\widgets\entity-jumbotron.html" />
     <Content Include="app\features\projects\projectsController.js" />
     <Content Include="app\blocks\dialogs\nameDescDialogController.js" />

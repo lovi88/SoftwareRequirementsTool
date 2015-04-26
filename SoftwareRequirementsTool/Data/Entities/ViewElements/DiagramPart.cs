@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SoftwareRequirementsTool.Data.Entities.Elements;
+using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 
 namespace SoftwareRequirementsTool.Data.Entities.ViewElements
 {

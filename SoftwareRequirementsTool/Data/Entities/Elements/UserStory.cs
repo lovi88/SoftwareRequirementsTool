@@ -1,14 +1,17 @@
-﻿namespace SoftwareRequirementsTool.Data.Entities.Elements
+﻿using System.ComponentModel.DataAnnotations;
+using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
+
+namespace SoftwareRequirementsTool.Data.Entities.Elements
 {
     public class UserStory : AbsElement
     {
+        [Required]
         public Actor Role { get; set; }
         public string Activity { get; set; }
         public string BusinessValue { get; set; }
 
         float _abstractionLevel = 1;
 
-        public Project ContainerProject { get; set; }
 
         public override float AbstractionLevel
         {

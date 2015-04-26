@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using SoftwareRequirementsTool.Data.Entities;
 using SoftwareRequirementsTool.Data.Entities.Connections;
 using SoftwareRequirementsTool.Data.Entities.Elements;
+using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 using SoftwareRequirementsTool.Data.Entities.ViewElements;
 
 namespace SoftwareRequirementsTool.Data
 {
+
+
     public class SoftwareRequirementsToolContext : DbContext
     {
 

@@ -7,10 +7,11 @@
         // Creates:
         // 
         var directive = {
-            templateUrl: "/app/widgets/userstory-jumbotron.html",
+            templateUrl: "/app/layout/requirements-page/userstory-jumbotron.html",
             replace: true,
             scope: {
                 entity: "=entity",
+                actors: "=actors",
                 modifyCallback: "&modify",
                 deleteCallback: "&delete"
             },
@@ -29,16 +30,13 @@
 
                 scope.allowModiy = function () {
                     scope.modifyMode = true;
-                    copyOfEntity = angular.clone(scope.entity);
+                    copyOfEntity = angular.copy(scope.entity);
                 }
 
                 scope.cancel = function () {
                     scope.modifyMode = false;
                     scope.entity = copyOfEntity;
-                    //scope.$apply()
                 }
-
-
                 
             },
             restrict: "EA",

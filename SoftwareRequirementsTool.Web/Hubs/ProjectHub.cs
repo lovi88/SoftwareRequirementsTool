@@ -1,26 +1,34 @@
-﻿using SoftwareRequirementsTool.Data.Entities.Elements;
+﻿using System;
+using System.Web.Http.ModelBinding;
+using SoftwareRequirementsTool.Data.Entities.Elements;
 using SoftwareRequirementsTool.Data.Repositories;
+using SoftwareRequirementsTool.Web.Hubs.Abstracts;
 
 namespace SoftwareRequirementsTool.Web.Hubs
 {
-    public class ProjectHub : BaseCrudHub<Project>
+    public class ProjectHub : AbsOpenCloseCrudHub<Project>
     {
+
+
         public ProjectHub(UnitOfWork unitOfWork)
             : base(unitOfWork, unitOfWork.ProjectRepository)
         {
             IncludeProperties = "UserStories";
         }
 
-        public void Open(Project project)
+        public override Project Create(Project entity)
         {
-            UnitOfWork.UserStoryRepository.AddListener(project, Context.ConnectionId);
-            UnitOfWork.DiagramRepository.AddListener(project, Context.ConnectionId);
+            return Create(entity, DefaultAuthenticatedGroup);
         }
 
-        public void Close(Project project)
+        public override void Modify(Project entity)
         {
-            UnitOfWork.UserStoryRepository.RemoveListener(project, Context.ConnectionId);
-            UnitOfWork.DiagramRepository.RemoveListener(project, Context.ConnectionId);
+            Modify(entity, DefaultAuthenticatedGroup);
+        }
+
+        public override void Delete(Project entity)
+        {
+            Delete(entity, DefaultAuthenticatedGroup);
         }
     }
 
