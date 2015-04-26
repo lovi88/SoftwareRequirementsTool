@@ -6,13 +6,17 @@
         var vm = $scope;
         vm.title = "User Stories";
 
-        var service = CoreServices.userStoryServiceInstance;
+        vm.inCreation = true;
+        vm.userstoryToCreate = null;
+
+        vm.service = CoreServices.userStoryServiceInstance;
+        vm.userStories = vm.service.userStories;
+
         vm.userStoriesService = userStoriesService;
 
-        vm.userStories = service.userStories;
-
         //TODO: Normális Actor Kezelés
-        vm.actors = ["Admin", "SupeUser"];
+        vm.actors = [];
+        vm.actorNames = [];
 
         var changeEventHandler = function (from, data) {
             AngularUtils.safeApply($scope);
@@ -20,50 +24,70 @@
 
         function activate() {
 
-            vm.service.registerChangeListenerCallback(changeEventHandler);
-
             if (!menuService.isRequirementsViseible) {
                 // TODO: Uncomment
                 //$state.go("projects");
             }
 
-            //var us = new Entities.BaseEntity();
-            //us.Name = "us1";
-            //us.Description = "us1 desc";
+            //test: tkód
+            var tAct01 = new Entities.BaseEntity();
+            tAct01.Name = "Pisti";
 
-            //us.Role = new Entities.BaseEntity();
-            //us.Role.Name = "Pisi (Actor.Name)";
+            var tAct02 = new Entities.BaseEntity();
+            tAct02.Name = "Pisti2";
 
-            //us.Activity = "Activity str";
+            var tAct03 = new Entities.BaseEntity();
+            tAct03.Name = "Pisti3";
 
-            //us.BusinessValue = "bs value";
-            //us.TypeName = "UserStory";
-
-            //var us2 = Entities.EntityFactory.createComplexFrom(us);
-
-            //vm.userStories.push(us);
-
-            //us2.Name = "zongora";
-
-            //vm.userStories.push(us2)
+            vm.actors.push(tAct01);
+            vm.actors.push(tAct02);
+            vm.actors.push(tAct03);
 
 
-            //vm.actors.push("User");
+            //code
+            //TODO: add names to jumbo
+            //TODO: make crud work
+            //TODO: actor service? commonService, hub
+
+            vm.service.registerChangeListenerCallback(changeEventHandler);
+
+            scope.actorNames = new Array();
+            for (var i = 0; i < scope.entities.length; i++) {
+                scope.actorNames.push(scope.entities[i].Role.Name);
+            }
         }
 
         vm.modify = function (entity) {
-            console.log("mod", entity)
+            vm.service.modify(entity);
         }
 
         vm.delete = function (entity) {
-            console.log("us ctrl del", entity)
+            vm.service.delete(entity);
         }
 
-        vm.create = function() {
-            
+        vm.create = function () {
+            vm.inCreation = true;
         }
 
+        vm.creationAccepted = function (entity) {
+            alert("accepted")
+            vm.service.create(entity);
+            vm.inCreation = false;
+        }
+
+        vm.creationCancelled = function (entity) {
+            alert("cancell")
+            vm.inCreation = false;
+        }
+
+        function initCreateUserStory() {
+            var ent = new Entities.BaseEntity();
+            ent.ContainerProject = projectService.getActive();
+            vm.userstoryToCreate = ent;
+        }
+        
         activate();
+        initCreateUserStory();
     }
 
     angular

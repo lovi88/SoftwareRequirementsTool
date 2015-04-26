@@ -3,7 +3,7 @@
 
     function userStoriesService() {
         var service = CoreServices.userStoryServiceInstance;
-        var baseService = ServiceParts.BaseCrudService(service);
+        var baseService = new ServiceParts.BaseCrudService(service);
 
         this.create = baseService.create;
         this.modify = baseService.modify;

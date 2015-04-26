@@ -9,27 +9,38 @@
 <!-- TODO: UserStory Diagram Generation -->
 <!-- TODO: UserStory Connections For Diagram -->
 
-
 <div ng-controller="userStoriesController">
 
     <div class="container-fluid">
         <div class="jumbotron">
             <h2>{{title}}</h2>
-            <button ng-click="create()" class="btn btn-success btn-lg">Create New</button>
+            <button ng-hide="inCreation" ng-click="create()" class="btn btn-success btn-lg">Create New</button>
         </div>
     </div>
 
     <div class="container-fluid">
-        <div class="pityu" ng-repeat="userstory in userStories">
+        <div ng-repeat="userstory in userStories">
             <userstory-jumbotron entity="userstory"
                                  actors="actors"
+                                 actor-names=""
                                  modify="modify(entity)"
                                  delete="delete(entity)">
             </userstory-jumbotron>
         </div>
+
+        <div ng-show="inCreation">
+            <userstory-jumbotron entity="userstoryToCreate"
+                                 actors="actors"
+                                 actor-names=""
+                                 creation-mode="true"
+                                 create="creationAccepted(entity)"
+                                 cancel="creationCancelled(entity)">
+            </userstory-jumbotron>
+        </div>
+
     </div>
     <div class="container">
-        <button ng-click="create()" class="btn btn-success btn-lg">Create New</button>
+        <button ng-show="userStories.length>2" ng-click="create()" class="btn btn-success btn-lg">Create New</button>
     </div>
 
 </div>

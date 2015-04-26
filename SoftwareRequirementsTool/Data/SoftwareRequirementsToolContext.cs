@@ -52,7 +52,7 @@ namespace SoftwareRequirementsTool.Data
         {
             if (_cnt++ == 0 && Database.Exists())
             {
-                Database.Delete();
+                //Database.Delete();
             }
         }
 

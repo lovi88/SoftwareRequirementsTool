@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using Microsoft.AspNet.SignalR;
 using SoftwareRequirementsTool.Data;
@@ -8,11 +9,6 @@ using SoftwareRequirementsTool.Data.Repositories;
 
 namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
 {
-    public enum GroupNames
-    {
-        
-    }
-
     public abstract class AbsCrudHub<T> : Hub
         where T : class, IEntity
     {
@@ -31,11 +27,9 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
         virtual protected T Create(T entity, string groupName)
         {
             Repository.Insert(entity);
-            UnitOfWork.SaveChanges();
+            TrySave(entity);
 
-            Clients.OthersInGroup(groupName).created(entity);
-            //Clients.Others.created(entity);
-
+            Clients.Group(groupName).created(entity);
             return entity;
         }
 
@@ -44,7 +38,7 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
         virtual protected void Modify(T entity, string groupName)
         {
             Repository.Update(entity);
-            UnitOfWork.SaveChanges();
+            TrySave(entity);
 
             Clients.OthersInGroup(groupName).modified(entity);
         }
@@ -54,7 +48,7 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
         virtual public void Delete(T entity, string groupName)
         {
             Repository.Delete(entity);
-            UnitOfWork.SaveChanges();
+            TrySave(entity);
 
             Clients.Group(groupName, Context.ConnectionId).deleted(entity);
         }
@@ -74,6 +68,29 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
         virtual public T GetById(int id)
         {
             return Repository.GetById(id);
+        }
+
+        protected void SendError(object error)
+        {
+            Clients.Caller.errorFromHub(error);
+        }
+
+        protected void TrySave(T entity)
+        {
+            try
+            {
+                UnitOfWork.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var err = new
+                {
+                    message = "Validation error",
+                    entity
+                };
+                SendError(err);
+
+            }
         }
 
         virtual protected string GenerateGroupName(IEntity entity)

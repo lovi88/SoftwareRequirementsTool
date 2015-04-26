@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="actor">As a(n)</label>
                     <div class="col-md-6">
-                        <input ng-model="entity.Role.Name"
+                        <input ng-model="actorName"
                                ng-disabled="!modifyMode"
                                id="actor" list="actors_list" name="actor" type="text" placeholder="User Type or Actor" class="form-control input-md" required="">
                     </div>
@@ -83,7 +83,7 @@
                 Cancel
             </button>
 
-            <button class="btn btn-danger btn-lg" ng-click="delete()">
+            <button class="btn btn-danger btn-lg" ng-click="delete()" ng-hide="creationMode">
                 Delete
             </button>
         </p>

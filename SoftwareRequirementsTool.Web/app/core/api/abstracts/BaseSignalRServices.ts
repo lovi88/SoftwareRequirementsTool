@@ -81,6 +81,7 @@
             this.hub.client.created = (element) => this.created(element);
             this.hub.client.modified = (element) => this.modified(element);
             this.hub.client.deleted = (element) => this.deleted(element);
+            this.hub.client.errorFromHub = (error) => this.errorFromHub(error);
         }
 
         protected initProperty(): void {
@@ -137,6 +138,11 @@
 
         protected isEqualById(elm1: IEntity, elm2: IEntity) {
             return elm1.Id === elm2.Id;
+        }
+
+        protected errorFromHub(error) {
+            alert(error.message + "\n To avoid inconsistency we need to reload the page");
+            location.reload();
         }
 
         //It startes all the hubs for all services
