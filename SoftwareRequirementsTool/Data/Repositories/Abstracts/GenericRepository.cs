@@ -102,8 +102,15 @@ namespace SoftwareRequirementsTool.Data.Repositories.Abstracts
             return (entity.Id != 0);
         }
 
+        protected virtual void AttachIfNeeded(IEntity entity)
+        {
+            if (IsAttachNeeded(entity))
+            {
+                Context.AbsEntities.Attach((AbsEntity)entity);
+            }
+        }
 
-        public void Attach(TEntity entity)
+        protected void Attach(TEntity entity)
         {
             DbSet.Attach(entity);
         }

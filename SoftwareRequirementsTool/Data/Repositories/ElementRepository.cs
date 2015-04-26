@@ -28,10 +28,7 @@ namespace SoftwareRequirementsTool.Data.Repositories
 
         protected override void TouchDb(TEntity entity)
         {
-            if (IsAttachNeeded(entity.ContainerProject))
-            {
-                new EntityRepository(Context).Attach(entity.ContainerProject);
-            }
+            AttachIfNeeded(entity.ContainerProject);
         }
     }
 }

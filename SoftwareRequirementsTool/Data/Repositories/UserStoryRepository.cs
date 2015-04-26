@@ -17,10 +17,7 @@ namespace SoftwareRequirementsTool.Data.Repositories
         {
             base.TouchDb(entity);
 
-            if (IsAttachNeeded(entity.Role))
-            {
-                new ElementRepository<Actor>(Context).Attach(entity.Role);
-            }
+            AttachIfNeeded(entity.Role);
         }
     }
 }

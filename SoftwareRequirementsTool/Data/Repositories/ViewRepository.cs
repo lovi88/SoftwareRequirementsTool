@@ -24,10 +24,7 @@ namespace SoftwareRequirementsTool.Data.Repositories
 
         protected override void TouchDb(AbsView entity)
         {
-            if (IsAttachNeeded(entity.Coordinates))
-            {
-                new EntityRepository(Context).Attach(entity.Coordinates);
-            }
+            AttachIfNeeded(entity.Coordinates);
         }
     }
 }

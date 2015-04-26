@@ -1,6 +1,24 @@
 ﻿module CoreServices {
-    //TODO: Project entitás?
-    //TODO: View Revise
+    
+    export class CustomService extends BaseOpenCloseGetAllForService {
+        initCallback: any;
+
+        constructor(hubName, propertyName, initCallback?) {
+            this[propertyName] = new Array();
+            super(propertyName);
+            this.initHub(hubName);
+
+            this.initCallback = initCallback;
+
+            BaseSignalRService.activeChildServices.push(this);
+        }
+
+        init() {
+            if (Utils.TypeChecker.isFunction(this.initCallback)) {
+                this.initCallback();
+            }
+        }
+    }
 
     //projectHub
     export class ProjectsService extends BaseOpenCloseService {
@@ -54,7 +72,7 @@
     }
 
     //userStoryHub
-    export class UserStoryService extends BaseGetAllForService{
+    export class UserStoryService extends BaseGetAllForService {
 
         constructor() {
             super("userStories");

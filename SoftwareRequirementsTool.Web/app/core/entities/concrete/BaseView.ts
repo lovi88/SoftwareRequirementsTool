@@ -1,4 +1,5 @@
 ﻿module Entities {
+    //TODO: View Revise
 
     declare var d3: any;
     export class BaseView

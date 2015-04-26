@@ -33,7 +33,8 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             Repository.Insert(entity);
             UnitOfWork.SaveChanges();
 
-            Clients.Group(groupName, Context.ConnectionId).created(entity);
+            Clients.OthersInGroup(groupName).created(entity);
+            //Clients.Others.created(entity);
 
             return entity;
         }
@@ -62,6 +63,9 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
 
         virtual public IEnumerable<T> GetAll()
         {
+            //TODO: Authentication Hub, Service, AngSvc
+            AddCallerToGroup(DefaultAuthenticatedGroup);
+
             return String.IsNullOrEmpty(IncludeProperties)
                 ? Repository.Get().ToList()
                 : Repository.Get(includeProperties: IncludeProperties).ToList();

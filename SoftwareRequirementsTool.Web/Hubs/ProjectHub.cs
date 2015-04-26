@@ -13,7 +13,7 @@ namespace SoftwareRequirementsTool.Web.Hubs
         public ProjectHub(UnitOfWork unitOfWork)
             : base(unitOfWork, unitOfWork.ProjectRepository)
         {
-            IncludeProperties = "UserStories";
+            //IncludeProperties = "UserStories";
         }
 
         public override Project Create(Project entity)

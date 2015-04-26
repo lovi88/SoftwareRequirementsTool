@@ -6,9 +6,12 @@
         var vm = $scope;
         vm.title = "User Stories";
 
+        var service = CoreServices.userStoryServiceInstance;
         vm.userStoriesService = userStoriesService;
 
-        vm.userStories = new Array();
+        vm.userStories = service.userStories;
+
+        //TODO: Normális Actor Kezelés
         vm.actors = ["Admin", "SupeUser"];
 
         var changeEventHandler = function (from, data) {

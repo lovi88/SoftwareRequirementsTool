@@ -26,20 +26,9 @@ namespace SoftwareRequirementsTool.Data.Repositories
 
         protected override void TouchDb(DiagramPart entity)
         {
-            if (IsAttachNeeded(entity.Diagram))
-            {
-                new DiagramRepository(Context).Attach(entity.Diagram);
-            }
-
-            if (IsAttachNeeded(entity.Element))
-            {
-                new ElementRepository<AbsElement>(Context).Attach((entity.Element as AbsElement));
-            }
-
-            if (IsAttachNeeded(entity.View))
-            {
-                new ViewRepository(Context).Attach((entity.View as AbsView));
-            }
+            AttachIfNeeded(entity.Diagram);
+            AttachIfNeeded(entity.Element);
+            AttachIfNeeded(entity.View);
         }
     }
 }
