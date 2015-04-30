@@ -10,9 +10,9 @@ namespace SoftwareRequirementsTool.Data.Repositories
 
         protected override void TouchDb(UserStory entity)
         {
+            AttachOrCreateIfNeeded(entity.Actor);
+            entity.ActorId = entity.Actor.Id;
             base.TouchDb(entity);
-
-            AttachIfNeeded(entity.Role);
         }
     }
 }

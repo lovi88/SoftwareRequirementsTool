@@ -5,7 +5,7 @@
             return (array instanceof Array);
         }
 
-        static inArray(array, elementToSearch):boolean {
+        static inArray(array, elementToSearch): boolean {
             var idx = array.indexOf(elementToSearch);
 
             return (idx > -1);
@@ -44,6 +44,8 @@
             array.push(elementToPush);
         }
 
-
+        static clearArray(array: Array<any>): void {
+            array.splice(0, array.length);
+        }
     }
 } 

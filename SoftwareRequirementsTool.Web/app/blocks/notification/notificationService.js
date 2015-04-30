@@ -1,6 +1,7 @@
 ﻿(function () {
     "use strict";
 
+    //uses: Bootstrap Notify
     function notificationService($http) {
         $.notifyDefaults({
             delay: 3000,

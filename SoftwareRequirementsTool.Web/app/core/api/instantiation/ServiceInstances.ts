@@ -8,4 +8,6 @@ module CoreServices {
     export var diagramPartServiceInstance = new DiagramPartService();
 
     export var userStoryServiceInstance = new UserStoryService();
+
+    export var actorServiceInstance = new CustomService("actorHub", "actors");
 }

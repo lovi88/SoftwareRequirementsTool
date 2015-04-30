@@ -1,14 +1,11 @@
-﻿using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data.Entity;
 using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
 using SoftwareRequirementsTool.Data.Entities;
 using SoftwareRequirementsTool.Data.Entities.Connections;
 using SoftwareRequirementsTool.Data.Entities.Elements;
 using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 using SoftwareRequirementsTool.Data.Entities.ViewElements;
+using SoftwareRequirementsTool.Data.Entities.ViewElements.Abstracts;
 
 namespace SoftwareRequirementsTool.Data
 {
@@ -16,7 +13,7 @@ namespace SoftwareRequirementsTool.Data
 
     public class SoftwareRequirementsToolContext : DbContext
     {
-
+        
         //Bases
         public DbSet<AbsEntity> AbsEntities { get; set; }
         public DbSet<AbsView> AbsViews { get; set; }
@@ -31,7 +28,7 @@ namespace SoftwareRequirementsTool.Data
 
         //AbsView-s
         public DbSet<ActorView> ActorViews { get; set; }
-        public DbSet<DiagramPart> DiagramElements { get; set; }
+        public DbSet<DiagramPart> DiagramParts { get; set; }
         public DbSet<UseCaseView> UseCaseViews { get; set; }
 
         //Connection
@@ -42,6 +39,7 @@ namespace SoftwareRequirementsTool.Data
         public DbSet<Stereotype> Stereotypes { get; set; }
 
         public SoftwareRequirementsToolContext()
+            : base("name=DefaultConnection")
         {
             DeleteDb();
         }
@@ -52,10 +50,24 @@ namespace SoftwareRequirementsTool.Data
         {
             if (_cnt++ == 0 && Database.Exists())
             {
-                //Database.Delete();
+                Database.Delete();
             }
         }
 
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Project>()
+        //        .HasMany(x => x.UserStories)
+        //        .WithOptional(x => x.ContainerProject)
+        //        .WillCascadeOnDelete(true);
+
+        //    modelBuilder.Entity<Project>()
+        //        .HasMany(x => x.Diagrams)
+        //        .WithOptional(diag => diag.ContainerProject)
+        //        .WillCascadeOnDelete(true);
+
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 
 }

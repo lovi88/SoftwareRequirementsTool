@@ -2,6 +2,7 @@
 
 namespace SoftwareRequirementsTool.Data.Entities
 {
+    [Table("AbsEntities")]
     public abstract class AbsEntity:IEntity
     {
         public int Id { get; set; }

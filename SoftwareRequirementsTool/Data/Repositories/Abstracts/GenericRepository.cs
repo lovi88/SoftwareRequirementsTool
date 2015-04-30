@@ -102,11 +102,20 @@ namespace SoftwareRequirementsTool.Data.Repositories.Abstracts
             return (entity.Id != 0);
         }
 
-        protected virtual void AttachIfNeeded(IEntity entity)
+        protected virtual void AttachOrCreateIfNeeded(IEntity entity)
         {
             if (IsAttachNeeded(entity))
             {
                 Context.AbsEntities.Attach((AbsEntity)entity);
+            }
+            else
+            {
+                Context.AbsEntities.Add((AbsEntity) entity);
+                //Context.Entry(entity).State = EntityState.Added;
+                //Context.AbsEntities.Add((AbsEntity)entity);
+
+                //Context.Set<AbsEntity>().Add((AbsEntity)entity);
+                Context.SaveChanges();
             }
         }
 

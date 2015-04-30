@@ -30,9 +30,9 @@
 
             super(serviceInstance);
 
-            var actInStorage = this.storage[this.storageKey];
-            if (!(Utils.TypeChecker.isUndefined(actInStorage))) {
-                this.open(actInStorage);
+            var elmInStorage = this.storage[this.storageKey];
+            if (!(Utils.TypeChecker.isUndefined(elmInStorage))) {
+                this.open(elmInStorage);
             }
         }
 

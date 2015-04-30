@@ -28,7 +28,7 @@ namespace SoftwareRequirementsTool.Data.Repositories
 
         protected override void TouchDb(TEntity entity)
         {
-            AttachIfNeeded(entity.ContainerProject);
+            AttachOrCreateIfNeeded(entity.ContainerProject);
         }
     }
 }

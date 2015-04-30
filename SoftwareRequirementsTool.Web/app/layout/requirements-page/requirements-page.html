@@ -1,7 +1,7 @@
-﻿<!-- TODO: UserStoryJumbotron - clever copy of entity-jumbotron -->
-<!-- TODO: UserStory CRUD -->
+﻿<!-- OK: UserStoryJumbotron - clever copy of entity-jumbotron -->
+<!-- OK: UserStory CRUD -->
 <!-- TODO: UserStory Actor Auto Completeon -->
-<!-- TODO: UserStory Actor Generation -->
+<!-- OK: UserStory Actor Generation -->
 <!-- TODO: UserStory Actor Navigation -->
 <!-- TODO: UserStory Connections box -->
 <!-- TODO: UserStory Connections CRUD -->
@@ -22,7 +22,7 @@
         <div ng-repeat="userstory in userStories">
             <userstory-jumbotron entity="userstory"
                                  actors="actors"
-                                 actor-names=""
+                                 actor-names="actorNames"
                                  modify="modify(entity)"
                                  delete="delete(entity)">
             </userstory-jumbotron>
@@ -31,16 +31,22 @@
         <div ng-show="inCreation">
             <userstory-jumbotron entity="userstoryToCreate"
                                  actors="actors"
-                                 actor-names=""
-                                 creation-mode="true"
+                                 actor-names="actorNames"
+                                 creation-mode="inCreation"
                                  create="creationAccepted(entity)"
                                  cancel="creationCancelled(entity)">
             </userstory-jumbotron>
         </div>
 
     </div>
-    <div class="container">
-        <button ng-show="userStories.length>2" ng-click="create()" class="btn btn-success btn-lg">Create New</button>
+    <div class="container-fluid text-center jumbotron"
+         ng-show="userStories.length>2 && !inCreation">
+
+        <button ng-click="create()"
+                class="btn btn-success btn-lg center-block">
+            Create New
+        </button>
+
     </div>
 
 </div>

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Linq;
 using Microsoft.AspNet.SignalR;
 using SoftwareRequirementsTool.Data;
 using SoftwareRequirementsTool.Data.Entities;
 using SoftwareRequirementsTool.Data.Repositories;
+using SoftwareRequirementsTool.Utilities.ErrorMessages;
 
 namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
 {
@@ -29,7 +29,7 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             Repository.Insert(entity);
             TrySave(entity);
 
-            Clients.Group(groupName).created(entity);
+            Clients.OthersInGroup(groupName).created(entity);
             return entity;
         }
 
@@ -81,16 +81,11 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             {
                 UnitOfWork.SaveChanges();
             }
-            catch (DbEntityValidationException ex)
+            catch (Exception ex)
             {
-                var err = new
-                {
-                    message = "Validation error",
-                    entity
-                };
-                SendError(err);
-
+                LogError(ex, entity);
             }
+            
         }
 
         virtual protected string GenerateGroupName(IEntity entity)
@@ -106,6 +101,20 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
         virtual protected void RemoveCallerFromGroup(string groupName)
         {
             Groups.Remove(Context.ConnectionId, groupName);
+        }
+
+        //TODO: in production it must be real logging
+        virtual protected void LogError(Exception ex, T entity)
+        {
+            var msg = ErrorMessageHelper.GetMessage(ex);
+            var err = new
+            {
+                message = msg,
+                entity
+            };
+            SendError(err);
+
+            throw ex;
         }
     }
 }

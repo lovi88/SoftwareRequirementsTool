@@ -9,6 +9,7 @@
                 menuService.openProject();
                 CoreServices.diagramsServiceInstance.loadAllForEntityToProperty(project);
                 CoreServices.userStoryServiceInstance.loadAllForEntityToProperty(project);
+                //CoreServices.actorServiceInstance.loadAllForEntityToProperty(project);
             },
             function (project) {
                 CoreServices.diagramsServiceInstance.clear();

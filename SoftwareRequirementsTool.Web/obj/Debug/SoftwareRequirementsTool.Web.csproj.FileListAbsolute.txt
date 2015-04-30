@@ -104,7 +104,6 @@ E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\System.Web.WebPages.dll
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\System.Web.WebPages.Razor.dll
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\WebGrease.dll
-E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\TypeLite.dll
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\SoftwareRequirementsTool.pdb
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\EntityFramework.xml
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\EntityFramework.SqlServer.xml
@@ -138,7 +137,6 @@ E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\Microsoft.Owin.Security.Twitter.xml
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\System.Web.Http.Owin.xml
-E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\TypeLite.pdb
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\obj\Debug\SoftwareRequirementsTool.Web.csprojResolveAssemblyReference.cache
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\obj\Debug\SoftwareRequirementsTool.Web.dll
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\obj\Debug\SoftwareRequirementsTool.Web.pdb

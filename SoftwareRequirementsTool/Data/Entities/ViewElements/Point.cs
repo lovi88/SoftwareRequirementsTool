@@ -1,14 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoftwareRequirementsTool.Data.Entities.ViewElements
 {
+    [Table("Points")]
     public class Point: AbsEntity
     {
-        public float X { get; set; }
-        public float Y { get; set; }
+        [DefaultValue(0f)]
+        public float? X { get; set; }
+        
+        [DefaultValue(0f)]
+        public float? Y { get; set; }
+
+        public Point()
+        {
+            X = 0;
+            Y = 0;
+        }
     }
 }

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using TypeLite;
 
 namespace SoftwareRequirementsTool.Data.Entities.Elements.Abstracts
 {
-    [TsClass]
+    [Table("AbsElements")]
     public abstract class AbsElement : AbsEntity, IElement
     {
-        [Required]
+        //[Required]
         public string Name { get; set; }
 
         public string Description { get; set; }

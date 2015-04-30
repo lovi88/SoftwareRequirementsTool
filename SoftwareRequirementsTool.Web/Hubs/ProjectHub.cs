@@ -9,12 +9,8 @@ namespace SoftwareRequirementsTool.Web.Hubs
     public class ProjectHub : AbsOpenCloseCrudHub<Project>
     {
 
-
         public ProjectHub(UnitOfWork unitOfWork)
-            : base(unitOfWork, unitOfWork.ProjectRepository)
-        {
-            //IncludeProperties = "UserStories";
-        }
+            : base(unitOfWork, unitOfWork.ProjectRepository) { }
 
         public override Project Create(Project entity)
         {

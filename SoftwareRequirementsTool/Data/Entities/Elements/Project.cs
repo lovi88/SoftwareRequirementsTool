@@ -1,22 +1,19 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 
-
 namespace SoftwareRequirementsTool.Data.Entities.Elements
 {
-    public class Project : AbsElement
+    [Table("Projects")]
+    public class Project: AbsEntity
     {
-        public override float AbstractionLevel
-        {
-            get { return 0; }
-            set { }
-        }
+        
+        [Required]
+        public string Name { get; set; }
 
-        [JsonIgnore]
-        public List<UserStory> UserStories { get; set; }
+        public string Description { get; set; }
 
-        [JsonIgnore]
-        public List<Diagram> Diagrams { get; set; }
     }
 }

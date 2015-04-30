@@ -1,13 +1,14 @@
 using SoftwareRequirementsTool.Data;
 using SoftwareRequirementsTool.Data.Entities;
+using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 using SoftwareRequirementsTool.Data.Repositories;
 
 namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
 {
-    public abstract class AbsOpenCloseCrudHub<T> : AbsCrudHub<T>, IOpenCloseCrudHub<T> where T : class, IEntity
+    public abstract class AbsContainedByProjectOpenCloseCrudHub<T> : AbsContainedByProjectCrudHub<T>, IOpenCloseCrudHub<T> where T : class, IEntity, IElement
     {
-        protected AbsOpenCloseCrudHub(UnitOfWork unitOfWork, IGenericRepository<T> repository)
-            : base(unitOfWork, repository)
+
+        protected AbsContainedByProjectOpenCloseCrudHub(UnitOfWork unitOfWork, IGenericRepository<T> repository) : base(unitOfWork, repository)
         {
         }
 

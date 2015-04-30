@@ -223,12 +223,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\Abstracts\AbsContainedByProjectCrudHub.cs" />
+    <Compile Include="Hubs\Abstracts\AbsContainedByProjectOpenCloseCrudHub.cs" />
     <Compile Include="Hubs\Abstracts\AbsCrudHub.cs" />
     <Compile Include="Hubs\Abstracts\AbsOpenCloseCrudHub.cs" />
+    <Compile Include="Hubs\Abstracts\IOpenCloseCrudHub.cs" />
+    <Compile Include="Hubs\ActorHub.cs" />
     <Compile Include="Hubs\DiagramPartHub.cs" />
     <Compile Include="Hubs\DiagramHub.cs" />
     <Compile Include="Hubs\ProjectHub.cs" />
-    <Compile Include="Hubs\SignalRObservableHubHelper.cs" />
     <Compile Include="Hubs\UserStoryHub.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -247,6 +250,7 @@
     <Content Include="app\blocks\notification\notificationService.js" />
     <Content Include="app\blocks\replace_utility\replaceUtilities.js" />
     <Content Include="app\blocks\utils\angularUtils.js" />
+    <Content Include="app\features\actors\actorsService.js" />
     <Content Include="app\features\authentication\login.html" />
     <Content Include="app\features\authentication\loginCtrl.js" />
     <Content Include="app\features\diagrams\diagramsController.js" />
@@ -269,7 +273,6 @@
     <Content Include="app\layout\diagrams-page\diagrams-page.html" />
     <Content Include="app\layout\mainmenu\menuRoutes.js" />
     <Content Include="app\layout\mainmenu\menuService.js" />
-    <Content Include="app\layout\requirements-page\HtmlPage1.html" />
     <Content Include="app\layout\requirements-page\userstory-jumbotron.html" />
     <Content Include="app\layout\requirements-page\userstoryJumbotron.js" />
     <Content Include="app\widgets\entity-jumbotron.html" />
@@ -278,7 +281,6 @@
     <Content Include="app\widgets\entityJumbotron.js" />
     <Content Include="app\features\projects\projectService.js" />
     <Content Include="app\features\test\testCtrl.js" />
-    <Content Include="app\hubs.js" />
     <Content Include="app\layout\mainmenu\main-menu.html" />
     <Content Include="app\layout\mainmenu\mainMenu.js" />
     <Content Include="app\layout\modelling-page\modelling-page.html" />
@@ -1155,7 +1157,6 @@
     <Content Include="Views\Chat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\core\modelling\abstracts\" />
     <Folder Include="app\features\specificaton\" />
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
@@ -1166,7 +1167,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\core\api\abstracts\BaseSignalRServices.ts" />
-    <TypeScriptCompile Include="app\core\api\abstracts\CommunicationInterfaces.ts" />
+    <TypeScriptCompile Include="app\core\api\abstracts\ApiCommunicationInterfaces.ts" />
     <TypeScriptCompile Include="app\core\api\concrete\ConcreteServices.ts" />
     <TypeScriptCompile Include="app\core\api\instantiation\ServiceInstances.ts" />
     <TypeScriptCompile Include="app\core\entities\abstracts\EntityInterfaces.ts" />
@@ -1177,11 +1178,11 @@
     <TypeScriptCompile Include="app\core\entities\abstracts\BaseEntity.ts" />
     <TypeScriptCompile Include="app\core\entities\concrete\EntityFactory.ts" />
     <TypeScriptCompile Include="app\core\entities\concrete\Project.ts" />
+    <TypeScriptCompile Include="app\core\entities\concrete\UseCaseView.ts" />
     <TypeScriptCompile Include="app\core\utils\ArrayHelpers.ts" />
     <TypeScriptCompile Include="app\core\utils\EventHandlingInterfaces.ts" />
     <TypeScriptCompile Include="app\core\entities\abstracts\ModellingInterfaces.ts" />
     <TypeScriptCompile Include="app\core\entities\concrete\Point.ts" />
-    <TypeScriptCompile Include="app\core\modelling\concrete\UseCase.ts" />
     <TypeScriptCompile Include="app\core\utils\objectHelpers.ts" />
     <TypeScriptCompile Include="app\core\utils\TypeChecks.ts" />
     <TypeScriptCompile Include="app\services\baseCRUDServices.ts" />

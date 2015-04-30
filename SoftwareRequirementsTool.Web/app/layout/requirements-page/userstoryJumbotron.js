@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    function userstoryJumbotron() {
+    function userstoryJumbotron(actorsService) {
         // Usage:
         //     <userstory-jumbotron></userstory-jumbotron>
         // Creates:
@@ -11,7 +11,6 @@
             replace: true,
             scope: {
                 entity: "=entity",
-                actors: "=actors",
                 modifyCallback: "&modify",
                 deleteCallback: "&delete",
                 creationMode: "@?creationMode",
@@ -20,24 +19,32 @@
             },
             link: function (scope, element, attrs) {
                 scope.modifyMode = false;
-
-                commonInit(scope);
-
-                if (scope.creationMode) {
-                    creationModeInit(scope);
-                } else {
-                    modifyModeInit(scope);
-                }
-
+                
+                //scope.$watch("entity", function (newValue, oldValue) {
+                //    init(scope);
+                //});
+                
+                init(scope);
             },
             restrict: "EA"
         };
 
+        function init(scope) {
+            commonInit(scope);
+
+            if (scope.creationMode) {
+                creationModeInit(scope);
+            } else {
+                modifyModeInit(scope);
+            }
+        }
+
         function modifyModeInit(scope) {
             scope.copyOfEntity = null;
-            scope.modify = function () {
-                makeRole(scope);
+            scope.save = function () {
+                makeActor(scope);
                 scope.modifyCallback({ entity: scope.entity });
+                scope.modifyMode = false;
             }
 
             scope.delete = function () {
@@ -59,45 +66,40 @@
             scope.modifyMode = true;
             scope.creationMode = true;
 
-            scope.modify = function () {
-                makeRole(scope);
+            scope.save = function () {
+                makeActor(scope);
                 scope.creationAccepted({ entity: scope.entity });
+                scope.actorName = "";
             }
 
             scope.cancel = function () {
                 scope.creationCancelled({ entity: scope.entity });
+                scope.actorName = "";
             }
         }
 
         function commonInit(scope) {
-            if (Utils.TypeChecker.isUndefinedOrNull(scope.entity.Role)) {
-                scope.entity.Role = new Entities.BaseEntity();
+            if (Utils.TypeChecker.isUndefinedOrNull(scope.entity.Actor)) {
+                scope.entity.Actor = new Entities.BaseEntity();
             }
-            scope.actorName = scope.entity.Role.Name;
-
+            scope.actorName = scope.entity.Actor.Name;
+            scope.actorNames = actorsService.actorNames;
         }
 
-        function makeRole(scope) {
-            if (scope.actorName === scope.entity.Role.Name) {
+        function makeActor(scope) {
+            if (scope.actorName === scope.entity.Actor.Name) {
                 return;
             }
 
             var us = scope.entity;
-            var act = null;
 
-            for (var i = 0; i < scope.actors.length; i++) {
-                if (scope.actors[i].Name === actorName) {
-                    act = scope.actors[i];
-                    break;
-                }
-            }
-
+            var act = actorsService.getActorForName(scope.actorName);
             if (act===null) {
                 act = new Entities.BaseEntity();
-                act.Name = scope.entity.Role.Name;
+                act.Name = scope.actorName;
             }
 
-            us.Role = act;
+            us.Actor = act;
         }
 
         return directive;
@@ -107,5 +109,5 @@
         .module("app")
         .directive("userstoryJumbotron", userstoryJumbotron);
 
-    //userstoryJumbotron.$inject = ["$scope"];
+    userstoryJumbotron.$inject = ["actorsService"];
 })();

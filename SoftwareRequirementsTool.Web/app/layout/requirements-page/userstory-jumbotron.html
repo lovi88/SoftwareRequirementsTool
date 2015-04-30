@@ -5,7 +5,7 @@
             <fieldset>
 
                 <!-- Form Name -->
-                <legend>{{entity.Name}}</legend>
+                <legend> {{entity.Name}} &nbsp;</legend>
 
                 <!-- Name Text input -->
                 <div class="form-group">
@@ -14,7 +14,9 @@
                         <input ng-model="entity.Name"
                                ng-disabled="!modifyMode"
                                id="name" name="name" type="text" placeholder="Name" class="form-control" required="">
-                        <span class="help-block">Name is Required</span>
+                        <span ng-hide="entity.Name"
+                              class="text-warning">Name is Required</span>
+                        <span>&nbsp;</span>
                     </div>
                 </div>
 
@@ -29,19 +31,19 @@
                 </div>
 
 
-                <!-- Role.Name input-->
+                <!-- actorName input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="actor">As a(n)</label>
                     <div class="col-md-6">
                         <input ng-model="actorName"
                                ng-disabled="!modifyMode"
-                               id="actor" list="actors_list" name="actor" type="text" placeholder="User Type or Actor" class="form-control input-md" required="">
+                               id="actor" list="actors_list" name="actor" type="text" placeholder="User Role or Actor" class="form-control input-md" required="">
                     </div>
                 </div>
 
                 <!-- Actors -->
                 <datalist id="actors_list">
-                    <option ng-repeat="act in actors" value="{{act}}"></option>
+                    <option ng-repeat="actName in actorNames" value="{{actName}}"></option>
                 </datalist>
 
                 <!-- Activity Text input-->
@@ -75,7 +77,7 @@
                 Modify
             </button>
 
-            <button class="btn btn-success btn-lg" ng-click="modify()" ng-show="modifyMode">
+            <button class="btn btn-success btn-lg" ng-click="save()" ng-show="modifyMode">
                 Save
             </button>
 

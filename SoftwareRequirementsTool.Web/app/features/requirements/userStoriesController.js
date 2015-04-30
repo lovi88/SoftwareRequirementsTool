@@ -6,7 +6,7 @@
         var vm = $scope;
         vm.title = "User Stories";
 
-        vm.inCreation = true;
+        vm.inCreation = false;
         vm.userstoryToCreate = null;
 
         vm.service = CoreServices.userStoryServiceInstance;
@@ -39,6 +39,8 @@
             var tAct03 = new Entities.BaseEntity();
             tAct03.Name = "Pisti3";
 
+
+
             vm.actors.push(tAct01);
             vm.actors.push(tAct02);
             vm.actors.push(tAct03);
@@ -51,9 +53,9 @@
 
             vm.service.registerChangeListenerCallback(changeEventHandler);
 
-            scope.actorNames = new Array();
-            for (var i = 0; i < scope.entities.length; i++) {
-                scope.actorNames.push(scope.entities[i].Role.Name);
+            vm.actorNames = new Array();
+            for (var i = 0; i < vm.actors.length; i++) {
+                vm.actorNames.push(vm.actors[i].Name);
             }
         }
 
@@ -62,7 +64,7 @@
         }
 
         vm.delete = function (entity) {
-            vm.service.delete(entity);
+            vm.service.deleteEntity(entity);
         }
 
         vm.create = function () {
@@ -70,14 +72,14 @@
         }
 
         vm.creationAccepted = function (entity) {
-            alert("accepted")
             vm.service.create(entity);
             vm.inCreation = false;
+            initCreateUserStory();
         }
 
         vm.creationCancelled = function (entity) {
-            alert("cancell")
             vm.inCreation = false;
+            initCreateUserStory();
         }
 
         function initCreateUserStory() {

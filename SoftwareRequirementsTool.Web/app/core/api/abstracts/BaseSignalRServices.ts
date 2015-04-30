@@ -223,16 +223,20 @@
     }
 
     export class BaseOpenCloseService extends BaseSignalRService {
+        active = null;
+
         constructor(propertyName) {
             super(propertyName);
         }
 
         open(entity) {
             this.hub.server.open(entity);
+            this.active = entity;
         }
 
         close(entity) {
             this.hub.server.close(entity);
+            this.active = null;
         }
     }
 
@@ -250,11 +254,13 @@
 
                 var arr = Entities.EntityFactory.createArrayFrom(result);
                 callback(arr);
+                this.changeOccured(result);
             });
         }
 
         loadAllForEntityToProperty(entity,callback?) {
             this.getAllForEntity(entity, result => {
+                Utils.ArrayHelpers.clearArray(this[this.propertyName]);
                 for (var rKey in result) {
                     if (result.hasOwnProperty(rKey)) {
                         this[this.propertyName].push(result[rKey]);
@@ -262,7 +268,7 @@
                 }
 
                 if (Utils.TypeChecker.isFunction(callback)) {
-                    callback();
+                    callback(result);
                 }
                 this.changeOccured(result);
             });

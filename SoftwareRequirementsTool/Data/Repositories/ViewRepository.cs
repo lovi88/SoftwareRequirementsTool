@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SoftwareRequirementsTool.Data.Entities.ViewElements;
+using SoftwareRequirementsTool.Data.Entities.ViewElements.Abstracts;
 using SoftwareRequirementsTool.Data.Repositories.Abstracts;
 
 namespace SoftwareRequirementsTool.Data.Repositories
@@ -24,7 +25,7 @@ namespace SoftwareRequirementsTool.Data.Repositories
 
         protected override void TouchDb(AbsView entity)
         {
-            AttachIfNeeded(entity.Coordinates);
+            AttachOrCreateIfNeeded(entity.Coordinates);
         }
     }
 }

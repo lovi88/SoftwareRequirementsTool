@@ -1,4 +1,3 @@
-using SoftwareRequirementsTool.Data;
 using SoftwareRequirementsTool.Data.Entities.ViewElements;
 using SoftwareRequirementsTool.Data.Repositories;
 using SoftwareRequirementsTool.Web.Hubs.Abstracts;
@@ -7,7 +6,7 @@ namespace SoftwareRequirementsTool.Web.Hubs
 {
     public class DiagramPartHub : AbsCrudHub<DiagramPart>
     {
-        public DiagramPartHub(UnitOfWork unitOfWork, IGenericRepository<DiagramPart> repository)
+        public DiagramPartHub(UnitOfWork unitOfWork)
             : base(unitOfWork, unitOfWork.DiagramPartRepository)
         {
         }
