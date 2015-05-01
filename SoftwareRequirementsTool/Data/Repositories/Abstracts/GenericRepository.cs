@@ -60,7 +60,7 @@ namespace SoftwareRequirementsTool.Data.Repositories.Abstracts
         public virtual void Insert(TEntity entity)
         {
             AssertIntegrity(entity);
-            TouchDb(entity);
+            ManageForeignKeyConstraits(entity);
 
             DbSet.Add(entity);
         }
@@ -73,6 +73,8 @@ namespace SoftwareRequirementsTool.Data.Repositories.Abstracts
 
         public virtual void Delete(TEntity entityToDelete)
         {
+            entityToDelete = DbSet.Find(entityToDelete.Id);
+
             if (Context.Entry(entityToDelete).State == EntityState.Detached)
             {
                 DbSet.Attach(entityToDelete);
@@ -83,40 +85,38 @@ namespace SoftwareRequirementsTool.Data.Repositories.Abstracts
         public virtual void Update(TEntity entityToUpdate)
         {
             AssertIntegrity(entityToUpdate);
-            TouchDb(entityToUpdate);
+            ManageForeignKeyConstraits(entityToUpdate);
 
             DbSet.Attach(entityToUpdate);
             Context.Entry(entityToUpdate).State = EntityState.Modified;
         }
 
         protected abstract void AssertIntegrity(TEntity entity);
-        abstract protected void TouchDb(TEntity entity);
+        protected abstract void ManageForeignKeyConstraits(TEntity entity);
 
-        protected virtual bool IsAttachNeeded(IEntity entity)
+        protected int ForeignKeyHelper(IEntity keyEntity, int foreignKey)
         {
-            if (entity==null)
+            if (foreignKey != 0)
             {
-                return false;
+                return foreignKey;
             }
 
-            return (entity.Id != 0);
+            if (keyEntity != null)
+            {
+                foreignKey = keyEntity.Id;
+                return foreignKey;
+            }
+
+            throw new ArgumentException("the foreign key must have be set");
         }
 
-        protected virtual void AttachOrCreateIfNeeded(IEntity entity)
-        {
-            if (IsAttachNeeded(entity))
-            {
-                Context.AbsEntities.Attach((AbsEntity)entity);
-            }
-            else
-            {
-                Context.AbsEntities.Add((AbsEntity) entity);
-                //Context.Entry(entity).State = EntityState.Added;
-                //Context.AbsEntities.Add((AbsEntity)entity);
 
-                //Context.Set<AbsEntity>().Add((AbsEntity)entity);
-                Context.SaveChanges();
-            }
+        //abstract protected void TouchDb(TEntity entity);
+
+        protected virtual void CreateIfNeeded(IEntity entity)
+        {
+            Context.AbsEntities.Add((AbsEntity)entity);
+            Context.SaveChanges();
         }
 
         protected void Attach(TEntity entity)

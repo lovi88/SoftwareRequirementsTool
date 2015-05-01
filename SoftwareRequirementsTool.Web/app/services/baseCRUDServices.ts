@@ -1,10 +1,12 @@
 ﻿module ServiceParts {
     export class BaseCrudService {
 
-        constructor(protected serviceInstance) { }
+        constructor(protected serviceInstance) {
+            
+        }
 
-        create(element) {
-            this.serviceInstance.create(element);
+        create(element, callback) {
+            this.serviceInstance.create(element, callback);
         }
 
         modify(element) {

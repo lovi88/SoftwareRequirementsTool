@@ -20,6 +20,10 @@
             return baseEntity;
         }
 
+        isValid(): boolean {
+            return true;
+        }
+
         save(): void {
             if (this.service) {
                 this.service.modify(this);
@@ -31,4 +35,30 @@
         }
     }
     
+    export class BaseElement extends BaseEntity implements IElement {
+
+        Author: string;
+        Description: string;
+        Name: string;
+        Id: number;
+        TypeName: string;
+
+        setService(service: IServerService) { }
+
+        setUpFromObject(object) {}
+
+        save(): void {}
+
+        rollback(): void {}
+
+        isValid() {
+            if (Utils.TypeChecker.isUndefinedOrNull(this.Name)) {
+                return false;
+            }
+
+            var valid = (this.Name !== "");
+
+            return valid && super.isValid();
+        }
+    }
 }

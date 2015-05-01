@@ -15,6 +15,8 @@ namespace SoftwareRequirementsTool.Data.Entities.Elements.Abstracts
 
         public abstract float AbstractionLevel { get; set; }
 
+        public int ContainerProjectId { get; set; }
+        [ForeignKey("ContainerProjectId")]
         virtual public Project ContainerProject { get; set; }
 
         //Todo: ~USER

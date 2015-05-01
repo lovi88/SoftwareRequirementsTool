@@ -8,11 +8,13 @@ namespace SoftwareRequirementsTool.Data.Repositories
         {
         }
 
-        protected override void TouchDb(UserStory entity)
+
+        protected override void ManageForeignKeyConstraits(UserStory entity)
         {
-            AttachOrCreateIfNeeded(entity.Actor);
-            entity.ActorId = entity.Actor.Id;
-            base.TouchDb(entity);
+            entity.ActorId = ForeignKeyHelper(entity.Actor, entity.ActorId);
+            entity.Actor = null;
+
+            base.ManageForeignKeyConstraits(entity);
         }
     }
 }

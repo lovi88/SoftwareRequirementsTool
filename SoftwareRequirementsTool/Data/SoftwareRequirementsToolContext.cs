@@ -50,10 +50,11 @@ namespace SoftwareRequirementsTool.Data
         {
             if (_cnt++ == 0 && Database.Exists())
             {
-                Database.Delete();
+                //Database.Delete();
             }
         }
 
+        
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<Project>()

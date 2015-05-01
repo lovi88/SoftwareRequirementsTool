@@ -15,7 +15,9 @@ namespace SoftwareRequirementsTool.Data.Repositories
         }
 
         protected override void AssertIntegrity(AbsEntity entity) { }
-
-        protected override void TouchDb(AbsEntity entity) { }
+        protected override void ManageForeignKeyConstraits(AbsEntity entity)
+        {
+            //there is no foreign key constraint for Entities
+        }
     }
 }

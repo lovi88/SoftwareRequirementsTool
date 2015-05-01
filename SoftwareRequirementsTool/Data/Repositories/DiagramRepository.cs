@@ -17,5 +17,6 @@ namespace SoftwareRequirementsTool.Data.Repositories
                 throw new ArgumentException("Diagram has to have a Name");
             }
         }
+
     }
 }

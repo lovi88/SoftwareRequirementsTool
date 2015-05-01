@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SoftwareRequirementsTool.Data.Entities;
-using SoftwareRequirementsTool.Data.Entities.Elements;
 using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 using SoftwareRequirementsTool.Data.Repositories.Abstracts;
 
@@ -19,16 +14,16 @@ namespace SoftwareRequirementsTool.Data.Repositories
 
         protected override void AssertIntegrity(TEntity entity)
         {
-            if (entity.ContainerProject == null)
+            if (entity.ContainerProject == null && entity.ContainerProjectId == 0)
             {
                 throw new ArgumentException("the entity must have a ContainerProject");
             }
         }
 
-
-        protected override void TouchDb(TEntity entity)
+        protected override void ManageForeignKeyConstraits(TEntity entity)
         {
-            AttachOrCreateIfNeeded(entity.ContainerProject);
+            entity.ContainerProjectId = ForeignKeyHelper(entity.ContainerProject, entity.ContainerProjectId);
+            entity.ContainerProject = null;
         }
     }
 }

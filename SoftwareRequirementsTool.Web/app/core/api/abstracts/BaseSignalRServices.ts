@@ -10,9 +10,6 @@
         protected observers = new Array<ICrudObserver>();
         protected callbacks = new Array<IEventCallback>();
 
-
-        lastActiveElement: any;
-
         constructor(propertyName) {
             this.propertyName = propertyName;
         }
@@ -22,7 +19,7 @@
                 this.created(result);
 
                 if (Utils.TypeChecker.isFunction(callback)) {
-                    callback(this.lastActiveElement);
+                    callback(result);
                 }
             });
         }
@@ -46,7 +43,7 @@
         getAll(callback: IArrayWaitCallback) {
             this.hub.server.getAll().done(result => {
                 if (!Utils.TypeChecker.isArray(result)) {
-                    throw { message: "BaseSignalRService.getAll the result from the server vas not an Array", result: result}
+                    throw { message: "BaseSignalRService.getAll the result from the server vas not an Array", result: result }
                 }
 
                 var arr = Entities.EntityFactory.createArrayFrom(result);
@@ -87,13 +84,14 @@
         protected initProperty(): void {
             this.propertyAssert(this.propertyName);
         }
-        
+
         init() { }
 
         //called from server or from this.create
         protected created(element: IEntity): void {
+            console.log(element);
             var elm = Entities.EntityFactory.createComplexFrom(element);
-            
+
             this[this.propertyName].push(elm);
             this.creationOccured(elm);
         }
@@ -222,7 +220,62 @@
         }
     }
 
-    export class BaseOpenCloseService extends BaseSignalRService {
+    //It uses the promise library of JQuery (it is the minimal dependency of the core library)
+    declare var $: any;
+    export class BaseSignalRPromisedService extends BaseSignalRService {
+        constructor(propertyName) {
+            super(propertyName);
+        }
+
+
+        createAsyncPromised(element) {
+            var deferred = $.Deferred();
+
+            this.create(element, result => {
+                if (result) {
+                    deferred.resolve(result);
+                } else {
+                    deferred.reject();
+                }
+            });
+
+            return deferred.promise();
+        }
+
+
+        getAllAsyncPromised() {
+            var deferred = $.Deferred();
+
+            try {
+                this.getAll(arr => {
+                    deferred.resolve(arr);
+                });
+            } catch (e) {
+                deferred.reject(e);
+            }
+
+            return deferred.promise();
+        }
+
+        loadAllToPropertyAsyncPromised() {
+
+            var deferred = $.Deferred();
+
+            try {
+                this.loadAllToProperty(arr => {
+                    deferred.resolve(arr);
+                });
+            } catch (e) {
+                deferred.reject(e);
+            }
+
+            return deferred.promise();
+        }
+
+
+    }
+
+    export class BaseOpenCloseService extends BaseSignalRPromisedService {
         active = null;
 
         constructor(propertyName) {
@@ -240,7 +293,7 @@
         }
     }
 
-    export class BaseGetAllForService extends BaseSignalRService {
+    export class BaseGetAllForService extends BaseSignalRPromisedService {
         constructor(propertyName) {
             super(propertyName);
         }
@@ -258,7 +311,7 @@
             });
         }
 
-        loadAllForEntityToProperty(entity,callback?) {
+        loadAllForEntityToProperty(entity, callback?) {
             this.getAllForEntity(entity, result => {
                 Utils.ArrayHelpers.clearArray(this[this.propertyName]);
                 for (var rKey in result) {
@@ -273,19 +326,55 @@
                 this.changeOccured(result);
             });
         }
+
+
+        getAllForEntityAsyncPromised(entity) {
+            var deferred = $.Deferred();
+
+            try {
+                this.getAllForEntity(entity, arr => {
+                    deferred.resolve(arr);
+                });
+            } catch (e) {
+                deferred.reject(e);
+            }
+
+            return deferred.promise();
+        }
+
+        loadAllForEntityToPropertyAsyncPromised(entity) {
+            
+            var deferred = $.Deferred();
+
+            try {
+                this.loadAllForEntityToProperty(entity, arr => {
+                    deferred.resolve(arr);
+                });
+            } catch (e) {
+                deferred.reject(e);
+            }
+
+            return deferred.promise();
+        }
+
     }
 
     export class BaseOpenCloseGetAllForService extends BaseGetAllForService {
+
+        active = null;
+
         constructor(propertyName) {
             super(propertyName);
         }
 
         open(entity) {
             this.hub.server.open(entity);
+            this.active = entity;
         }
 
         close(entity) {
             this.hub.server.close(entity);
+            this.active = null;
         }
     }
 }

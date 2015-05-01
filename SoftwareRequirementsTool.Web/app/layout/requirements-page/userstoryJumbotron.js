@@ -1,7 +1,9 @@
 ﻿(function () {
+
     "use strict";
 
-    function userstoryJumbotron(actorsService) {
+    function userstoryJumbotron(actorsService, notificationService) {
+
         // Usage:
         //     <userstory-jumbotron></userstory-jumbotron>
         // Creates:
@@ -19,35 +21,33 @@
             },
             link: function (scope, element, attrs) {
                 scope.modifyMode = false;
-                
-                //scope.$watch("entity", function (newValue, oldValue) {
-                //    init(scope);
-                //});
-                
                 init(scope);
             },
             restrict: "EA"
         };
 
         function init(scope) {
-            commonInit(scope);
 
             if (scope.creationMode) {
                 creationModeInit(scope);
             } else {
+
                 modifyModeInit(scope);
             }
+
+            commonInit(scope);
         }
 
         function modifyModeInit(scope) {
+
             scope.copyOfEntity = null;
             scope.save = function () {
-                makeActor(scope);
                 scope.modifyCallback({ entity: scope.entity });
                 scope.modifyMode = false;
             }
 
             scope.delete = function () {
+
                 scope.deleteCallback({ entity: scope.entity });
             }
 
@@ -57,6 +57,7 @@
             }
 
             scope.cancel = function () {
+
                 scope.modifyMode = false;
                 scope.entity = copyOfEntity;
             }
@@ -65,16 +66,20 @@
         function creationModeInit(scope) {
             scope.modifyMode = true;
             scope.creationMode = true;
+            scope.entity = new Entities.BaseElement();
+            scope.entity.Actor = new Entities.BaseElement();
+
+            scope.entity.ContainerProject = CoreServices.projectsServiceInstance.active;
+            scope.entity.Actor.ContainerProject = CoreServices.projectsServiceInstance.active;
 
             scope.save = function () {
-                makeActor(scope);
                 scope.creationAccepted({ entity: scope.entity });
-                scope.actorName = "";
+                init(scope);
             }
 
             scope.cancel = function () {
                 scope.creationCancelled({ entity: scope.entity });
-                scope.actorName = "";
+                init(scope);
             }
         }
 
@@ -84,24 +89,46 @@
             }
             scope.actorName = scope.entity.Actor.Name;
             scope.actorNames = actorsService.actorNames;
-        }
 
-        function makeActor(scope) {
-            if (scope.actorName === scope.entity.Actor.Name) {
-                return;
+            scope.actorValid = false;
+            scope.usecaseValid = false;
+            scope.disabledMsg = "The save button is disabled while the UserStory or it's Actor is not valid";
+
+            scope.validateActorAndCreateIfNeeded = function (actorName) {
+
+                var act = actorsService.getActorForName(actorName);
+                if (act === null) {
+                    act = new Entities.BaseElement();
+                    act.Name = scope.actorName;
+                    act.ContainerProject = CoreServices.projectsServiceInstance.active;
+                    act.ContainerProjectId = CoreServices.projectsServiceInstance.active.Id;
+
+                    if (!act.isValid()) {
+                        scope.actorValid = false;
+                        return;
+                    }
+
+                    //creating new actor
+                    scope.actorValid = false;
+                    actorsService.create(act, function (createdActor) {
+                        scope.entity.Actor = createdActor;
+                        scope.actorValid = true;
+                        AngularUtils.safeApply(scope);
+                    });
+
+                } else {
+                    //usage of existing Actor
+                    scope.actorValid = true;
+                    scope.entity.Actor = act;
+                }
             }
 
-            var us = scope.entity;
-
-            var act = actorsService.getActorForName(scope.actorName);
-            if (act===null) {
-                act = new Entities.BaseEntity();
-                act.Name = scope.actorName;
+            scope.validateUserStory = function () {
+                scope.usecaseValid = scope.entity.isValid();
             }
-
-            us.Actor = act;
         }
-
+        
+        //The End of userstoryJumbotron
         return directive;
     }
 
@@ -109,5 +136,5 @@
         .module("app")
         .directive("userstoryJumbotron", userstoryJumbotron);
 
-    userstoryJumbotron.$inject = ["actorsService"];
+    userstoryJumbotron.$inject = ["actorsService", "notificationService"];
 })();

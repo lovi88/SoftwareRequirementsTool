@@ -34,5 +34,5 @@
         .module("app")
         .service("menuService", menuService);
 
-    //menuService.$inject = ["$http"];
+    //menuService.$inject = ["$scope"];
 })();

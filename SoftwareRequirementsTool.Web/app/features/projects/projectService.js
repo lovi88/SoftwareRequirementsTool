@@ -1,19 +1,29 @@
 ﻿(function () {
     "use strict";
 
-    function projectService(menuService, notificationService, $sessionStorage) {
+    function projectService(menuService, notificationService, $q, $sessionStorage) {
         var service = CoreServices.projectsServiceInstance;
         var baseService =
             new ServiceParts.BaseCrudOpenCloseService(service, $sessionStorage, "activeProject",
             function (project) {
-                menuService.openProject();
-                CoreServices.diagramsServiceInstance.loadAllForEntityToProperty(project);
-                CoreServices.userStoryServiceInstance.loadAllForEntityToProperty(project);
-                //CoreServices.actorServiceInstance.loadAllForEntityToProperty(project);
+
+                var diagPromise = CoreServices.diagramsServiceInstance.loadAllForEntityToPropertyAsyncPromised(project);
+                var storyPromise = CoreServices.userStoryServiceInstance.loadAllForEntityToPropertyAsyncPromised(project);
+                var actorPromise = CoreServices.actorServiceInstance.loadAllForEntityToPropertyAsyncPromised(project);
+
+                //converting to Angfular Promises (in order to fire the $apply)
+                diagPromise = $q.when(diagPromise);
+                storyPromise = $q.when(storyPromise);
+                actorPromise = $q.when(actorPromise);
+
+                $q.all([diagPromise, storyPromise, actorPromise]).then(function() {
+                    menuService.openProject();
+                });
             },
             function (project) {
                 CoreServices.diagramsServiceInstance.clear();
                 CoreServices.userStoryServiceInstance.clear();
+                CoreServices.actorServiceInstance.clear();
             });
         
         function close(project) {
@@ -69,5 +79,5 @@
         .module("app")
         .service("projectService", projectService);
 
-    projectService.$inject = ["menuService", "notificationService", "$sessionStorage"];
+    projectService.$inject = ["menuService", "notificationService", "$q","$sessionStorage"];
 })();

@@ -6,5 +6,6 @@
         string Description { get; set; }
         string Name { get; set; }
         Project ContainerProject { get; set; }
+        int ContainerProjectId { get; set; }
     }
 }

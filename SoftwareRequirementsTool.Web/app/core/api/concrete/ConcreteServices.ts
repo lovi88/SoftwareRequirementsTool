@@ -56,7 +56,7 @@
     }
 
     //diagramPartHub
-    export class DiagramPartService extends BaseSignalRService {
+    export class DiagramPartService extends BaseSignalRPromisedService {
 
         constructor() {
             super("diagramParts");

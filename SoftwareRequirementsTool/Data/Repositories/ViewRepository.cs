@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SoftwareRequirementsTool.Data.Entities.ViewElements;
 using SoftwareRequirementsTool.Data.Entities.ViewElements.Abstracts;
 using SoftwareRequirementsTool.Data.Repositories.Abstracts;
 
@@ -23,9 +18,11 @@ namespace SoftwareRequirementsTool.Data.Repositories
             }
         }
 
-        protected override void TouchDb(AbsView entity)
+        protected override void ManageForeignKeyConstraits(AbsView entity)
         {
-            AttachOrCreateIfNeeded(entity.Coordinates);
+            entity.CoordinatesId = ForeignKeyHelper(entity.Coordinates, entity.CoordinatesId);
+            entity.Coordinates = null;
         }
+
     }
 }

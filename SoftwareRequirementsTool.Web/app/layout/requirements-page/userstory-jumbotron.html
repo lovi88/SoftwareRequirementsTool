@@ -13,6 +13,7 @@
                     <div class="col-md-6">
                         <input ng-model="entity.Name"
                                ng-disabled="!modifyMode"
+                               ng-blur="validateUserStory()"
                                id="name" name="name" type="text" placeholder="Name" class="form-control" required="">
                         <span ng-hide="entity.Name"
                               class="text-warning">Name is Required</span>
@@ -37,6 +38,7 @@
                     <div class="col-md-6">
                         <input ng-model="actorName"
                                ng-disabled="!modifyMode"
+                               ng-blur="validateActorAndCreateIfNeeded(actorName)"
                                id="actor" list="actors_list" name="actor" type="text" placeholder="User Role or Actor" class="form-control input-md" required="">
                     </div>
                 </div>
@@ -77,9 +79,14 @@
                 Modify
             </button>
 
-            <button class="btn btn-success btn-lg" ng-click="save()" ng-show="modifyMode">
+            <button class="btn btn-success btn-lg"
+                    ng-click="save()"
+                    ng-show="modifyMode"
+                    ng-disabled="!(actorValid && usecaseValid)"
+                    title="alma">
                 Save
             </button>
+
 
             <button class="btn btn-warning btn-lg" ng-click="cancel()" ng-show="modifyMode">
                 Cancel
@@ -89,5 +96,14 @@
                 Delete
             </button>
         </p>
+        <div class="text-warning" ng-show="!(actorValid && usecaseValid)">{{disabledMsg}}</div>
+
+        <p>
+            usVal: {{usecaseValid}}
+        </p>
+        <p>
+            actVal: {{actorValid}}
+        </p>
+
     </div>
 </div>
