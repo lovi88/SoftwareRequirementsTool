@@ -79,6 +79,7 @@
             this.hub.client.modified = (element) => this.modified(element);
             this.hub.client.deleted = (element) => this.deleted(element);
             this.hub.client.errorFromHub = (error) => this.errorFromHub(error);
+            this.hub.client.infoFromHub = (error) => this.infoFromHub(error); 
         }
 
         protected initProperty(): void {
@@ -89,7 +90,7 @@
 
         //called from server or from this.create
         protected created(element: IEntity): void {
-            console.log(element);
+            
             var elm = Entities.EntityFactory.createComplexFrom(element);
 
             this[this.propertyName].push(elm);
@@ -141,6 +142,10 @@
         protected errorFromHub(error) {
             alert(error.message + "\n To avoid inconsistency we need to reload the page");
             location.reload();
+        }
+
+        protected infoFromHub(info) {
+            console.log(info);
         }
 
         //It startes all the hubs for all services

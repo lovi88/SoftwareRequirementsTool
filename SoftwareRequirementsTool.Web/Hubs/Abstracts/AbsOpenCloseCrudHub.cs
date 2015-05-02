@@ -1,6 +1,7 @@
-using SoftwareRequirementsTool.Data;
 using SoftwareRequirementsTool.Data.Entities;
 using SoftwareRequirementsTool.Data.Repositories;
+using SoftwareRequirementsTool.Data.Repositories.Abstracts;
+using SoftwareRequirementsTool.Data.UnitOfWork;
 
 namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
 {
@@ -11,12 +12,12 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
         {
         }
 
-        virtual public void Open(T entity)
+        public void Open(T entity)
         {
             AddCallerToGroup(GenerateGroupName(entity));
         }
 
-        virtual public void Close(T entity)
+        public void Close(T entity)
         {
             RemoveCallerFromGroup(GenerateGroupName(entity));
         }

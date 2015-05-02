@@ -1,8 +1,8 @@
 ﻿using System;
 using SoftwareRequirementsTool.Data.Entities.Elements;
-using SoftwareRequirementsTool.Data.Entities.ViewElements;
+using SoftwareRequirementsTool.Data.Repositories;
 
-namespace SoftwareRequirementsTool.Data.Repositories
+namespace SoftwareRequirementsTool.Data.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -13,6 +13,7 @@ namespace SoftwareRequirementsTool.Data.Repositories
         private DiagramRepository _diagramRepository;
         private DiagramPartRepository _diagramPartRepository;
         private ElementRepository<Actor> _actorRepository;
+        private EntityRepository _entityRepository;
 
         public ProjectRepository ProjectRepository
         {
@@ -39,7 +40,12 @@ namespace SoftwareRequirementsTool.Data.Repositories
             get { return _actorRepository ?? (_actorRepository = new ElementRepository<Actor>(Context)); }
         }
 
-        
+        public EntityRepository EntityRepository
+        {
+            get { return _entityRepository ?? (_entityRepository = new EntityRepository(Context)); }
+        }
+
+
         public void SaveChanges()
         {
             Context.SaveChanges();

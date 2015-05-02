@@ -7,21 +7,24 @@
         var baseService =
             new ServiceParts.BaseCrudOpenCloseService(service, $sessionStorage, "activeDiagram", function () {
                 menuService.openDiagram();
+
+                //TODO: preload Diagram parts
+
             });
 
         function close(diagram) {
             baseService.close(diagram);
             menuService.closeDiagram();
+
+            //TODO: clear Diagram parts
+
             notificationService.showInfo(diagram.Name + "is closed, modelling page is deactivated");
         }
-
 
         function open(diagram) {
             baseService.open(diagram);
 
-            CoreServices.DiagramPartService.loadAllForEntityToProperty(diagram);
-            CoreServices.userStoryServiceInstance.loadAllForEntityToProperty(diagram);
-
+            service.loadAllForEntityToProperty(diagram);
             notificationService.showInfo(diagram.Name + "is opened, modelling page is activated");
         }
 

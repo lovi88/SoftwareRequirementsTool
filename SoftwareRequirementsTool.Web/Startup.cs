@@ -3,6 +3,7 @@ using Microsoft.Owin;
 using Ninject;
 using Owin;
 using SoftwareRequirementsTool.Data.Repositories;
+using SoftwareRequirementsTool.Data.UnitOfWork;
 using SoftwareRequirementsTool.Web;
 using SoftwareRequirementsTool.Web.Dependencies;
 

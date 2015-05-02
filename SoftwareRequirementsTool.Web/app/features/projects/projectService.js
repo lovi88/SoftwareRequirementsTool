@@ -19,6 +19,7 @@
                 $q.all([diagPromise, storyPromise, actorPromise]).then(function() {
                     menuService.openProject();
                 });
+
             },
             function (project) {
                 CoreServices.diagramsServiceInstance.clear();

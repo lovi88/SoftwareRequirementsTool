@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using SoftwareRequirementsTool.Data.Entities;
 
-namespace SoftwareRequirementsTool.Data
+namespace SoftwareRequirementsTool.Data.Repositories.Abstracts
 {
     public interface IGenericRepository<TEntity> where TEntity : class, IEntity
     {

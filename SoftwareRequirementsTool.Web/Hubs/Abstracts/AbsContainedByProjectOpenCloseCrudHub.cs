@@ -2,6 +2,8 @@ using SoftwareRequirementsTool.Data;
 using SoftwareRequirementsTool.Data.Entities;
 using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 using SoftwareRequirementsTool.Data.Repositories;
+using SoftwareRequirementsTool.Data.Repositories.Abstracts;
+using SoftwareRequirementsTool.Data.UnitOfWork;
 
 namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
 {

@@ -4,22 +4,22 @@
     $stateProvider
         .state("projects", {
             url: "/projects",
-            templateUrl: "/app/layout/projects-page/projects-page.html"
+            templateUrl: "/app/features/projects/projects-page.html"
         })
 
         .state("requirements", {
             url: "/requirements",
-            templateUrl: "/app/layout/requirements-page/requirements-page.html"
+            templateUrl: "/app/features/requirements/requirements-page.html"
         })
 
         .state("diagrams", {
             url: "/diagrams",
-            templateUrl: "/app/layout/diagrams-page/diagrams-page.html"
+            templateUrl: "/app/features/diagrams/diagrams-page.html"
         })
 
         .state("modelling", {
             url: "/modelling",
-            templateUrl: "/app/layout/modelling-page/modelling-page.html"
+            templateUrl: "/app/features/modelling/modelling-page.html"
         });
 
 });

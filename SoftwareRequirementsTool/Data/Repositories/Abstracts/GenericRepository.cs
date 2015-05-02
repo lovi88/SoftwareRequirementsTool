@@ -71,6 +71,8 @@ namespace SoftwareRequirementsTool.Data.Repositories.Abstracts
             Delete(entityToDelete);
         }
 
+        
+
         public virtual void Delete(TEntity entityToDelete)
         {
             entityToDelete = DbSet.Find(entityToDelete.Id);

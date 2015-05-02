@@ -8,7 +8,7 @@ using SoftwareRequirementsTool.Data.Repositories.Abstracts;
 
 namespace SoftwareRequirementsTool.Data.Repositories
 {
-    class EntityRepository: GenericRepository<AbsEntity>
+    public class EntityRepository: GenericRepository<AbsEntity>
     {
         public EntityRepository(SoftwareRequirementsToolContext context) : base(context)
         {

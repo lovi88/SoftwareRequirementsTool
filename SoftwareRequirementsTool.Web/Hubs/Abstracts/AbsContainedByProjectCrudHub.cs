@@ -5,6 +5,8 @@ using SoftwareRequirementsTool.Data.Entities;
 using SoftwareRequirementsTool.Data.Entities.Elements;
 using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 using SoftwareRequirementsTool.Data.Repositories;
+using SoftwareRequirementsTool.Data.Repositories.Abstracts;
+using SoftwareRequirementsTool.Data.UnitOfWork;
 
 namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
 {
@@ -34,7 +36,22 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
 
         virtual public IEnumerable<T> GetAllFor(Project project)
         {
+            if (project == null)
+            {
+                SendError("Project was null");
+                return new List<T>();
+            }
+
             return Repository.Get(diagram => diagram.ContainerProject.Id == project.Id).ToList();
+        }
+
+        protected override void BeforeCallBack(ref T entity)
+        {
+            if (entity.ContainerProject == null)
+            {
+                entity.ContainerProject = UnitOfWork.ProjectRepository
+                    .GetById(entity.ContainerProjectId);
+            }
         }
     }
 }

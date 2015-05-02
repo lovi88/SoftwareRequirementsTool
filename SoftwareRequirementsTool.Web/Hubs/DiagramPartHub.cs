@@ -1,5 +1,6 @@
 using SoftwareRequirementsTool.Data.Entities.ViewElements;
 using SoftwareRequirementsTool.Data.Repositories;
+using SoftwareRequirementsTool.Data.UnitOfWork;
 using SoftwareRequirementsTool.Web.Hubs.Abstracts;
 
 namespace SoftwareRequirementsTool.Web.Hubs
@@ -24,6 +25,11 @@ namespace SoftwareRequirementsTool.Web.Hubs
         public override void Delete(DiagramPart entity)
         {
             Delete(entity, GenerateGroupName(entity.Diagram));
+        }
+
+        protected override void BeforeCallBack(ref DiagramPart entity)
+        {
+            entity = UnitOfWork.DiagramPartRepository.GetById(entity.Id, "Diagram,Element,View,ContainerProject");
         }
     }
 }

@@ -231,6 +231,7 @@
     <Compile Include="Hubs\ActorHub.cs" />
     <Compile Include="Hubs\DiagramPartHub.cs" />
     <Compile Include="Hubs\DiagramHub.cs" />
+    <Compile Include="Hubs\Helpers\GroupHelper.cs" />
     <Compile Include="Hubs\ProjectHub.cs" />
     <Compile Include="Hubs\UserStoryHub.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -271,11 +272,11 @@
     <Content Include="app\features\modelling\diagramPartService.js" />
     <Content Include="app\features\requirements\userStoriesController.js" />
     <Content Include="app\features\requirements\userStoriesService.js" />
-    <Content Include="app\layout\diagrams-page\diagrams-page.html" />
+    <Content Include="app\features\diagrams\diagrams-page.html" />
     <Content Include="app\layout\mainmenu\menuRoutes.js" />
     <Content Include="app\layout\mainmenu\menuService.js" />
-    <Content Include="app\layout\requirements-page\userstory-jumbotron.html" />
-    <Content Include="app\layout\requirements-page\userstoryJumbotron.js" />
+    <Content Include="app\features\requirements\userstory-jumbotron.html" />
+    <Content Include="app\features\requirements\userstoryJumbotron.js" />
     <Content Include="app\widgets\entity-jumbotron.html" />
     <Content Include="app\features\projects\projectsController.js" />
     <Content Include="app\blocks\dialogs\nameDescDialogController.js" />
@@ -284,10 +285,10 @@
     <Content Include="app\features\test\testCtrl.js" />
     <Content Include="app\layout\mainmenu\main-menu.html" />
     <Content Include="app\layout\mainmenu\mainMenu.js" />
-    <Content Include="app\layout\modelling-page\modelling-page.html" />
+    <Content Include="app\features\modelling\modelling-page.html" />
     <Content Include="app\blocks\dialogs\name-desc-dialog.html" />
-    <Content Include="app\layout\projects-page\projects-page.html" />
-    <Content Include="app\layout\requirements-page\requirements-page.html" />
+    <Content Include="app\features\projects\projects-page.html" />
+    <Content Include="app\features\requirements\requirements-page.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\Angular.css" />
     <Content Include="Content\animate.css" />

@@ -9,7 +9,7 @@
         // Creates:
         // 
         var directive = {
-            templateUrl: "/app/layout/requirements-page/userstory-jumbotron.html",
+            templateUrl: "/app/features/requirements/userstory-jumbotron.html",
             replace: true,
             scope: {
                 entity: "=entity",
@@ -39,6 +39,8 @@
         }
 
         function modifyModeInit(scope) {
+
+            console.log(scope.entity)
 
             scope.copyOfEntity = null;
             scope.save = function () {
@@ -114,6 +116,7 @@
                         scope.entity.Actor = createdActor;
                         scope.actorValid = true;
                         AngularUtils.safeApply(scope);
+                        notificationService.showInfo("We have created a new Actor: "+createdActor.Name);
                     });
 
                 } else {

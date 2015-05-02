@@ -1,7 +1,6 @@
-﻿using System;
-using System.Web.Http.ModelBinding;
-using SoftwareRequirementsTool.Data.Entities.Elements;
+﻿using SoftwareRequirementsTool.Data.Entities.Elements;
 using SoftwareRequirementsTool.Data.Repositories;
+using SoftwareRequirementsTool.Data.UnitOfWork;
 using SoftwareRequirementsTool.Web.Hubs.Abstracts;
 
 namespace SoftwareRequirementsTool.Web.Hubs
@@ -25,6 +24,11 @@ namespace SoftwareRequirementsTool.Web.Hubs
         public override void Delete(Project entity)
         {
             Delete(entity, DefaultAuthenticatedGroup);
+        }
+
+        protected override void BeforeCallBack(ref Project entity)
+        {
+            //There is no need to reload Project, it does not contains entities
         }
     }
 
