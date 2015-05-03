@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Core.Objects;
 
 namespace SoftwareRequirementsTool.Data.Entities
 {
@@ -9,7 +10,23 @@ namespace SoftwareRequirementsTool.Data.Entities
         [NotMapped]
         public string TypeName
         {
-            get { return GetType().Name; }
+            get
+            {
+                var fullName = GetType().FullName;
+                
+                string name;
+                if (fullName.Contains("System.Data.Entity.DynamicProxies"))
+                {
+                    var realType = ObjectContext.GetObjectType(this.GetType());
+                    name = realType.Name;
+                }
+                else
+                {
+                    name = GetType().Name;
+                }
+                
+                return name;
+            }
         }
     }
 }

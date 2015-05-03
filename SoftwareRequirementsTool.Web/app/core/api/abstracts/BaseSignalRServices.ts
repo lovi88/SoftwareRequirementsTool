@@ -79,7 +79,7 @@
             this.hub.client.modified = (element) => this.modified(element);
             this.hub.client.deleted = (element) => this.deleted(element);
             this.hub.client.errorFromHub = (error) => this.errorFromHub(error);
-            this.hub.client.infoFromHub = (error) => this.infoFromHub(error); 
+            this.hub.client.infoFromHub = (error) => this.infoFromHub(error);
         }
 
         protected initProperty(): void {
@@ -90,7 +90,7 @@
 
         //called from server or from this.create
         protected created(element: IEntity): void {
-            
+
             var elm = Entities.EntityFactory.createComplexFrom(element);
 
             this[this.propertyName].push(elm);
@@ -306,10 +306,10 @@
         getAllForEntity(entity, callback: IArrayWaitCallback) {
             this.hub.server.getAllFor(entity).done(result => {
 
-                if (!Utils.TypeChecker.isArray(result)) {
+                if (!(Utils.TypeChecker.isArray(result))) {
                     throw { message: "BaseSignalRService.getAll the result from the server vas not an Array", result: result }
                 }
-
+                
                 var arr = Entities.EntityFactory.createArrayFrom(result);
                 callback(arr);
                 this.changeOccured(result);
@@ -348,7 +348,7 @@
         }
 
         loadAllForEntityToPropertyAsyncPromised(entity) {
-            
+
             var deferred = $.Deferred();
 
             try {

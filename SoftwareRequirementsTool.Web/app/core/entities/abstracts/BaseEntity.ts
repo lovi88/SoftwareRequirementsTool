@@ -42,6 +42,7 @@
         Name: string;
         Id: number;
         TypeName: string;
+        ContainerProject: Project;
 
         setService(service: IServerService) { }
 
@@ -56,9 +57,15 @@
                 return false;
             }
 
-            var valid = (this.Name !== "");
+            if (this.Name === "") {
+                return false;
+            }
 
-            return valid && super.isValid();
+            if (Utils.TypeChecker.isUndefinedOrNull(this.ContainerProject)) {
+                return false;
+            }
+            
+            return super.isValid();
         }
     }
 }

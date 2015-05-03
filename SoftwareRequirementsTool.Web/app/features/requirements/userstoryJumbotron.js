@@ -2,7 +2,7 @@
 
     "use strict";
 
-    function userstoryJumbotron(actorsService, notificationService) {
+    function userstoryJumbotron(actorsService, notificationService, $q) {
 
         // Usage:
         //     <userstory-jumbotron></userstory-jumbotron>
@@ -20,7 +20,7 @@
                 creationCancelled: "&cancel"
             },
             link: function (scope, element, attrs) {
-                scope.modifyMode = false;
+                //scope.modifyMode = false;
                 init(scope);
             },
             restrict: "EA"
@@ -28,28 +28,99 @@
 
         function init(scope) {
 
-            if (scope.creationMode) {
-                creationModeInit(scope);
-            } else {
+            initCommonFunctions(scope);
 
-                modifyModeInit(scope);
+            if (scope.creationMode) {
+                initCreateAttributes(scope);
+                initCreationFunctions(scope);
+
+
+            } else {
+                initModifyAttributes(scope);
+                initModificationFunctions(scope);
+
             }
 
-            commonInit(scope);
         }
 
-        function modifyModeInit(scope) {
 
-            console.log(scope.entity)
+        //init attributes
+        function initCreateAttributes(scope) {
+            scope.modifyMode = true;
+            scope.creationMode = true;
+
+            scope.entity = new Entities.BaseElement();
+            scope.entity.Actor = new Entities.BaseElement();
+
+            scope.entity.ContainerProject = CoreServices.projectsServiceInstance.active;
+            scope.entity.Actor.ContainerProject = CoreServices.projectsServiceInstance.active;
+
+            scope.validateUserStory();
+            scope.validateActor();
+
+            _initCommonAttributes(scope);
+        }
+
+        function initModifyAttributes(scope) {
+            scope.creationMode = false;
+            scope.modifyMode = false;
+            
+            if (!(scope.entity instanceof Entities.BaseElement)) {
+                scope.entity = Entities.EntityFactory.createComplexFrom(scope.entity);
+            }
+
+            scope.validateUserStory();
+            scope.validateActor();
 
             scope.copyOfEntity = null;
+
+            _initCommonAttributes(scope);
+        }
+
+        //called by the other two
+        function _initCommonAttributes(scope) {
+            scope.actorName = scope.entity.Actor.Name;
+            scope.actorNames = actorsService.actorNames;
+            scope.disabledMsg = "The save button is disabled while the UserStory or it's Actor is not valid";
+        }
+
+
+        //init scope functions
+        function initCreationFunctions(scope) {
             scope.save = function () {
-                scope.modifyCallback({ entity: scope.entity });
-                scope.modifyMode = false;
+
+                scope.setActorAndCreateIfNeededAsync().then(function () {
+
+                    if (scope.validateUserStory() && scope.validateActor()) {
+                        scope.creationAccepted({ entity: scope.entity });
+                        initCreateAttributes();
+                    } else {
+                        notificationService.showWarning("the user story is invalid, it will not be saved.");
+                    }
+                });
+            }
+
+            scope.cancel = function () {
+                scope.creationCancelled({ entity: scope.entity });
+                initCreateAttributes();
+            }
+        }
+
+        function initModificationFunctions(scope) {
+
+            scope.save = function () {
+                scope.setActorAndCreateIfNeededAsync().then(function () {
+
+                    if (scope.validateUserStory() && scope.validateActor()) {
+                        scope.modifyCallback({ entity: scope.entity });
+
+                        initModifyAttributes(scope);
+                    }
+
+                });
             }
 
             scope.delete = function () {
-
                 scope.deleteCallback({ entity: scope.entity });
             }
 
@@ -59,46 +130,32 @@
             }
 
             scope.cancel = function () {
-
                 scope.modifyMode = false;
                 scope.entity = copyOfEntity;
             }
         }
 
-        function creationModeInit(scope) {
-            scope.modifyMode = true;
-            scope.creationMode = true;
-            scope.entity = new Entities.BaseElement();
-            scope.entity.Actor = new Entities.BaseElement();
 
-            scope.entity.ContainerProject = CoreServices.projectsServiceInstance.active;
-            scope.entity.Actor.ContainerProject = CoreServices.projectsServiceInstance.active;
-
-            scope.save = function () {
-                scope.creationAccepted({ entity: scope.entity });
-                init(scope);
+        function initCommonFunctions(scope) {
+            scope.validateUserStory = function () {
+                scope.usecaseValid = scope.entity.isValid();
+                return scope.usecaseValid;
             }
 
-            scope.cancel = function () {
-                scope.creationCancelled({ entity: scope.entity });
-                init(scope);
+            scope.validateActor = function () {
+                scope.actorValid = scope.entity.Actor.isValid();
+                return scope.actorValid;
             }
-        }
 
-        function commonInit(scope) {
-            if (Utils.TypeChecker.isUndefinedOrNull(scope.entity.Actor)) {
-                scope.entity.Actor = new Entities.BaseEntity();
-            }
-            scope.actorName = scope.entity.Actor.Name;
-            scope.actorNames = actorsService.actorNames;
+            scope.setActorAndCreateIfNeededAsync = function () {
+                var deferred = $q.defer();
 
-            scope.actorValid = false;
-            scope.usecaseValid = false;
-            scope.disabledMsg = "The save button is disabled while the UserStory or it's Actor is not valid";
+                if (scope.entity.Actor.Name === scope.actorName) {
+                    deferred.resolve();
+                    return deferred.promise;
+                }
 
-            scope.validateActorAndCreateIfNeeded = function (actorName) {
-
-                var act = actorsService.getActorForName(actorName);
+                var act = actorsService.getActorForName(scope.actorName);
                 if (act === null) {
                     act = new Entities.BaseElement();
                     act.Name = scope.actorName;
@@ -107,7 +164,10 @@
 
                     if (!act.isValid()) {
                         scope.actorValid = false;
-                        return;
+                        notificationService.showWarning("The actor is invalid");
+
+                        deferred.reject();
+                        return deferred.promise;
                     }
 
                     //creating new actor
@@ -116,21 +176,23 @@
                         scope.entity.Actor = createdActor;
                         scope.actorValid = true;
                         AngularUtils.safeApply(scope);
-                        notificationService.showInfo("We have created a new Actor: "+createdActor.Name);
+                        notificationService.showInfo("We have created a new Actor: " + createdActor.Name);
+
+                        deferred.resolve();
                     });
 
                 } else {
                     //usage of existing Actor
-                    scope.actorValid = true;
                     scope.entity.Actor = act;
+                    scope.validateActor();
+                    deferred.resolve();
                 }
-            }
 
-            scope.validateUserStory = function () {
-                scope.usecaseValid = scope.entity.isValid();
+                return deferred.promise;
             }
         }
-        
+
+
         //The End of userstoryJumbotron
         return directive;
     }
@@ -139,5 +201,5 @@
         .module("app")
         .directive("userstoryJumbotron", userstoryJumbotron);
 
-    userstoryJumbotron.$inject = ["actorsService", "notificationService"];
+    userstoryJumbotron.$inject = ["actorsService", "notificationService", "$q"];
 })();

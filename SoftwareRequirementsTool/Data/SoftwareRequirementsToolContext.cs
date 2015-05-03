@@ -54,7 +54,6 @@ namespace SoftwareRequirementsTool.Data
             }
         }
 
-        
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<Project>()

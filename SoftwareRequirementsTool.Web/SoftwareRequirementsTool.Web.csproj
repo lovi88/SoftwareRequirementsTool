@@ -270,6 +270,7 @@
     <Content Include="app\features\modelling\arch\useCaseDir.js" />
     <Content Include="app\features\modelling\arch\useCase.svg" />
     <Content Include="app\features\modelling\diagramPartService.js" />
+    <Content Include="app\features\requirements\JavaScript1.js" />
     <Content Include="app\features\requirements\userStoriesController.js" />
     <Content Include="app\features\requirements\userStoriesService.js" />
     <Content Include="app\features\diagrams\diagrams-page.html" />

@@ -38,7 +38,7 @@
                     <div class="col-md-6">
                         <input ng-model="actorName"
                                ng-disabled="!modifyMode"
-                               ng-blur="validateActorAndCreateIfNeeded(actorName)"
+                               ng-blur="validateActorAndCreateIfNeeded()"
                                id="actor" list="actors_list" name="actor" type="text" placeholder="User Role or Actor" class="form-control input-md" required="">
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                     ng-click="save()"
                     ng-show="modifyMode"
                     ng-disabled="!(actorValid && usecaseValid)"
-                    title="alma">
+                    title="You can Save your changes">
                 Save
             </button>
 
@@ -96,14 +96,7 @@
                 Delete
             </button>
         </p>
-        <div class="text-warning" ng-show="!(actorValid && usecaseValid)">{{disabledMsg}}</div>
-
-        <p>
-            usVal: {{usecaseValid}}
-        </p>
-        <p>
-            actVal: {{actorValid}}
-        </p>
+        <div class="text-warning" ng-show="!(actorValid && usecaseValid)">{{disabledMsg}} &nbsp;</div>
 
     </div>
 </div>

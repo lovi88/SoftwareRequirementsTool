@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.SignalR;
-using SoftwareRequirementsTool.Data;
 using SoftwareRequirementsTool.Data.Entities;
-using SoftwareRequirementsTool.Data.Repositories;
 using SoftwareRequirementsTool.Data.Repositories.Abstracts;
 using SoftwareRequirementsTool.Data.UnitOfWork;
 using SoftwareRequirementsTool.Utilities.ErrorMessages;

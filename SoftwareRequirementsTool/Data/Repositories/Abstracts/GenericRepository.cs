@@ -98,14 +98,14 @@ namespace SoftwareRequirementsTool.Data.Repositories.Abstracts
 
         protected int ForeignKeyHelper(IEntity keyEntity, int foreignKey)
         {
-            if (foreignKey != 0)
-            {
-                return foreignKey;
-            }
-
             if (keyEntity != null)
             {
                 foreignKey = keyEntity.Id;
+                return foreignKey;
+            }
+
+            if (foreignKey != 0)
+            {
                 return foreignKey;
             }
 
