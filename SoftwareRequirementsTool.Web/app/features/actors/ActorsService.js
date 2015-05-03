@@ -30,12 +30,25 @@
         }
 
 
+        function getFreshActor(name) {
+            var actor = new Entities.BaseElement();
+            actor.ContainerProject = CoreServices.projectsServiceInstance.active;
+
+            if (!(Utils.TypeChecker.isUndefinedOrNull(name))) {
+                actor.Name = name;
+            }
+
+            return actor;
+        }
+
+
         //init
         service.registerChangeListenerCallback(function (source, changedEntity) {
             initActorNames(service.actors);
         });
 
         initActorNames(service.actors);
+
 
         //Public Interface
         this.actors = service.actors;
@@ -48,7 +61,7 @@
             
         this.modify = baseService.modify;
         this.deleteEntity = baseService.deleteEntity;
-
+        this.getFreshActor = getFreshActor;
     }
 
     angular

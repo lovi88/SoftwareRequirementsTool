@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using SoftwareRequirementsTool.Data;
 using SoftwareRequirementsTool.Data.Entities;
 using SoftwareRequirementsTool.Data.Entities.Elements;
 using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
-using SoftwareRequirementsTool.Data.Repositories;
 using SoftwareRequirementsTool.Data.Repositories.Abstracts;
 using SoftwareRequirementsTool.Data.UnitOfWork;
 
@@ -42,7 +40,8 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
                 return new List<T>();
             }
 
-            return Repository.Get(diagram => diagram.ContainerProject.Id == project.Id).ToList();
+            var allFor = Repository.Get(diagram => diagram.ContainerProject.Id == project.Id).ToList();
+            return allFor;
         }
 
         protected override void BeforeCallBack(ref T entity)

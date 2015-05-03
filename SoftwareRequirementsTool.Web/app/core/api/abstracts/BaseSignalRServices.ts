@@ -10,6 +10,9 @@
         protected observers = new Array<ICrudObserver>();
         protected callbacks = new Array<IEventCallback>();
 
+        //this is used to use to communicate between create/created; modify/modified
+        protected touchedElement;
+
         constructor(propertyName) {
             this.propertyName = propertyName;
         }
@@ -19,7 +22,7 @@
                 this.created(result);
 
                 if (Utils.TypeChecker.isFunction(callback)) {
-                    callback(result);
+                    callback(this.touchedElement);
                 }
             });
         }
@@ -93,6 +96,7 @@
 
             var elm = Entities.EntityFactory.createComplexFrom(element);
 
+            this.touchedElement = elm;
             this[this.propertyName].push(elm);
             this.creationOccured(elm);
         }
@@ -223,6 +227,7 @@
         unregisterChangeListenerCallback(callback: IEventCallback) {
             Utils.ArrayHelpers.deleteFromArray(this.callbacks, callback);
         }
+
     }
 
     //It uses the promise library of JQuery (it is the minimal dependency of the core library)

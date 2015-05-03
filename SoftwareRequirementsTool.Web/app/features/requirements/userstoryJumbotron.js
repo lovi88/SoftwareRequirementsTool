@@ -50,10 +50,9 @@
             scope.creationMode = true;
 
             scope.entity = new Entities.BaseElement();
-            scope.entity.Actor = new Entities.BaseElement();
-
             scope.entity.ContainerProject = CoreServices.projectsServiceInstance.active;
-            scope.entity.Actor.ContainerProject = CoreServices.projectsServiceInstance.active;
+
+            scope.entity.Actor = actorsService.getFreshActor();
 
             scope.validateUserStory();
             scope.validateActor();
@@ -97,6 +96,8 @@
                     } else {
                         notificationService.showWarning("the user story is invalid, it will not be saved.");
                     }
+                }).catch(function(msg) {
+                    console.log(msg);
                 });
             }
 
@@ -144,6 +145,11 @@
 
             scope.validateActor = function () {
                 scope.actorValid = scope.entity.Actor.isValid();
+                return scope.actorValid;
+            }
+
+            scope.validateActorName = function() {
+                scope.actorValid = (scope.actorName !== "");
                 return scope.actorValid;
             }
 
