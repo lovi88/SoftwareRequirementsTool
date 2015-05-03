@@ -5,9 +5,17 @@
         var service = CoreServices.userStoryServiceInstance;
         var baseService = new ServiceParts.BaseCrudService(service);
 
-        this.create = baseService.create;
-        this.modify = baseService.modify;
-        this.deleteEntity = baseService.deleteEntity;
+        this.create = function(story, callback) {
+            baseService.create(story, callback);
+        }
+
+        this.modify = function (story) {
+            baseService.modify(story);
+        }
+
+        this.deleteEntity = function(story) {
+            baseService.deleteEntity(story);
+        }
     }
 
     angular

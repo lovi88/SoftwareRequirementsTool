@@ -60,7 +60,6 @@
 
         vm.creationCancelled = function (entity) {
             vm.inCreation = false;
-
         }
 
         activate();

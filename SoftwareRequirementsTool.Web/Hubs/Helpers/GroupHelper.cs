@@ -25,15 +25,21 @@ namespace SoftwareRequirementsTool.Web.Hubs.Helpers
         private readonly ConcurrentDictionary<string, ConcurrentBag<string>> _groups;
         public void AddCallerToGroup(string connectionId, string groupName)
         {
-            var list = _groups.GetOrAdd(groupName, new ConcurrentBag<string>());
-            list.Add(connectionId);
+            var bag = _groups.GetOrAdd(groupName, new ConcurrentBag<string>());
+
+            if (bag.Contains(connectionId))
+            {
+                return;
+            }
+
+            bag.Add(connectionId);
         }
 
         public void RemoveCallerFromGroup(string connectionId, string groupName)
         {
-            var list = _groups.GetOrAdd(groupName, new ConcurrentBag<string>());
+            var bag = _groups.GetOrAdd(groupName, new ConcurrentBag<string>());
             var cIdToRemove = connectionId;
-            list.TryTake(out cIdToRemove);
+            bag.TryTake(out cIdToRemove);
         }
 
         public string[] AllInGroup(string groupName)
