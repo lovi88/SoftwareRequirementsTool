@@ -3,7 +3,7 @@
 namespace SoftwareRequirementsTool.Data.Entities.ViewElements.Abstracts
 {
     [Table("AbsViews")]
-    public abstract class AbsView : AbsEntity, IView, IStereotiped
+    public abstract class AbsView : AbsDiagramPart, IView, IStereotiped
     {
         public int CoordinatesId { get; set; }
         [ForeignKey("CoordinatesId")]

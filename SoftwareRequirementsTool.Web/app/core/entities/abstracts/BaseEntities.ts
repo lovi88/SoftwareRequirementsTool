@@ -68,4 +68,16 @@
             return super.isValid();
         }
     }
+
+    export class DiagramPart extends BaseElement implements IDiagramPart {
+
+        Element: IElement;
+        Diagram: IDiagram;
+
+        setUpFromObject(object: IDiagramPart) {
+            this.Element = <IElement>EntityFactory.createFrom(object.Element);
+            this.Diagram = <IDiagram>EntityFactory.createFrom(object.Diagram);
+        }
+
+    }
 }

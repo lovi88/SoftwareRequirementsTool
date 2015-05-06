@@ -16,8 +16,9 @@ namespace SoftwareRequirementsTool.Data
         
         //Bases
         public DbSet<AbsEntity> AbsEntities { get; set; }
-        public DbSet<AbsView> AbsViews { get; set; }
         public DbSet<AbsElement> AbsElements { get; set; }
+        public DbSet<AbsView> AbsViews { get; set; }
+        public DbSet<AbsDiagramPart> DiagramParts { get; set; }
 
         //AbsElement-s
         public DbSet<Actor> Actors { get; set; }
@@ -28,7 +29,6 @@ namespace SoftwareRequirementsTool.Data
 
         //AbsView-s
         public DbSet<ActorView> ActorViews { get; set; }
-        public DbSet<DiagramPart> DiagramParts { get; set; }
         public DbSet<UseCaseView> UseCaseViews { get; set; }
 
         //Connection

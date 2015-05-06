@@ -1177,8 +1177,7 @@
     <TypeScriptCompile Include="app\core\entities\concrete\BaseView.ts" />
     <TypeScriptCompile Include="app\core\entities\concrete\Connection.ts" />
     <TypeScriptCompile Include="app\core\entities\concrete\Diagram.ts" />
-    <TypeScriptCompile Include="app\core\entities\concrete\DiagramPart.ts" />
-    <TypeScriptCompile Include="app\core\entities\abstracts\BaseEntity.ts" />
+    <TypeScriptCompile Include="app\core\entities\abstracts\BaseEntities.ts" />
     <TypeScriptCompile Include="app\core\entities\concrete\EntityFactory.ts" />
     <TypeScriptCompile Include="app\core\entities\concrete\Project.ts" />
     <TypeScriptCompile Include="app\core\entities\concrete\UseCaseView.ts" />

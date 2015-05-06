@@ -22,9 +22,9 @@
 
             modalInstance.result.then(function (actorToSave) {
                 return actorsService.createDeferred(actorToSave);
-            }).then(function(createdActor) {
+            }).then(function (createdActor) {
                 privates.addToDiagram(createdActor);
-            }).catch(function(err) {
+            }).catch(function (err) {
                 console.log(err);
             });
         }
@@ -39,15 +39,20 @@
 
             privates.addToDiagram(vm.selectedActor);
         }
-        
+
         function activate() {
             stateMachineService.redirectIfNoActiveProject();
             stateMachineService.redirectIfNoActiveDiagram();
         }
         activate();
 
-        privates.addToDiagram = function(element) {
-            console.log(element)
+        privates.addToDiagram = function (element) {
+            console.log(element);
+
+            //TODO: Elkészíteni egy új ActorView-et, ami tartalmazza az elementet, és jelöli az aktív projectet és diagramot (Parts-hub on keresztül) (promisos)
+            //TODO: amikor resolved: az aktív diagram-hoz kell adni.
+            //TODO: a diagram part service a diagram service-ben kikeresi a diagramot, és ott is jelzi a hozzáadás tényét (+modify a diagramra?)
+            //TODO: Megjelenítés (a .html-nél foreach, ami az actort tartalmazókra filterez)
         }
 
     }

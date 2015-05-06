@@ -3,7 +3,7 @@
 
     declare var d3: any;
     export class BaseView
-        extends BaseEntity
+        extends DiagramPart
         implements IView, IDraggable {
 
             Id: number;

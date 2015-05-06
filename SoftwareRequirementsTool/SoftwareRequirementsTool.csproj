@@ -61,7 +61,6 @@
     <Compile Include="Data\Entities\Elements\Abstracts\IDiagram.cs" />
     <Compile Include="Data\Entities\IStereotiped.cs" />
     <Compile Include="Data\Entities\ViewElements\ActorView.cs" />
-    <Compile Include="Data\Entities\ViewElements\DiagramPart.cs" />
     <Compile Include="Data\Entities\IEntity.cs" />
     <Compile Include="Data\Entities\Elements\Actor.cs" />
     <Compile Include="Data\Entities\Elements\Diagram.cs" />
@@ -71,6 +70,7 @@
     <Compile Include="Data\Entities\Elements\Project.cs" />
     <Compile Include="Data\Entities\Elements\UseCase.cs" />
     <Compile Include="Data\Entities\Elements\UserStory.cs" />
+    <Compile Include="Data\Entities\ViewElements\Abstracts\AbsDiagramPart.cs" />
     <Compile Include="Data\Entities\ViewElements\Point.cs" />
     <Compile Include="Data\Entities\ViewElements\Stereotype.cs" />
     <Compile Include="Data\Entities\ViewElements\Abstracts\AbsView.cs" />

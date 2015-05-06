@@ -2,22 +2,16 @@
 using Newtonsoft.Json;
 using SoftwareRequirementsTool.Data.Entities.Elements;
 using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
-using SoftwareRequirementsTool.Data.Entities.ViewElements.Abstracts;
 
-namespace SoftwareRequirementsTool.Data.Entities.ViewElements
+namespace SoftwareRequirementsTool.Data.Entities.ViewElements.Abstracts
 {
     [Table("DiagramParts")]
-    public class DiagramPart : AbsElement
+    abstract public class AbsDiagramPart : AbsElement
     {
         public int ElementId { get; set; }
 
         [ForeignKey("ElementId")]
         public AbsElement Element { get; set; }
-
-        public int ViewId { get; set; }
-
-        [ForeignKey("ViewId")]
-        public AbsView View { get; set; }
 
         [JsonIgnore]
         virtual public Diagram Diagram { get; set; }

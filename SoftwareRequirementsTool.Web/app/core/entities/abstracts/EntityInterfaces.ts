@@ -57,7 +57,6 @@ interface IUseCaseView extends IView {
 interface IDiagramPart extends IEntity {
     Element: IElement;
     Diagram: IDiagram;
-    View: IView;
 }
 
 
