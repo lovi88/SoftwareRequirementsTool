@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    function diagramsController($scope, $state, dialogs, diagramsService, projectService, menuService) {
+    function diagramsController($scope, dialogs, diagramsService, projectService, stateMachineService) {
         /* jshint validthis:true */
 
         var vm = $scope;
@@ -18,11 +18,10 @@
         };
 
         function activated() {
-            vm.service.registerChangeListenerCallback(changeEventHandler);
 
-            if (!menuService.isDiagramsVisible) {
-                $state.go("projects");
-            }
+            stateMachineService.redirectIfNoActiveProject();
+
+            vm.service.registerChangeListenerCallback(changeEventHandler);
         }
         activated();
 
@@ -71,5 +70,5 @@
         .module("app")
         .controller("diagramsController", diagramsController);
 
-    diagramsController.$inject = ["$scope", "$state", "dialogs", "diagramsService", "projectService", "menuService"];
+    diagramsController.$inject = ["$scope", "dialogs", "diagramsService", "projectService", "stateMachineService"];
 })();

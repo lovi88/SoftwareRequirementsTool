@@ -1,20 +1,11 @@
-﻿<!-- OK: UserStoryJumbotron - clever copy of entity-jumbotron -->
-<!-- OK: UserStory CRUD -->
-<!-- TODO: UserStory Actor Auto Completeon -->
-<!-- OK: UserStory Actor Generation -->
-<!-- TODO: UserStory Actor Navigation -->
-<!-- TODO: UserStory Connections box -->
-<!-- TODO: UserStory Connections CRUD -->
-<!-- TODO: UserStory Connections Navigation -->
-<!-- TODO: UserStory Diagram Generation -->
-<!-- TODO: UserStory Connections For Diagram -->
-
-<div ng-controller="userStoriesController">
+﻿<div ng-controller="userStoriesController">
 
     <div class="container-fluid">
         <div class="jumbotron">
             <h2>{{title}}</h2>
-            <button ng-hide="inCreation" ng-click="create()" class="btn btn-success btn-lg">Create New</button>
+            <button ng-hide="inCreation"
+                    ng-click="create()"
+                    class="btn btn-success btn-lg">Create New</button>
         </div>
     </div>
 

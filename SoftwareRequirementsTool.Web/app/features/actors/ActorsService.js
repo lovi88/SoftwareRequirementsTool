@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    function actorsService($http) {
+    function actorsService($q) {
 
         var service = CoreServices.actorServiceInstance;
         var baseService = new ServiceParts.BaseCrudService(service);
@@ -31,8 +31,13 @@
 
 
         function getFreshActor(name) {
+
             var actor = new Entities.BaseElement();
-            actor.ContainerProject = CoreServices.projectsServiceInstance.active;
+
+            if (!(Utils.TypeChecker.isUndefined(CoreServices.projectsServiceInstance.active))) {
+                actor.ContainerProject = CoreServices.projectsServiceInstance.active;
+                actor.ContainerProjectId = CoreServices.projectsServiceInstance.active.Id;
+            }
 
             if (!(Utils.TypeChecker.isUndefinedOrNull(name))) {
                 actor.Name = name;
@@ -55,10 +60,21 @@
         this.actorNames = actorNames;
         this.getActorForName = getActorForName;
 
-        this.create = function(act, callback) {
-            baseService.create(act,callback);
+        this.create = function (act, callback) {
+            baseService.create(act, callback);
         }
-            
+
+        this.createDeferred = function (act) {
+
+            var deferred = $q.defer();
+
+            baseService.create(act, function (created) {
+                deferred.resolve(created);
+            });
+
+            return deferred.promise;
+        }
+
         this.modify = baseService.modify;
         this.deleteEntity = baseService.deleteEntity;
         this.getFreshActor = getFreshActor;
@@ -68,5 +84,5 @@
         .module("app")
         .service("actorsService", actorsService);
 
-    actorsService.$inject = ["$http"];
+    actorsService.$inject = ["$q"];
 })();

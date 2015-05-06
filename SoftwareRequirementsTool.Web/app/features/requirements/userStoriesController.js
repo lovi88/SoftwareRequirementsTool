@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    function userStoriesController($scope, $state, dialogs, diagramsService, projectService, menuService, userStoriesService) {
+    function userStoriesController($scope, stateMachineService, userStoriesService) {
         /* jshint validthis:true */
         var vm = $scope;
         vm.title = "User Stories";
@@ -14,31 +14,15 @@
 
         vm.userStoriesService = userStoriesService;
 
-        //TODO: Normális Actor Kezelés
-        //vm.actors = [];
-        //vm.actorNames = [];
-
         var changeEventHandler = function (from, data) {
             AngularUtils.safeApply($scope);
         };
 
         function activate() {
 
-            if (!menuService.isRequirementsViseible) {
-                // TODO: Uncomment
-                //$state.go("projects");
-            }
-
-            //code
-            //TODO: make crud work
-            //TODO: actor service? commonService, hub
-
+            stateMachineService.redirectIfNoActiveProject();
+            
             vm.service.registerChangeListenerCallback(changeEventHandler);
-
-            //vm.actorNames = new Array();
-            //for (var i = 0; i < vm.actors.length; i++) {
-            //    vm.actorNames.push(vm.actors[i].Name);
-            //}
         }
 
         vm.modify = function (entity) {
@@ -69,5 +53,5 @@
         .module("app")
         .controller("userStoriesController", userStoriesController);
 
-    userStoriesController.$inject = ["$scope", "$state", "dialogs", "diagramsService", "projectService", "menuService", "userStoriesService"];
+    userStoriesController.$inject = ["$scope", "stateMachineService", "userStoriesService"];
 })();

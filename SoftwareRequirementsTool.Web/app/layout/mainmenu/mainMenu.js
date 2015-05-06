@@ -1,13 +1,13 @@
 ﻿(function () {
     "use strict";
 
-    function mainMenu($window, $compile, menuService) {
+    function mainMenu($window, $compile, stateMachineService) {
         // Usage:
         //     <main-menu></main-menu>
         // Creates:
         // 
         function link(scope, element, attrs) {
-            scope.menuService = menuService;
+            scope.stateMachine = stateMachineService;
         }
 
         var directive = {
@@ -23,5 +23,5 @@
         .module("app")
         .directive("mainMenu", mainMenu);
 
-    mainMenu.$inject = ["$window", "$compile", "menuService"];
+    mainMenu.$inject = ["$window", "$compile", "stateMachineService"];
 })();

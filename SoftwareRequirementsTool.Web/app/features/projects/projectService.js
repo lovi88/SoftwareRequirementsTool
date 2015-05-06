@@ -1,10 +1,10 @@
 ﻿(function () {
     "use strict";
 
-    function projectService(menuService, notificationService, $q, $sessionStorage) {
+    function projectService(stateMachineService, $q, $sessionStorage) {
         var service = CoreServices.projectsServiceInstance;
         var baseService =
-            new ServiceParts.BaseCrudOpenCloseService(service, $sessionStorage, "activeProject",
+            new ServiceParts.BaseCrudOpenCloseService(service, $sessionStorage, stateMachineService.ACTIVE_PROJECT_KEY,
             function (project) {
 
                 var diagPromise = CoreServices.diagramsServiceInstance.loadAllForEntityToPropertyAsyncPromised(project);
@@ -17,11 +17,11 @@
                 actorPromise = $q.when(actorPromise);
 
                 $q.all([diagPromise, storyPromise, actorPromise]).then(function() {
-                    menuService.openProject();
+                    stateMachineService.openProject(project);
                 });
 
             },
-            function (project) {
+            function () {
                 CoreServices.diagramsServiceInstance.clear();
                 CoreServices.userStoryServiceInstance.clear();
                 CoreServices.actorServiceInstance.clear();
@@ -29,16 +29,12 @@
         
         function close(project) {
             baseService.close(project);
-            menuService.closeProject();
-
-            notificationService.showInfo(project.Name + "is closed, now the requirements and the modelling menues are deactivated");
+            stateMachineService.closeProject(project);
         }
 
 
         function open(project) {
-            baseService.open(project);
-
-            notificationService.showInfo(project.Name + "is opened, now the requirements and the modelling menues are active");
+            baseService.open(project); 
         }
 
         function isActive(project) {
@@ -60,8 +56,7 @@
         function deleteEntity(project) {
             baseService.deleteEntity(project);
         }
-        //activates
-
+        
         //public interface
         this.isActive = isActive;
         this.getActive = getActive;
@@ -80,5 +75,5 @@
         .module("app")
         .service("projectService", projectService);
 
-    projectService.$inject = ["menuService", "notificationService", "$q","$sessionStorage"];
+    projectService.$inject = ["stateMachineService", "$q", "$sessionStorage"];
 })();

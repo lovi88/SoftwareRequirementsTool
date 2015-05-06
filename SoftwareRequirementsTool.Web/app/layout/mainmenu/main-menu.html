@@ -27,19 +27,19 @@
                     </a>
                 </li>
 
-                <li ui-sref-active="active" ng-show="menuService.isRequirementsViseible">
+                <li ui-sref-active="active" ng-show="stateMachine.isThereActiveProject">
                     <a ui-sref="requirements">
                         Requirements
                     </a>
                 </li>
 
-                <li ui-sref-active="active" ng-show="menuService.isDiagramsVisible">
+                <li ui-sref-active="active" ng-show="stateMachine.isThereActiveProject">
                     <a ui-sref="diagrams">
                         Diagrams
                     </a>
                 </li>
 
-                <li ui-sref-active="active" ng-show="menuService.isModellingVisible">
+                <li ui-sref-active="active" ng-show="stateMachine.isThereActiveDiagram">
                     <a ui-sref="modelling">
                         Modelling
                     </a>

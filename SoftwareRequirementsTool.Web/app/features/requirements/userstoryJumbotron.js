@@ -92,7 +92,7 @@
 
                     if (scope.validateUserStory() && scope.validateActor()) {
                         scope.creationAccepted({ entity: scope.entity });
-                        initCreateAttributes();
+                        initCreateAttributes(scope);
                     } else {
                         notificationService.showWarning("the user story is invalid, it will not be saved.");
                     }
@@ -103,7 +103,7 @@
 
             scope.cancel = function () {
                 scope.creationCancelled({ entity: scope.entity });
-                initCreateAttributes();
+                initCreateAttributes(scope);
             }
         }
 
@@ -163,10 +163,8 @@
 
                 var act = actorsService.getActorForName(scope.actorName);
                 if (act === null) {
-                    act = new Entities.BaseElement();
-                    act.Name = scope.actorName;
-                    act.ContainerProject = CoreServices.projectsServiceInstance.active;
-                    act.ContainerProjectId = CoreServices.projectsServiceInstance.active.Id;
+
+                    act = actorsService.getFreshActor(scope.actorName);
 
                     if (!act.isValid()) {
                         scope.actorValid = false;

@@ -312,7 +312,7 @@
             this.hub.server.getAllFor(entity).done(result => {
 
                 if (!(Utils.TypeChecker.isArray(result))) {
-                    throw { message: "BaseSignalRService.getAll the result from the server vas not an Array", result: result }
+                    throw { message: "BaseSignalRService.getAll the result from the server was not an Array", result: result }
                 }
                 
                 var arr = Entities.EntityFactory.createArrayFrom(result);

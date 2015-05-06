@@ -244,6 +244,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\features\statemachine\stateMachineService.js" />
     <Content Include="app\blocks\dialogs\dialogs.js" />
     <Content Include="app\blocks\DragNDrop\myDraggable.js" />
     <Content Include="app\blocks\drawing\drawing.js" />
@@ -251,6 +252,7 @@
     <Content Include="app\blocks\notification\notificationService.js" />
     <Content Include="app\blocks\replace_utility\replaceUtilities.js" />
     <Content Include="app\blocks\utils\angularUtils.js" />
+    <Content Include="app\features\actors\actor-dialog.html" />
     <Content Include="app\features\actors\actorsService.js" />
     <Content Include="app\features\authentication\login.html" />
     <Content Include="app\features\authentication\loginCtrl.js" />
@@ -270,11 +272,11 @@
     <Content Include="app\features\modelling\arch\useCaseDir.js" />
     <Content Include="app\features\modelling\arch\useCase.svg" />
     <Content Include="app\features\modelling\diagramPartService.js" />
+    <Content Include="app\features\modelling\modellingController.js" />
     <Content Include="app\features\requirements\userStoriesController.js" />
     <Content Include="app\features\requirements\userStoriesService.js" />
     <Content Include="app\features\diagrams\diagrams-page.html" />
     <Content Include="app\layout\mainmenu\menuRoutes.js" />
-    <Content Include="app\layout\mainmenu\menuService.js" />
     <Content Include="app\features\requirements\userstory-jumbotron.html" />
     <Content Include="app\features\requirements\userstoryJumbotron.js" />
     <Content Include="app\widgets\entity-jumbotron.html" />
@@ -1159,7 +1161,6 @@
     <Content Include="Views\Chat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\features\specificaton\" />
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
   </ItemGroup>

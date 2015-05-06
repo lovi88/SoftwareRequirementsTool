@@ -1,13 +1,64 @@
-﻿<!-- TODO: Modelling -->
-
-
-
-<div ng-controller="testCtrl">
+﻿<div ng-controller="modellingController">
     <div class="row">
 
-        <!--Modelling Toolbar-->
-        <div id="modeling-toolbar" class="col-md-2">
-            mod toolbar
+        <!-- Side menu -->
+        <div class="col-md-3 text-center jumbotron">
+
+            <!--Modelling Toolbar-->
+            <h2>
+                <small>Modelling toolbar</small>
+            </h2>
+
+            <div class="form-group-lg form-inline">
+
+
+                <hr />
+
+
+                <!-- diagram elements -->
+                <!--Actor-->
+                <div class="row">
+
+                    <select class="form-control"
+                            ng-model="selectedActor"
+                            ng-options="actor.Name for actor in actors"
+                            ng-disabled="actors.length == 0">
+                        <option value="" ng-select="selected">-- choose an actor --</option>
+                        
+                    </select>
+
+                    <button class="btn btn-lg"
+                            ng-click="useActor()"
+                            ng-disabled="actors.length == 0">
+                        Use
+                    </button>
+
+                    <button class="btn btn-lg" ng-click="createActor()">New Actor</button>
+
+                </div>
+
+                <!-- UseCase -->
+                <div class="row margin-top-1">
+
+                    <button class="btn btn-lg">UseCase</button>
+
+                </div>
+
+                <hr />
+
+                <!-- connections elements -->
+                <button class="btn btn-lg btn-block btn-info">Association</button>
+
+                <hr />
+
+            </div>
+
+            <!-- Connected User Stories menu -->
+            <div class="row margin-top-5">
+
+
+            </div>
+
         </div>
 
         <!--Modelling Area-->

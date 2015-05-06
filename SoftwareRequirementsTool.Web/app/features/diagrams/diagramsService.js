@@ -1,31 +1,31 @@
 ﻿(function () {
     "use strict";
 
-    function diagramsService(menuService, notificationService, $sessionStorage) {
+    function diagramsService(stateMachineService, $sessionStorage) {
 
         var service = CoreServices.diagramsServiceInstance;
         var baseService =
-            new ServiceParts.BaseCrudOpenCloseService(service, $sessionStorage, "activeDiagram", function () {
-                menuService.openDiagram();
+            new ServiceParts.BaseCrudOpenCloseService(service, $sessionStorage, stateMachineService.ACTIVE_DIAGRAM_KEY,
+            function (diagram) {
+                stateMachineService.openDiagram(diagram);
 
-                //TODO: preload Diagram parts
+                //TODO: preload Diagram parts; & views & UseCase-s & connections (or it is downoaded for the project?)
+                //.loadAllForEntityToProperty(diagram);
+
 
             });
 
         function close(diagram) {
             baseService.close(diagram);
-            menuService.closeDiagram();
+            stateMachineService.closeDiagram(diagram);
 
-            //TODO: clear Diagram parts
+            //TODO: clear Diagram parts, etc.
 
-            notificationService.showInfo(diagram.Name + "is closed, modelling page is deactivated");
         }
 
         function open(diagram) {
             baseService.open(diagram);
 
-            service.loadAllForEntityToProperty(diagram);
-            notificationService.showInfo(diagram.Name + "is opened, modelling page is activated");
         }
 
         function isActive(diagram) {
@@ -68,5 +68,5 @@
         .module("app")
         .service("diagramsService", diagramsService);
 
-    diagramsService.$inject = ["menuService", "notificationService", "$sessionStorage"];
+    diagramsService.$inject = ["stateMachineService", "$sessionStorage"];
 })();

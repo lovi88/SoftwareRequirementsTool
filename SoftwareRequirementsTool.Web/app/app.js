@@ -12,6 +12,7 @@ var app = angular.module("app", [
     // Angular modules 
     "ui.router",
     "ui.bootstrap",
+    "ngAnimate",
     // Custom modules 
 
     // 3rd Party Modules

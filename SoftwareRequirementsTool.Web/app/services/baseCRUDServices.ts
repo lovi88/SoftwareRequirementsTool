@@ -45,7 +45,7 @@
             delete localStorage[this.storageKey];
 
             if (Utils.TypeChecker.isFunction(this.closeCallBack)) {
-                this.closeCallBack();
+                this.closeCallBack(element);
             }
         }
 
