@@ -6,7 +6,7 @@
 interface IEntity extends ISavable {
     Id: number;
     TypeName: string;
-    setService(service: IServerService);
+    setService(service: any);
     setUpFromObject(object: any);
 }
 

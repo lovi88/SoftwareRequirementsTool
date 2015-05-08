@@ -34,9 +34,7 @@
 
         projects = new Array<Entities.BaseEntity>();
 
-        init() {
-            this.loadAllToProperty();
-        }
+        init() { }
 
         private static instance = null;
         static getInstance() {

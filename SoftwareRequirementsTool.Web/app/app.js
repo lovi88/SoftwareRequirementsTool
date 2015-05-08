@@ -21,9 +21,10 @@ var app = angular.module("app", [
     // Angular modules 
     "ui.router",
     "ui.bootstrap",
+    "ngStorage",
     "ngAnimate",
     // Custom modules 
 
     // 3rd Party Modules
-    "ngStorage"
+    "angularSpinner"
 ]);

@@ -42,16 +42,16 @@
                 <!-- TODO: rewrite for UseCases -->
                 <div class="row margin-top-1">
                   <select class="form-control"
-                            ng-model="selectedActor"
-                            ng-options="actor.Name for actor in actors"
-                            ng-disabled="actors.length == 0">
+                            ng-model="selectedUseCase"
+                            ng-options="usecase.Name for usecase in usecases"
+                            ng-disabled="usecases.length == 0">
                         <option value="" ng-select="selected">-- choose one to use --</option>
 
                     </select>
 
                     <button class="btn"
-                            ng-click="useActor()"
-                            ng-disabled="actors.length == 0">
+                            ng-click="useUseCase()"
+                            ng-disabled="usecases.length == 0">
                         Use
                     </button>
 
@@ -101,7 +101,7 @@
 
                     <g ng-repeat="part in usecaseParts">
                         <!--TODO: UseCase direktíva felújít -->
-                        <!--<use-case diagram-element="alma"> </use-case>-->
+                        <use-case diagram-element="part"> </use-case>
                     </g>
 
                     <g ng-repeat="part in actorParts">

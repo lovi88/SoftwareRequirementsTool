@@ -26,7 +26,8 @@
         private dragStartCallbacks = new Array<IEventCallback>();
         private draggingCallbacks = new Array<IEventCallback>();
         private dragEndCallbacks = new Array<IEventCallback>();
-
+        service : CoreServices.BaseSignalRService;
+        private copier;
 
         constructor() {
             super();
@@ -112,6 +113,7 @@
         }
 
         private d3Dragging(domElement: any): void {
+            
             var sel = d3.select(domElement);
             var x = sel.attr("x");
             var y = sel.attr("y");
@@ -140,12 +142,14 @@
 
 
         save(): void {
-
+            this.service.modify(this);
         }
 
-        rollback(): void {
-
+        deleteElement(): void {
+            this.service.deleteEntity(this);
         }
+
+        rollback(): void { }
 
         addDragStartEventListener(listener: IOccurationListener) {
             this.dragStartListeners.push(listener);
@@ -171,10 +175,24 @@
             this.dragEndCallbacks.push(callback);
         }
 
-        setService(service: IServerService) { }
-
+        setService(service) {
+            this.service = service;
+        }
+        
         setUpFromObject(object) { }
 
 
+    }
+
+    export class UseCaseView extends BaseView {
+
+        Cx = 151;    //center of the ellipse
+        Cy = 51;
+        Rx = 150;    //radius
+        Ry = 50;
+
+        constructor() {
+            super();
+        }
     }
 } 

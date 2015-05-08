@@ -1,11 +1,11 @@
 ﻿module CoreServices {
 
-    export class BaseSignalRService implements ICrudObservableSubject, IServerService {
+    export class BaseSignalRService implements ICrudObservableSubject {
 
         protected hub: any;
         protected propertyName;
 
-        static activeChildServices = new Array<IServerService>();
+        static activeChildServices = new Array<any>();
 
         protected observers = new Array<ICrudObserver>();
         protected callbacks = new Array<IEventCallback>();
@@ -303,6 +303,7 @@
             this.hub.server.close(entity);
             this.active = null;
         }
+
     }
 
     export class BaseGetAllForService extends BaseSignalRPromisedService {

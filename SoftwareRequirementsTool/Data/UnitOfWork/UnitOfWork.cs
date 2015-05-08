@@ -18,8 +18,9 @@ namespace SoftwareRequirementsTool.Data.UnitOfWork
         private DiagramPartRepository<UseCaseView> _useCaseViewRepository;
         private DiagramPartRepository<ConnectionView> _connectionViewRepository;
 
-
         private ElementRepository<Actor> _actorRepository;
+        private ElementRepository<UseCase> _useCaseRepository;
+
         private EntityRepository _entityRepository;
 
         public ProjectRepository ProjectRepository
@@ -58,6 +59,16 @@ namespace SoftwareRequirementsTool.Data.UnitOfWork
                     ?? (_actorRepository = new ElementRepository<Actor>(Context));
             }
         }
+
+        public ElementRepository<UseCase> UseCaseRepository
+        {
+            get
+            {
+                return _useCaseRepository
+                    ?? (_useCaseRepository = new ElementRepository<UseCase>(Context));
+            }
+        }
+        
 
         public EntityRepository EntityRepository
         {

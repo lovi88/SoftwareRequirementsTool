@@ -9,6 +9,8 @@ module CoreServices {
 
     export var actorServiceInstance = new CustomService("actorHub", "actors");
 
+    export var useCaseServiceInstance = new CustomService("useCaseHub", "usecases");
+
     //Diagram Part View Instances
 
     export var actorDiagramPartServiceInseance =

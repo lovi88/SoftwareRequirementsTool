@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
 using SoftwareRequirementsTool.Data.Entities.Elements;
-using SoftwareRequirementsTool.Data.Repositories;
 using SoftwareRequirementsTool.Data.UnitOfWork;
 using SoftwareRequirementsTool.Web.Hubs.Abstracts;
 

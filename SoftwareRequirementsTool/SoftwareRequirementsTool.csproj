@@ -48,12 +48,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TypeLite">
-      <HintPath>..\packages\TypeLite.1.1.1.0\lib\net4\TypeLite.dll</HintPath>
-    </Reference>
-    <Reference Include="TypeLite.Net4">
-      <HintPath>..\packages\TypeLite.1.1.1.0\lib\net4\TypeLite.Net4.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Entities\AbsEntity.cs" />

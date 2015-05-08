@@ -2,10 +2,9 @@
     export class BaseEntity implements IEntity {
         Id: number;
         TypeName: string;
+        service: any;
 
-        private service: IServerService;
-
-        setService(service: IServerService) {
+        setService(service: any) {
             this.service = service;
         }
 
@@ -44,7 +43,7 @@
         TypeName: string;
         ContainerProject: Project;
 
-        setService(service: IServerService) { }
+        setService(service: any) { }
 
         setUpFromObject(object) {}
 

@@ -26,7 +26,9 @@ namespace SoftwareRequirementsTool.Web
                       "~/Scripts/angular-ui/ui-bootstrap-tpls.js",
                       "~/Scripts/angular-route.min.js",
                       "~/Scripts/angular-animate.min.js",
-                      "~/Scripts/ngStorage.min.js")); //ngStorage is a 3rd party angular module
+                      "~/Scripts/ngStorage.min.js",
+                      "~/Scripts/spin.min.js", //for the spinner
+                      "~/Scripts/angular-spinner.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/angularCss").Include(
                       "~/Content/Angular.css"));

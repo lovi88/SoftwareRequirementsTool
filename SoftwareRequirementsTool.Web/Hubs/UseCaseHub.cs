@@ -1,13 +1,14 @@
 ﻿using SoftwareRequirementsTool.Data.Entities.Elements;
+using SoftwareRequirementsTool.Data.Repositories;
 using SoftwareRequirementsTool.Data.UnitOfWork;
 using SoftwareRequirementsTool.Web.Hubs.Abstracts;
 
 namespace SoftwareRequirementsTool.Web.Hubs
 {
-    public class ActorHub : AbsContainedByProjectCrudHub<Actor>
+    public class UseCaseHub : AbsContainedByProjectCrudHub<UseCase>
     {
-        public ActorHub(UnitOfWork unitOfWork)
-            : base(unitOfWork, unitOfWork.ActorRepository)
+        public UseCaseHub(UnitOfWork unitOfWork)
+            : base(unitOfWork, unitOfWork.UseCaseRepository)
         {
 
         }

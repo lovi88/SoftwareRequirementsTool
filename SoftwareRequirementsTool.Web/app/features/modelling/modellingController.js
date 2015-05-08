@@ -1,8 +1,15 @@
 ﻿(function () {
     "use strict";
 
-    function modellingController($scope, dialogs, diagramPartService, actorsService,
+    function modellingController($scope, diagramPartService, actorsService, usecaseService,
         diagramsService, projectService, stateMachineService, notificationService) {
+
+        function activate() {
+            stateMachineService.redirectIfNoActiveProject();
+            stateMachineService.redirectIfNoActiveDiagram();
+        }
+        activate();
+
 
         var vm = $scope;
         var privates = {};
@@ -17,14 +24,14 @@
 
         //actor functions
         vm.actors = actorsService.actors;
+        vm.selectedActor = null;
 
         vm.createActor = function () {
-            actorsService.createWithModal().then(function(createdActor) {
+            actorsService.createWithModal().then(function (createdActor) {
                 privates.addActorToDiagram(createdActor);
             });
         }
 
-        vm.selectedActor = null;
         vm.useActor = function () {
 
             if (Utils.TypeChecker.isUndefinedOrNull(vm.selectedActor)) {
@@ -32,25 +39,47 @@
                 return;
             }
 
-            privates.addToDiagram(vm.selectedActor);
+            privates.addActorToDiagram(vm.selectedActor);
         }
-
-        function activate() {
-            stateMachineService.redirectIfNoActiveProject();
-            stateMachineService.redirectIfNoActiveDiagram();
-        }
-        activate();
 
         privates.addActorToDiagram = function (element) {
             console.log(element);
 
-            diagramPartService.createFreshActorPart(element).then(function(par) {
-                console.log("part",par)
-                console.log("core svc", vm.diagramPartService)
-
+            diagramPartService.createFreshActorPart(element).then(function (par) {
+                //part created
             });
-            //TODO: Megjelenítés (a .html-nél foreach, ami az actort tartalmazókra filterez)
         }
+
+        //usecase functions
+        vm.usecases = usecaseService.usecases;
+        vm.selectedUseCase = null;
+
+        vm.createUseCase = function () {
+            usecaseService.createWithModal().then(function (createdUseCase) {
+                privates.addUseCaseToDiagram(createdUseCase);
+            });
+        }
+
+        vm.selectedUseCase = null;
+        vm.useUseCase = function () {
+
+            if (Utils.TypeChecker.isUndefinedOrNull(vm.selectedUseCase)) {
+                notificationService.showWarning("You have to choose a use case in order to use it.");
+                return;
+            }
+
+            privates.addUseCaseToDiagram(vm.selectedUseCase);
+        }
+
+        privates.addUseCaseToDiagram = function (element) {
+            console.log(element);
+
+            diagramPartService.createFreshUseCasePart(element).then(function (par) {
+                //part created
+            });
+        }
+
+
 
     }
 
@@ -58,6 +87,6 @@
         .module("app")
         .controller("modellingController", modellingController);
 
-    modellingController.$inject = ["$scope", "dialogs", "diagramPartService", "actorsService", "diagramsService", "projectService", "stateMachineService", "notificationService"];
+    modellingController.$inject = ["$scope", "diagramPartService", "actorsService", "usecaseService", "diagramsService", "projectService", "stateMachineService", "notificationService"];
 
 })();

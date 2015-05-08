@@ -1,50 +1,25 @@
 ﻿(function () {
     "use strict";
 
-    function diagramsService(stateMachineService, $sessionStorage, $q) {
+    function diagramsService(stateMachineService) {
 
         var service = CoreServices.diagramsServiceInstance;
-        var baseService =
-            new ServiceParts.BaseCrudOpenCloseService(service, $sessionStorage, stateMachineService.ACTIVE_DIAGRAM_KEY,
-            function (diagram) {
-
-                var useCaseViewJqPr = CoreServices.useCaseDiagramPartServiceInseance.loadAllForEntityToPropertyAsyncPromised(diagram);
-                var actorViewJqPr = CoreServices.actorDiagramPartServiceInseance.loadAllForEntityToPropertyAsyncPromised(diagram);
-                var connectionViewJqPr = CoreServices.connectionDiagramPartServiceInseance.loadAllForEntityToPropertyAsyncPromised(diagram);
-
-                $q.all(
-                    $q.when(useCaseViewJqPr),
-                    $q.when(actorViewJqPr),
-                    $q.when(connectionViewJqPr))
-                    .then(function (ok) {
-                        stateMachineService.openDiagram(diagram);
-                    }, function (reason) {
-                        console.log(reason);
-                    }).catch(function (err) {
-                        console.log(err);
-                    });
-
-            });
+        var baseService = new ServiceParts.BaseCrudService(service);
 
         function close(diagram) {
-            baseService.close(diagram);
             stateMachineService.closeDiagram(diagram);
-
-            //TODO: clear Diagram parts, etc.
-
         }
 
         function open(diagram) {
-            baseService.open(diagram);
-
+            stateMachineService.openDiagram(diagram);
         }
 
         function isActive(diagram) {
-            return baseService.isActive(diagram);
+            return stateMachineService.isActiveDiagram(diagram);
         }
 
         function getActive() {
-            return baseService.getActive();
+            return stateMachineService.activeDiagram;
         }
 
         function create(diagram) {
@@ -79,5 +54,5 @@
         .module("app")
         .service("diagramsService", diagramsService);
 
-    diagramsService.$inject = ["stateMachineService", "$sessionStorage", "$q"];
+    diagramsService.$inject = ["stateMachineService"];
 })();

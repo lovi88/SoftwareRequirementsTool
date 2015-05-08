@@ -1,48 +1,24 @@
 ﻿(function () {
     "use strict";
 
-    function projectService(stateMachineService, $q, $sessionStorage) {
+    function projectService(stateMachineService) {
         var service = CoreServices.projectsServiceInstance;
-        var baseService =
-            new ServiceParts.BaseCrudOpenCloseService(service, $sessionStorage, stateMachineService.ACTIVE_PROJECT_KEY,
-            function (project) {
-
-                var diagPromise = CoreServices.diagramsServiceInstance.loadAllForEntityToPropertyAsyncPromised(project);
-                var storyPromise = CoreServices.userStoryServiceInstance.loadAllForEntityToPropertyAsyncPromised(project);
-                var actorPromise = CoreServices.actorServiceInstance.loadAllForEntityToPropertyAsyncPromised(project);
-
-                //converting to Angular Promises (in order to fire the $apply)
-                diagPromise = $q.when(diagPromise);
-                storyPromise = $q.when(storyPromise);
-                actorPromise = $q.when(actorPromise);
-
-                $q.all([diagPromise, storyPromise, actorPromise]).then(function() {
-                    stateMachineService.openProject(project);
-                });
-
-            },
-            function () {
-                CoreServices.diagramsServiceInstance.clear();
-                CoreServices.userStoryServiceInstance.clear();
-                CoreServices.actorServiceInstance.clear();
-            });
+        var baseService = new ServiceParts.BaseCrudService(service);
         
         function close(project) {
-            baseService.close(project);
             stateMachineService.closeProject(project);
         }
 
-
         function open(project) {
-            baseService.open(project); 
+            stateMachineService.openProject(project);
         }
 
         function isActive(project) {
-            return baseService.isActive(project);
+           return stateMachineService.isActiveProject(project);
         }
 
         function getActive() {
-            return baseService.getActive();
+            return stateMachineService.activeProject;
         }
 
         function create(project) {
@@ -75,5 +51,5 @@
         .module("app")
         .service("projectService", projectService);
 
-    projectService.$inject = ["stateMachineService", "$q", "$sessionStorage"];
+    projectService.$inject = ["stateMachineService"];
 })();

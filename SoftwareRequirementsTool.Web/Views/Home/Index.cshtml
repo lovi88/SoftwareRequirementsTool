@@ -2,19 +2,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div ng-controller="stateController">
+    <div ng-show="stateMachine.isLoading" style="position: fixed; width: 100%; height: 100%; z-index: 1000; background-color: #CCC; opacity: 0.2; filter:alpha(opacity=50)">
+        <span us-spinner="{radius:30, width:8, length: 16}"></span>
+    </div>
+</div>
+
 <div class="container-fluid" style="padding: 0;">
+
     <div>
         <main-menu />
     </div>
 
+
     <!--Angular UI router will inject alpages here-->
     <div ui-view>
-        
+
     </div>
 </div>
-
-
-
-
-
-
