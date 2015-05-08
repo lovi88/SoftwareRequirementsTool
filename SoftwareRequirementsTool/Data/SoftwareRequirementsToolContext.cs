@@ -18,18 +18,20 @@ namespace SoftwareRequirementsTool.Data
         public DbSet<AbsEntity> AbsEntities { get; set; }
         public DbSet<AbsElement> AbsElements { get; set; }
         public DbSet<AbsView> AbsViews { get; set; }
-        public DbSet<AbsDiagramPart> DiagramParts { get; set; }
+        public DbSet<AbsDiagramPart> AbsDiagramParts { get; set; }
 
-        //AbsElement-s
+        //Element-s
         public DbSet<Actor> Actors { get; set; }
         public DbSet<Diagram> Diagrams { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<UseCase> UseCases { get; set; }
         public DbSet<UserStory> UserStories { get; set; }
 
-        //AbsView-s
+        //View-s
         public DbSet<ActorView> ActorViews { get; set; }
         public DbSet<UseCaseView> UseCaseViews { get; set; }
+        public DbSet<ConnectionView> ConnectionViews { get; set; }
+
 
         //Connection
         public DbSet<Connection> Connections { get; set; }

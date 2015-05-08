@@ -1,10 +1,19 @@
-﻿CoreServices.BaseSignalRService.startConnections(function () {
+﻿//init Core SignalR services
+CoreServices.BaseSignalRService.startConnections(function () {
     console.log("services started");
     initAngular();
 });
 
+//init SignalR error tracking
+$.connection.hub.error(function (error) {
+    console.log("SignalR error: " + error);
+});
+
+
 function initAngular() {
-    angular.bootstrap(document, ["app"]);
+    angular.element(document).ready(function() {
+        angular.bootstrap(document, ["app"]);
+    });
 }
 
 

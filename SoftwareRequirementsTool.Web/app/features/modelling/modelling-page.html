@@ -2,14 +2,14 @@
     <div class="row">
 
         <!-- Side menu -->
-        <div class="col-md-3 text-center jumbotron">
+        <div class="col-md-3 jumbotron">
 
             <!--Modelling Toolbar-->
             <h2>
                 <small>Modelling toolbar</small>
             </h2>
 
-            <div class="form-group-lg form-inline">
+            <div class="form-group form-inline">
 
 
                 <hr />
@@ -23,39 +23,48 @@
                             ng-model="selectedActor"
                             ng-options="actor.Name for actor in actors"
                             ng-disabled="actors.length == 0">
-                        <option value="" ng-select="selected">-- choose an actor --</option>
-                        
+                        <option value="" ng-select="selected">-- choose one to use --</option>
+
                     </select>
 
-                    <button class="btn btn-lg"
+                    <button class="btn"
                             ng-click="useActor()"
                             ng-disabled="actors.length == 0">
                         Use
                     </button>
 
-                    <button class="btn btn-lg" ng-click="createActor()">New Actor</button>
+                    <button class="btn" ng-click="createActor()">New Actor</button>
 
                 </div>
 
                 <!-- UseCase -->
+
+                <!-- TODO: rewrite for UseCases -->
                 <div class="row margin-top-1">
+                  <select class="form-control"
+                            ng-model="selectedActor"
+                            ng-options="actor.Name for actor in actors"
+                            ng-disabled="actors.length == 0">
+                        <option value="" ng-select="selected">-- choose one to use --</option>
 
-                    <button class="btn btn-lg">UseCase</button>
+                    </select>
 
+                    <button class="btn"
+                            ng-click="useActor()"
+                            ng-disabled="actors.length == 0">
+                        Use
+                    </button>
+
+                    <button class="btn" ng-click="createUseCase()">New UseCase</button>
+                    
                 </div>
 
                 <hr />
 
                 <!-- connections elements -->
-                <button class="btn btn-lg btn-block btn-info">Association</button>
+                <button class="btn btn-block btn-info">Association</button>
 
                 <hr />
-
-            </div>
-
-            <!-- Connected User Stories menu -->
-            <div class="row margin-top-5">
-
 
             </div>
 
@@ -65,25 +74,45 @@
         <div class="col-md-8" style="">
 
             <div id="modeling-area">
+
+                actorV
+
+                <div ng-repeat="part in actorParts">
+                    {{part.Element.Name}}
+                </div>
+
+                usercaseV
+                <div ng-repeat="part in usecaseParts">
+                    {{part.Element.Name}}
+                </div>
+
+                conV
+                <div ng-repeat="part in connectionParts">
+                    {{part.Element.Name}}
+                </div>
+
                 <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000">
 
-                    <!--<association element-from="usecaseview" element-to="alma"> </association>
 
-                    <use-case diagram-element="alma"> </use-case>
+                    <g ng-repeat="part in connectionParts">
+                        <!--TODO: connection direktíva -->
+                        <!--<association element-from="usecaseview" element-to="alma"> </association>  -->
+                    </g>
 
-                    <use-case diagram-element="usecaseview"> </use-case>-->
+                    <g ng-repeat="part in usecaseParts">
+                        <!--TODO: UseCase direktíva felújít -->
+                        <!--<use-case diagram-element="alma"> </use-case>-->
+                    </g>
 
+                    <g ng-repeat="part in actorParts">
+                        <!--TODO: Actor direktíva -->
+
+                    </g>
 
 
                 </svg>
 
             </div>
-
-        </div>
-
-        <!--Project Tree-->
-        <div class="project-tree col-md-2">
-            project tree
 
         </div>
 

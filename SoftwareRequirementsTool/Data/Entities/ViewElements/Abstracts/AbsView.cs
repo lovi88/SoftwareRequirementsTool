@@ -3,14 +3,13 @@
 namespace SoftwareRequirementsTool.Data.Entities.ViewElements.Abstracts
 {
     [Table("AbsViews")]
-    public abstract class AbsView : AbsDiagramPart, IView, IStereotiped
+    public abstract class AbsView : AbsDiagramPart, IView
     {
-        public int CoordinatesId { get; set; }
-        [ForeignKey("CoordinatesId")]
-        public Point Coordinates { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
+
         public int Width { get; set; }
         public int Height { get; set; }
-        public Stereotype Stereotype { get; set; }
-        public int StereotypeId { get; set; }
+
     }
 }

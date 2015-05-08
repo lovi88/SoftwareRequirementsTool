@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Ninject;
 using Owin;
+using System.Diagnostics;
 using SoftwareRequirementsTool.Data.Repositories;
 using SoftwareRequirementsTool.Data.UnitOfWork;
 using SoftwareRequirementsTool.Web;
@@ -20,18 +22,27 @@ namespace SoftwareRequirementsTool.Web
             //Ninject
             var kernel = new StandardKernel();
             var resolver = new NinjectSignalRDependencyResolver(kernel);
-            var config = new HubConfiguration {Resolver = resolver};
 
             //Dependency Injection Bindings
             SetSoftrReqToolBindings(kernel);
             
             //SignalR Configuration
+            var config = new HubConfiguration {Resolver = resolver};
+            
+            
+            SetDetailedErrorMessages(config);
             ConfigureSignalR(app, config);
         }
 
         public static void ConfigureSignalR(IAppBuilder app, HubConfiguration config)
         {
             app.MapSignalR(config);
+        }
+
+        [Conditional("DEBUG")]
+        public static void SetDetailedErrorMessages(HubConfiguration config)
+        {
+            config.EnableDetailedErrors = true;
         }
 
         public static void SetSoftrReqToolBindings(StandardKernel kernel)

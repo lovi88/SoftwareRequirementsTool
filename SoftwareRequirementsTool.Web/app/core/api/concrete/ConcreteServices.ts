@@ -1,5 +1,5 @@
 ﻿module CoreServices {
-    
+
     export class CustomService extends BaseOpenCloseGetAllForService {
         initCallback: any;
 
@@ -18,6 +18,7 @@
                 this.initCallback();
             }
         }
+
     }
 
     //projectHub
@@ -37,6 +38,15 @@
             this.loadAllToProperty();
         }
 
+        private static instance = null;
+        static getInstance() {
+            if (this.instance == null) {
+                this.instance = new ProjectsService();
+            }
+
+            return this.instance;
+        }
+
     }
 
     //diagramHub
@@ -53,22 +63,16 @@
         diagrams = new Array<Entities.BaseEntity>();
 
         init() { }
-    }
 
-    //diagramPartHub
-    export class DiagramPartService extends BaseGetAllForService {
+        private static instance = null;
+        static getInstance() {
+            if (this.instance == null) {
+                this.instance = new DiagramService();
+            }
 
-        constructor() {
-            super("diagramParts");
-            this.initProperty();
-            this.initHub("diagramPartHub");
-
-            BaseSignalRService.activeChildServices.push(this);
+            return this.instance;
         }
 
-        diagramParts = new Array<Entities.BaseEntity>();
-
-        init() { }
     }
 
     //userStoryHub

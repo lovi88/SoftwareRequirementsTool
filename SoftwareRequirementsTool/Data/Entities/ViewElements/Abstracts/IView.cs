@@ -1,8 +1,9 @@
-﻿namespace SoftwareRequirementsTool.Data.Entities.ViewElements
+﻿namespace SoftwareRequirementsTool.Data.Entities.ViewElements.Abstracts
 {
     public interface IView: IEntity
     {
-        Point Coordinates { get; set; }
+        float X { get; set; }
+        float Y { get; set; }
         int Width { get; set; }
         int Height { get; set; }
     }

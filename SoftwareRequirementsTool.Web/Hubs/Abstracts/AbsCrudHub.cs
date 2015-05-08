@@ -139,8 +139,7 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
                 ? Repository.Get().ToList()
                 : Repository.Get(includeProperties: IncludeProperties).ToList();
         }
-
-
+        
 
         protected void SendError(object error)
         {
@@ -167,15 +166,13 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
         }
 
 
-
         virtual protected string GenerateGroupName(IEntity entity)
         {
             return entity.TypeName + "_" + entity.Id;
         }
 
 
-
-        //Future: in production it must be real logging
+        //Future: in production there must be real logging
         virtual protected void LogError(Exception ex, T entity)
         {
             var msg = ErrorMessageHelper.GetMessage(ex);

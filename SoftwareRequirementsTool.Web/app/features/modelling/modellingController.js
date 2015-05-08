@@ -1,31 +1,26 @@
 ﻿(function () {
     "use strict";
 
-    function modellingController($scope, dialogs, actorsService, diagramsService, projectService, stateMachineService, notificationService) {
-        /* jshint validthis:true */
+    function modellingController($scope, dialogs, diagramPartService, actorsService,
+        diagramsService, projectService, stateMachineService, notificationService) {
+
         var vm = $scope;
         var privates = {};
 
         vm.title = "modellingController";
+        vm.diagramPartService = diagramPartService;
 
-        vm.coreService = CoreServices.diagramPartServiceInstance;
+        //parts
+        vm.actorParts = diagramPartService.actorParts;
+        vm.usecaseParts = diagramPartService.usecaseParts;
+        vm.connectionParts = diagramPartService.connectionParts;
 
+        //actor functions
         vm.actors = actorsService.actors;
 
         vm.createActor = function () {
-            var act = actorsService.getFreshActor();
-
-            var modalInstance = dialogs.createCustomDialog(
-                "Create Diagram",
-                act
-            );
-
-            modalInstance.result.then(function (actorToSave) {
-                return actorsService.createDeferred(actorToSave);
-            }).then(function (createdActor) {
-                privates.addToDiagram(createdActor);
-            }).catch(function (err) {
-                console.log(err);
+            actorsService.createWithModal().then(function(createdActor) {
+                privates.addActorToDiagram(createdActor);
             });
         }
 
@@ -46,12 +41,14 @@
         }
         activate();
 
-        privates.addToDiagram = function (element) {
+        privates.addActorToDiagram = function (element) {
             console.log(element);
 
-            //TODO: Elkészíteni egy új ActorView-et, ami tartalmazza az elementet, és jelöli az aktív projectet és diagramot (Parts-hub on keresztül) (promisos)
-            //TODO: amikor resolved: az aktív diagram-hoz kell adni.
-            //TODO: a diagram part service a diagram service-ben kikeresi a diagramot, és ott is jelzi a hozzáadás tényét (+modify a diagramra?)
+            diagramPartService.createFreshActorPart(element).then(function(par) {
+                console.log("part",par)
+                console.log("core svc", vm.diagramPartService)
+
+            });
             //TODO: Megjelenítés (a .html-nél foreach, ami az actort tartalmazókra filterez)
         }
 
@@ -61,6 +58,6 @@
         .module("app")
         .controller("modellingController", modellingController);
 
-    modellingController.$inject = ["$scope", "dialogs", "actorsService", "diagramsService", "projectService", "stateMachineService", "notificationService"];
+    modellingController.$inject = ["$scope", "dialogs", "diagramPartService", "actorsService", "diagramsService", "projectService", "stateMachineService", "notificationService"];
 
 })();

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TypeLite;
 
 namespace SoftwareRequirementsTool.Data.Entities.Elements.Abstracts
 {

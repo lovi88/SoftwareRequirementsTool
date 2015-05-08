@@ -1,7 +1,8 @@
 ﻿(function () {
     "use strict";
 
-    function actorsService($q) {
+    function actorsService($q, dialogs) {
+        var that = this;
 
         var service = CoreServices.actorServiceInstance;
         var baseService = new ServiceParts.BaseCrudService(service);
@@ -75,6 +76,27 @@
             return deferred.promise;
         }
 
+        this.createWithModal = function () {
+            var deferred = $q.defer();
+
+            var act = that.getFreshActor();
+
+            var modalInstance = dialogs.createCustomDialog(
+                "Create Actor",
+                act
+            );
+
+            modalInstance.result.then(function (actorToSave) {
+                return that.createDeferred(actorToSave);
+            }).then(function (createdActor) {
+                deferred.resolve(createdActor);
+            }).catch(function (err) {
+                console.log(err);
+            });
+
+            return deferred.promise;
+        }
+
         this.modify = baseService.modify;
         this.deleteEntity = baseService.deleteEntity;
         this.getFreshActor = getFreshActor;
@@ -84,5 +106,5 @@
         .module("app")
         .service("actorsService", actorsService);
 
-    actorsService.$inject = ["$q"];
+    actorsService.$inject = ["$q", "dialogs"];
 })();

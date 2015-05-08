@@ -10,7 +10,7 @@
         protected observers = new Array<ICrudObserver>();
         protected callbacks = new Array<IEventCallback>();
 
-        //this is used to use to communicate between create/created; modify/modified
+        //this is for use to communicate between create/created; modify/modified
         protected touchedElement;
 
         constructor(propertyName) {
@@ -24,6 +24,8 @@
                 if (Utils.TypeChecker.isFunction(callback)) {
                     callback(this.touchedElement);
                 }
+            }).fail(reason => {
+                console.log("Error: BaseSignalRService.create |", reason);
             });
         }
 

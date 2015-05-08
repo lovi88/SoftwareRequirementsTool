@@ -42,6 +42,7 @@
             this.serviceInstance.close(element);
 
             this.openedElement = null;
+            
             delete localStorage[this.storageKey];
 
             if (Utils.TypeChecker.isFunction(this.closeCallBack)) {
@@ -55,7 +56,7 @@
             }
 
             this.serviceInstance.open(element);
-
+            
             this.openedElement = element;
             this.storage[this.storageKey] = element;
 

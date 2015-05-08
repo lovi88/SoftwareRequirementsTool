@@ -35,7 +35,8 @@ interface IStereotype extends IEntity {
 }
 
 interface IView extends IEntity {
-    Coordinates: IPoint;
+    X: number;
+    Y: number;
     Width: number;
     Height: number;
     Stereotype: IStereotype;

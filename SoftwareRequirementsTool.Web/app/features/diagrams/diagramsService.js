@@ -1,17 +1,28 @@
 ﻿(function () {
     "use strict";
 
-    function diagramsService(stateMachineService, $sessionStorage) {
+    function diagramsService(stateMachineService, $sessionStorage, $q) {
 
         var service = CoreServices.diagramsServiceInstance;
         var baseService =
             new ServiceParts.BaseCrudOpenCloseService(service, $sessionStorage, stateMachineService.ACTIVE_DIAGRAM_KEY,
             function (diagram) {
-                stateMachineService.openDiagram(diagram);
 
-                //TODO: preload Diagram parts; & views & UseCase-s & connections (or it is downoaded for the project?)
-                //.loadAllForEntityToProperty(diagram);
+                var useCaseViewJqPr = CoreServices.useCaseDiagramPartServiceInseance.loadAllForEntityToPropertyAsyncPromised(diagram);
+                var actorViewJqPr = CoreServices.actorDiagramPartServiceInseance.loadAllForEntityToPropertyAsyncPromised(diagram);
+                var connectionViewJqPr = CoreServices.connectionDiagramPartServiceInseance.loadAllForEntityToPropertyAsyncPromised(diagram);
 
+                $q.all(
+                    $q.when(useCaseViewJqPr),
+                    $q.when(actorViewJqPr),
+                    $q.when(connectionViewJqPr))
+                    .then(function (ok) {
+                        stateMachineService.openDiagram(diagram);
+                    }, function (reason) {
+                        console.log(reason);
+                    }).catch(function (err) {
+                        console.log(err);
+                    });
 
             });
 
@@ -68,5 +79,5 @@
         .module("app")
         .service("diagramsService", diagramsService);
 
-    diagramsService.$inject = ["stateMachineService", "$sessionStorage"];
+    diagramsService.$inject = ["stateMachineService", "$sessionStorage", "$q"];
 })();

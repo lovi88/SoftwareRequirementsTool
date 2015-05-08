@@ -227,9 +227,12 @@
     <Compile Include="Hubs\Abstracts\AbsContainedByProjectOpenCloseCrudHub.cs" />
     <Compile Include="Hubs\Abstracts\AbsCrudHub.cs" />
     <Compile Include="Hubs\Abstracts\AbsOpenCloseCrudHub.cs" />
+    <Compile Include="Hubs\UseCaseDiagramPartHub.cs" />
+    <Compile Include="Hubs\ConnectionDiagramPartHub.cs" />
+    <Compile Include="Hubs\ActorDiagramPartHub.cs" />
     <Compile Include="Hubs\Abstracts\IOpenCloseCrudHub.cs" />
     <Compile Include="Hubs\ActorHub.cs" />
-    <Compile Include="Hubs\DiagramPartHub.cs" />
+    <Compile Include="Hubs\Abstracts\DiagramPartHub.cs" />
     <Compile Include="Hubs\DiagramHub.cs" />
     <Compile Include="Hubs\Helpers\GroupHelper.cs" />
     <Compile Include="Hubs\ProjectHub.cs" />
@@ -1158,7 +1161,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\version.json" />
-    <Content Include="Views\Chat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

@@ -76,17 +76,18 @@
 
         
         //state retrival from $storage
-        var storage = $sessionStorage;
-        var actProjectFromStorage = storage[this.ACTIVE_PROJECT_KEY];
-        var actDiagramFromStorage = storage[this.ACTIVE_DIAGRAM_KEY];
+        //var storage = $sessionStorage;
+        //var actProjectFromStorage = storage[this.ACTIVE_PROJECT_KEY];
+        
+        //var actDiagramFromStorage = storage[this.ACTIVE_DIAGRAM_KEY];
 
-        if (!(Utils.TypeChecker.isUndefinedOrNull(actProjectFromStorage))) {
-            this.activeProject = actProjectFromStorage;
-        }
+        //if (!(Utils.TypeChecker.isUndefinedOrNull(actProjectFromStorage))) {
+        //    this.activeProject = actProjectFromStorage;
+        //}
 
-        if (!(Utils.TypeChecker.isUndefinedOrNull(actDiagramFromStorage))) {
-            this.activeDiagram = actDiagramFromStorage;
-        }
+        //if (!(Utils.TypeChecker.isUndefinedOrNull(actDiagramFromStorage))) {
+        //    this.activeDiagram = actDiagramFromStorage;
+        //}
 
         //public interface
         this.openProject = openProject;

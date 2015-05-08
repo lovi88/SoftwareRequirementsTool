@@ -11,7 +11,7 @@
                 var storyPromise = CoreServices.userStoryServiceInstance.loadAllForEntityToPropertyAsyncPromised(project);
                 var actorPromise = CoreServices.actorServiceInstance.loadAllForEntityToPropertyAsyncPromised(project);
 
-                //converting to Angfular Promises (in order to fire the $apply)
+                //converting to Angular Promises (in order to fire the $apply)
                 diagPromise = $q.when(diagPromise);
                 storyPromise = $q.when(storyPromise);
                 actorPromise = $q.when(actorPromise);

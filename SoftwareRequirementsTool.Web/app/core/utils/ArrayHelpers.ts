@@ -47,5 +47,15 @@
         static clearArray(array: Array<any>): void {
             array.splice(0, array.length);
         }
+
+        static overWriteArray(arrayToOverwrite,withArray) {
+            this.clearArray(arrayToOverwrite);
+
+            for (var rKey in withArray) {
+                if (withArray.hasOwnProperty(rKey)) {
+                    arrayToOverwrite[rKey] = withArray[rKey];
+                }
+            }
+        }
     }
 } 
