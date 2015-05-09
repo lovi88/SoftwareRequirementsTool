@@ -2,16 +2,12 @@
     <div class="row">
 
         <!-- Side menu -->
-        <div class="col-md-3 jumbotron">
+        <div class="col-md-3">
 
-            <!--Modelling Toolbar-->
-            <h2>
-                <small>Modelling toolbar</small>
-            </h2>
+            <div class="form-group form-inline jumbotron">
 
-            <div class="form-group form-inline">
-
-
+                <!--Modelling Toolbar-->
+                <h3>Modelling toolbar</h3>
                 <hr />
 
 
@@ -38,10 +34,9 @@
                 </div>
 
                 <!-- UseCase -->
-
                 <!-- TODO: rewrite for UseCases -->
                 <div class="row margin-top-1">
-                  <select class="form-control"
+                    <select class="form-control"
                             ng-model="selectedUseCase"
                             ng-options="usecase.Name for usecase in usecases"
                             ng-disabled="usecases.length == 0">
@@ -56,15 +51,55 @@
                     </button>
 
                     <button class="btn" ng-click="createUseCase()">New UseCase</button>
-                    
+
                 </div>
 
                 <hr />
 
                 <!-- connections elements -->
-                <button class="btn btn-block btn-info">Association</button>
+                <button ng-click="createAssociation()" class="btn btn-block btn-info">
+                    Association
+                </button>
+
+                <div ng-show="assocCreation" class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Click to the first diagram element in the connection than the second one</h3>
+                    </div>
+
+                </div>
 
                 <hr />
+
+            </div>
+
+            <!--selected element-->
+            <div ng-show="selectedView" class="row margin-top-1 jumbotron">
+                <div>
+
+                    <button class="btn" style="margin: 5px">Clear Selection</button>
+                    <br />
+
+                    <!--<button class="btn" style="margin: 5px">Delete Selected View</button>
+
+                    <button class="btn" style="margin: 5px">Delete Selected Element</button>-->
+
+                </div>
+
+                <h3>Selected View</h3>
+                <p>
+                    Type: {{selectedView.TypeName}}
+                </p>
+
+                <h3>Element in View</h3>
+                <p>
+                    Type: {{selectedView.Element.TypeName}}
+                </p>
+                <p>
+                    Name: {{selectedView.Element.Name}}
+                </p>
+                <p>
+                    Description: {{selectedView.Element.Description}}
+                </p>
 
             </div>
 
@@ -74,14 +109,17 @@
         <div class="col-md-8" style="">
 
             <div id="modeling-area">
-            
+
                 <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000">
 
 
-                    <g ng-repeat="part in connectionParts">
-                        <!--TODO: connection direktíva -->
-                        <!--<association element-from="usecaseview" element-to="alma"> </association>  -->
+                    <g ng-repeat="part in connectionParts" width="100%" height="100%">
+                        <association diagram-element="part"> </association>
                     </g>
+
+
+                    <!--<association ng-repeat="part in connectionParts" diagram-element="part"> </association>-->
+
 
                     <g ng-repeat="part in usecaseParts">
                         <use-case diagram-element="part"> </use-case>

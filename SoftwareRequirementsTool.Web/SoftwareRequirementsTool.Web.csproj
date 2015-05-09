@@ -263,9 +263,9 @@
     <Content Include="app\features\diagrams\diagramsController.js" />
     <Content Include="app\features\diagrams\diagramsService.js" />
     <Content Include="app\features\modelling\parts\actor.js" />
-    <Content Include="app\features\modelling\arch\association.js" />
+    <Content Include="app\features\modelling\parts\association.js" />
     <Content Include="app\features\modelling\arch\class.svg" />
-    <Content Include="app\features\modelling\arch\association.svg" />
+    <Content Include="app\features\modelling\parts\association.svg" />
     <Content Include="app\features\modelling\parts\actor.svg" />
     <Content Include="app\features\modelling\arch\draggingService.js" />
     <Content Include="app\features\modelling\arch\modelingArea.js" />

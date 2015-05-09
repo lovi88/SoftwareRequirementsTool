@@ -24,7 +24,13 @@
         var warningOptions = {
             icon: "glyphicon glyphicon-warning-sign"
         };
-        var warningSettings = { type: "warning" };
+        var warningSettings = {
+            type: "warning",
+            delay: 4000,
+            placement: {
+                align: "center"
+            }
+        };
         function showWarning(message) {
             warningOptions.message = message;
             $.notify(warningOptions, warningSettings);
@@ -33,7 +39,13 @@
         var errorOptions = {
             icon: "glyphicon glyphicon-exclamation-sign"
         };
-        var errorSettings = { type: "danger" };
+        var errorSettings = {
+            type: "danger",
+            delay: 4000,
+            placement: {
+                align: "center"
+            }
+        };
         function showError(message) {
             errorOptions.message = message;
             $.notify(errorOptions, errorSettings);

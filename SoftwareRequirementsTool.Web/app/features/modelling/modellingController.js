@@ -31,6 +31,7 @@
         vm.usecaseParts = diagramPartService.usecaseParts;
         vm.connectionParts = diagramPartService.connectionParts;
 
+
         //actor functions
         vm.actors = actorsService.actors;
         vm.selectedActor = null;
@@ -39,7 +40,7 @@
             actorsService.createWithModal().then(function (createdActor) {
                 privates.addActorToDiagram(createdActor);
             });
-        }
+        };
 
         vm.useActor = function () {
 
@@ -49,7 +50,7 @@
             }
 
             privates.addActorToDiagram(vm.selectedActor);
-        }
+        };
 
         privates.addActorToDiagram = function (element) {
             console.log(element);
@@ -57,7 +58,7 @@
             diagramPartService.createFreshActorPart(element).then(function (par) {
                 //part created
             });
-        }
+        };
 
         //usecase functions
         vm.usecases = usecaseService.usecases;
@@ -67,7 +68,7 @@
             usecaseService.createWithModal().then(function (createdUseCase) {
                 privates.addUseCaseToDiagram(createdUseCase);
             });
-        }
+        };
 
         vm.selectedUseCase = null;
         vm.useUseCase = function () {
@@ -78,17 +79,66 @@
             }
 
             privates.addUseCaseToDiagram(vm.selectedUseCase);
-        }
+        };
 
         privates.addUseCaseToDiagram = function (element) {
-            console.log(element);
-
             diagramPartService.createFreshUseCasePart(element).then(function (par) {
                 //part created
             });
+        };
+
+        //Association functions
+        vm.assocCreation = false;
+        vm.createAssociation = function () {
+            if (!vm.assocCreation) {
+                Utils.ArrayHelpers.clearArray(vm.selectedViews);
+            } else {
+                notificationService.showWarning("We are in connection creation mode, we reseted your selections");
+            }
+
+            vm.selectedView = null;
+            vm.assocCreation = true;
+        };
+
+        //element select handler
+        vm.selectedView = null;
+        vm.selectedViews = new Array();
+
+        var clickHandler = function (from, data) {
+            vm.selectedView = from;
+
+            if (vm.assocCreation) {
+                Utils.ArrayHelpers.pushIfNotInArray(vm.selectedViews, from);
+
+                if (vm.selectedViews.length === 2) {
+                    if ((vm.selectedViews[0] instanceof Entities.BaseView) && (vm.selectedViews[1] instanceof Entities.BaseView)) {
+                        var con = new Entities.Connection(vm.selectedViews[0], vm.selectedViews[1]);
+                        privates.addConnectionToDiagram(con);
+
+                        vm.assocCreation = false;
+                    }
+                }
+
+            }
+
+            $scope.$evalAsync();
         }
+        Entities.DiagramPart.addClickedCallback(clickHandler);
+
+        privates.addConnectionToDiagram = function (connectionElement) {
+            var conView = new Entities.ConnectionView(connectionElement);
+
+            //TODO: to real create
+            Utils.ArrayHelpers.pushIfNotInArray(CoreServices.connectionDiagramPartServiceInseance.diagramParts, conView);
+
+           //$scope.$evalAsync();
+        };
 
 
+        vm.clearSelected = function() {
+            vm.selectedView = null;
+            Utils.ArrayHelpers.clearArray(vm.selectedViews);
+        }
     }
 
     angular

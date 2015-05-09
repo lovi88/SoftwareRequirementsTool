@@ -18,8 +18,7 @@
         Height: number;
         Center: IPoint;
 
-        static selectedView;
-
+        
         private dragStartCallbacks = new Array<IEventCallback>();
         private draggingCallbacks = new Array<IEventCallback>();
         private dragEndCallbacks = new Array<IEventCallback>();
@@ -122,7 +121,7 @@
                     callback(this, "clicked");
                 });
 
-                BaseView.selectedView = this;
+                DiagramPart.clicked(this);
 
             } else {
 
@@ -186,6 +185,15 @@
 
         deleteElement(): void {
             ActorView.service.deleteEntity(this);
+        }
+    }
+
+    export class ConnectionView extends DiagramPart {
+        
+        constructor(element?) {
+            super();
+
+            this.Element = element;
         }
     }
 } 

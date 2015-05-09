@@ -1,19 +1,18 @@
 ﻿(function() {
-    "use strict";
+    'use strict';
 
-    function actor () {
+    function association () {
         // Usage:
-        //     <actor></actor>
+        //     <association></association>
         // Creates:
         // 
         function link(scope, element, attrs) {
-            scope.diagramElement.recalculateCenter();
-            scope.diagramElement.applyDraggable(element);
+            console.log(scope.diagramElement)
         }
 
         var directive = {
             restrict: "EA",
-            templateUrl: "/app/features/modelling/parts/actor.svg",
+            templateUrl: "/app/features/modelling/parts/association.svg",
             templateNamespace: "svg",
             link: link,
             replace: true,
@@ -28,7 +27,7 @@
 
     angular
         .module("app")
-        .directive("actor", actor);
+        .directive("association", association);
 
-    //actor.$inject = [""];
+    //association.$inject = [""];
 })();

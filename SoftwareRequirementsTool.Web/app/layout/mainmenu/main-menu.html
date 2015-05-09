@@ -52,61 +52,8 @@
             <p class="navbar-text navbar-right">
                 Signed in as
                 <!--data-bind="text: userName"-->
-                <span>username</span>
+                <span>Business Analyst</span>
             </p>
-
-            <!--data-bind="visible: authenticated"-->
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        
-                        <!--data-bind="text: userName"-->
-                        <span>username</span> <span class="glyphicon glyphicon-cog"></span><b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#Profile">Edit Billing Data</a></li>
-                        <li><a href="#Profile">Edit Profile Data</a></li>
-                        <li class="divider"></li>
-
-                        <!--data-bind="click: signOut"-->
-                        <li><a href="#">Sign Out</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            <!--Sign In/Up-->
-            <!--data-bind="visible: !authenticated()"-->
-            <ul  class="nav navbar-nav navbar-right">
-                <li><a href="#Sign">Sign Up</a></li>
-                <li class="divider"></li>
-
-                <!-- ko compose: { model: 'viewmodels/sign/signIn', view:'views/sign/MenuSigIn.html' } --><!-- /ko -->
-
-            </ul>
-
-            
-            <!--Search Bar-->
-            <div class="col-sm-3 col-md-2 pull-right">
-
-                <!--data-bind="submit:search"-->
-                <form class="navbar-form" role="search" >
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search In Project" name="srch-term" id="srch-term">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"> <span class="glyphicon glyphicon-search"></span> </button>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Összetett keresés</a></li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </form>
-            </div>
-
 
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
