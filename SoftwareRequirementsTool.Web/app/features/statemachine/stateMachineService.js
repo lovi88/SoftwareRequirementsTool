@@ -113,15 +113,16 @@
 
         //redirecting functions
         function redirectIfNoActiveProject() {
+            
             if (that.activeProject == null) {
-                notificationService.showInfo("There is no active project, so we redirected you to the Projects page");
+                //notificationService.showInfo("There is no active project, so we redirected you to the Projects page");
                 $state.go("projects");
             }
         }
 
         function redirectIfNoActiveDiagram() {
             if (that.activeProject == null) {
-                notificationService.showInfo("There is no active diagram, so we redirected you to the Diagrams page");
+                //notificationService.showInfo("There is no active diagram, so we redirected you to the Diagrams page");
                 $state.go("diagrams");
             }
         }

@@ -1,12 +1,10 @@
 ﻿interface ISavable {
     save(): void;
-    rollback(): void;
 }
 
 interface IEntity extends ISavable {
     Id: number;
     TypeName: string;
-    setService(service: any);
     setUpFromObject(object: any);
 }
 
@@ -42,7 +40,6 @@ interface IView extends IEntity {
     Stereotype: IStereotype;
 
     Center: IPoint;
-    TextPosition: IPoint;
 
     recalculateCenter(): void;
 }
@@ -69,11 +66,7 @@ interface IDiagram extends IElement {
 
 interface IDraggable {
     applyDraggable(domElement: any): void;
-
-    addDragStartEventListener(listener: IOccurationListener);
-    addDraggingEventListener(listener: IOccurationListener);
-    addDragEndtEventListener(listener: IOccurationListener);
-
+    
     addDragStartEventCallback(callback: IEventCallback);
     addDraggingEventCallback(callback: IEventCallback);
     addDragEndtEventCallback(callback: IEventCallback);

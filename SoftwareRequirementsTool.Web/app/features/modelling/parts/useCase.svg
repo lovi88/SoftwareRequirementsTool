@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     class="draggable"
+     ng-attr-x="{{diagramElement.X}}"
+     ng-attr-y="{{diagramElement.Y}}"
+     ng-attr-width="{{diagramElement.Width}}"
+     ng-attr-height="{{diagramElement.Height}}">
+
+    <g>
+        <ellipse class="modeling-element modeling-element-use-case"
+                 ng-attr-cx="{{diagramElement.Cx}}"
+                 ng-attr-cy="{{diagramElement.Cy}}"
+                 ng-attr-rx="{{diagramElement.Rx}}"
+                 ng-attr-ry="{{diagramElement.Ry}}" />
+
+
+        <text text-anchor="middle" class="diagram-text" x="50%" y="50%" >
+            {{diagramElement.Element.Name}}
+        </text>
+    </g>
+
+</svg>

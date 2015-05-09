@@ -17,23 +17,18 @@
 
         Height: number;
         Center: IPoint;
-        TextPosition: IPoint;
 
-        private dragStartListeners = new Array<IOccurationListener>();
-        private dragingListeners = new Array<IOccurationListener>();
-        private dragEndListeners = new Array<IOccurationListener>();
+        static selectedView;
 
         private dragStartCallbacks = new Array<IEventCallback>();
         private draggingCallbacks = new Array<IEventCallback>();
         private dragEndCallbacks = new Array<IEventCallback>();
-        service : CoreServices.BaseSignalRService;
-        private copier;
-
+        private clickCallbacks = new Array<IEventCallback>();
+        
         constructor() {
             super();
 
             this.Center = new Point();
-            this.TextPosition = new Point();
 
             this.X = 10;
             this.Y = 10;
@@ -41,16 +36,12 @@
             this.Height = 102;
 
             this.recalculateCenter();
-            this.recalculateTextPosition(10);
         }
 
-        recalculateTextPosition(txtLen?: number): void {
-            this.TextPosition.Y = (this.Width / 2) - 30;
-            if (txtLen) {
-                this.TextPosition.X -= txtLen;
-            }
+        setUpFromObject(object: IDiagramPart) {
+            super.setUpFromObject(object);
 
-            this.TextPosition.Y = (this.Height / 2) + 2;
+            this.recalculateCenter();
         }
 
         recalculateCenter(): void {
@@ -82,38 +73,32 @@
         }
 
         dragStart(): void {
-            this.dragStartListeners.forEach(listener => {
-                listener.occured(this, null);
-            });
-
+         
             this.dragStartCallbacks.forEach(callback => {
                 callback(this, null);
             });
 
         }
 
-        private dragCnt: number = 0;
+        private dragCnt = 0;
 
         dragging(domElement: any): void {
 
             this.d3Dragging(domElement);
-            if (this.dragCnt % 2 === 0) {
+
+            if (this.dragCnt % 4 === 2) {
                 this.save();
+
+                this.draggingCallbacks.forEach(callback => {
+                    callback(this, null);
+                });
             }
 
-
-            this.dragingListeners.forEach(listener => {
-                listener.occured(this, null);
-            });
-
-            this.draggingCallbacks.forEach(callback => {
-                callback(this, null);
-            });
-
+            this.dragCnt++;
         }
 
         private d3Dragging(domElement: any): void {
-            
+
             var sel = d3.select(domElement);
             var x = sel.attr("x");
             var y = sel.attr("y");
@@ -129,58 +114,43 @@
         }
 
         dragEnd(): void {
-            this.dragEndListeners.forEach(listener => {
-                listener.occured(this, null);
-            });
 
-            this.dragEndCallbacks.forEach(callback => {
-                callback(this, null);
-            });
+            if (this.dragCnt === 0) {
+                console.log("just clicked");
 
-            this.save();
+                this.clickCallbacks.forEach(callback => {
+                    callback(this, "clicked");
+                });
+
+                BaseView.selectedView = this;
+
+            } else {
+
+                this.dragEndCallbacks.forEach(callback => {
+                    callback(this, null);
+                });
+
+                this.save();
+            }
+
+            this.dragCnt = 0;
         }
 
-
-        save(): void {
-            this.service.modify(this);
-        }
-
-        deleteElement(): void {
-            this.service.deleteEntity(this);
-        }
-
-        rollback(): void { }
-
-        addDragStartEventListener(listener: IOccurationListener) {
-            this.dragStartListeners.push(listener);
-        }
-
-        addDraggingEventListener(listener: IOccurationListener) {
-            this.dragingListeners.push(listener);
-        }
-
-        addDragEndtEventListener(listener: IOccurationListener) {
-            this.dragEndListeners.push(listener);
+        addClickEventListener(callback) {
+            Utils.ArrayHelpers.pushIfNotInArray(this.clickCallbacks, callback);
         }
 
         addDragStartEventCallback(callback: IEventCallback) {
-            this.dragStartCallbacks.push(callback);
+            Utils.ArrayHelpers.pushIfNotInArray(this.dragStartCallbacks, callback);
         }
 
         addDraggingEventCallback(callback: IEventCallback) {
-            this.draggingCallbacks.push(callback);
+            Utils.ArrayHelpers.pushIfNotInArray(this.draggingCallbacks, callback);
         }
 
         addDragEndtEventCallback(callback: IEventCallback) {
-            this.dragEndCallbacks.push(callback);
+            Utils.ArrayHelpers.pushIfNotInArray(this.dragEndCallbacks, callback);
         }
-
-        setService(service) {
-            this.service = service;
-        }
-        
-        setUpFromObject(object) { }
-
 
     }
 
@@ -193,6 +163,29 @@
 
         constructor() {
             super();
+        }
+
+        static service;
+        save() {
+            UseCaseView.service.modify(this);
+        }
+
+        deleteElement(): void {
+            UseCaseView.service.deleteEntity(this);
+        }
+    }
+
+    export class ActorView extends BaseView {
+        Width = 62;
+        Height = 127;
+
+        static service;
+        save() {
+            ActorView.service.modify(this);
+        }
+
+        deleteElement(): void {
+            ActorView.service.deleteEntity(this);
         }
     }
 } 

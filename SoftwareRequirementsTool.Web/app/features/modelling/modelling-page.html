@@ -74,23 +74,7 @@
         <div class="col-md-8" style="">
 
             <div id="modeling-area">
-
-                actorV
-
-                <div ng-repeat="part in actorParts">
-                    {{part.Element.Name}}
-                </div>
-
-                usercaseV
-                <div ng-repeat="part in usecaseParts">
-                    {{part.Element.Name}}
-                </div>
-
-                conV
-                <div ng-repeat="part in connectionParts">
-                    {{part.Element.Name}}
-                </div>
-
+            
                 <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000">
 
 
@@ -100,13 +84,11 @@
                     </g>
 
                     <g ng-repeat="part in usecaseParts">
-                        <!--TODO: UseCase direktíva felújít -->
                         <use-case diagram-element="part"> </use-case>
                     </g>
 
                     <g ng-repeat="part in actorParts">
-                        <!--TODO: Actor direktíva -->
-
+                        <actor diagram-element="part"> </actor>
                     </g>
 
 

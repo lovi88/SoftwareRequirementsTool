@@ -2,36 +2,21 @@
     export class BaseEntity implements IEntity {
         Id: number;
         TypeName: string;
-        service: any;
-
-        setService(service: any) {
-            this.service = service;
-        }
 
         setUpFromObject(object) {
+
+            //EntityFactory.createComplexFrom(object);
             Utils.InitFromObj.initObj(this, object);
         }
-
-        static createFromObject(object) {
-            var baseEntity = new BaseEntity();
-            baseEntity.setUpFromObject(object);
-
-            return baseEntity;
-        }
-
+        
         isValid(): boolean {
             return true;
         }
 
         save(): void {
-            if (this.service) {
-                this.service.modify(this);
-            }
+
         }
 
-        rollback(): void {
-            //this.service.resetFromServer(this);
-        }
     }
     
     export class BaseElement extends BaseEntity implements IElement {
@@ -42,15 +27,10 @@
         Id: number;
         TypeName: string;
         ContainerProject: Project;
-
-        setService(service: any) { }
-
-        setUpFromObject(object) {}
+        
 
         save(): void {}
-
-        rollback(): void {}
-
+        
         isValid() {
             if (Utils.TypeChecker.isUndefinedOrNull(this.Name)) {
                 return false;
@@ -74,8 +54,12 @@
         Diagram: IDiagram;
 
         setUpFromObject(object: IDiagramPart) {
+
+            super.setUpFromObject(object);
+
             this.Element = <IElement>EntityFactory.createFrom(object.Element);
             this.Diagram = <IDiagram>EntityFactory.createFrom(object.Diagram);
+
         }
 
     }

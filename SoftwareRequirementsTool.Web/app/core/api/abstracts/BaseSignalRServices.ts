@@ -107,7 +107,7 @@
         protected modified(element: IEntity): void {
 
             if (Utils.TypeChecker.isUndefined(element)) {
-                throw "problem in the modified method";
+                throw "problem in the modified method (undefined element)";
             }
 
             var list = this[this.propertyName];
@@ -317,7 +317,7 @@
                 if (!(Utils.TypeChecker.isArray(result))) {
                     throw { message: "BaseSignalRService.getAll the result from the server was not an Array", result: result }
                 }
-                
+
                 var arr = Entities.EntityFactory.createArrayFrom(result);
                 callback(arr);
                 this.changeOccured(result);

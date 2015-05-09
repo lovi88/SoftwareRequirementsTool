@@ -262,11 +262,11 @@
     <Content Include="app\features\authentication\loginCtrl.js" />
     <Content Include="app\features\diagrams\diagramsController.js" />
     <Content Include="app\features\diagrams\diagramsService.js" />
-    <Content Include="app\features\modelling\arch\actor.js" />
+    <Content Include="app\features\modelling\parts\actor.js" />
     <Content Include="app\features\modelling\arch\association.js" />
     <Content Include="app\features\modelling\arch\class.svg" />
     <Content Include="app\features\modelling\arch\association.svg" />
-    <Content Include="app\features\modelling\arch\actor.svg" />
+    <Content Include="app\features\modelling\parts\actor.svg" />
     <Content Include="app\features\modelling\arch\draggingService.js" />
     <Content Include="app\features\modelling\arch\modelingArea.js" />
     <Content Include="app\features\modelling\arch\modelling-area.html" />
@@ -1180,9 +1180,9 @@
     <TypeScriptCompile Include="app\core\api\abstracts\BaseSignalRServices.ts" />
     <TypeScriptCompile Include="app\core\api\abstracts\ApiCommunicationInterfaces.ts" />
     <TypeScriptCompile Include="app\core\api\concrete\ConcreteServices.ts" />
-    <TypeScriptCompile Include="app\core\api\instantiation\ServiceInstances.ts" />
+    <TypeScriptCompile Include="app\core\instantiation\ServiceInstances.ts" />
     <TypeScriptCompile Include="app\core\entities\abstracts\EntityInterfaces.ts" />
-    <TypeScriptCompile Include="app\core\entities\concrete\BaseView.ts" />
+    <TypeScriptCompile Include="app\core\entities\concrete\Views.ts" />
     <TypeScriptCompile Include="app\core\entities\concrete\Connection.ts" />
     <TypeScriptCompile Include="app\core\entities\concrete\Diagram.ts" />
     <TypeScriptCompile Include="app\core\entities\abstracts\BaseEntities.ts" />
@@ -1191,7 +1191,7 @@
     <TypeScriptCompile Include="app\core\utils\ArrayHelpers.ts" />
     <TypeScriptCompile Include="app\core\utils\EventHandlingInterfaces.ts" />
     <TypeScriptCompile Include="app\core\entities\abstracts\ModellingInterfaces.ts" />
-    <TypeScriptCompile Include="app\core\entities\concrete\Point.ts" />
+    <TypeScriptCompile Include="app\core\entities\abstracts\Point.ts" />
     <TypeScriptCompile Include="app\core\utils\objectHelpers.ts" />
     <TypeScriptCompile Include="app\core\utils\TypeChecks.ts" />
     <TypeScriptCompile Include="app\services\baseCRUDServices.ts" />
@@ -1219,6 +1219,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptModuleKind>none</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

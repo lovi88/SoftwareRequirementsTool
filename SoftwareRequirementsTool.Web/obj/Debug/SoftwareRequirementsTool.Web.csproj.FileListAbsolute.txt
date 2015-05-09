@@ -65,7 +65,6 @@ E:\AA_NIK\8. FÉLÉV\SzakD II\AA_SzakdolgozatSolution\SoftwareRequirementsTool\S
 E:\AA_NIK\8. FÉLÉV\SzakD II\AA_SzakdolgozatSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\obj\Debug\SoftwareRequirementsTool.Web.csprojResolveAssemblyReference.cache
 E:\AA_NIK\8. FÉLÉV\SzakD II\AA_SzakdolgozatSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\obj\Debug\SoftwareRequirementsTool.Web.dll
 E:\AA_NIK\8. FÉLÉV\SzakD II\AA_SzakdolgozatSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\obj\Debug\SoftwareRequirementsTool.Web.pdb
-E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\obj\Debug\SoftwareRequirementsTool.Web.csprojResolveAssemblyReference.cache
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\SoftwareRequirementsTool.Web.dll.config
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\SoftwareRequirementsTool.Web.dll
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\SoftwareRequirementsTool.Web.pdb
@@ -138,5 +137,6 @@ E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\Microsoft.Owin.Security.Twitter.xml
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\System.Web.Http.Owin.xml
+E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\obj\Debug\SoftwareRequirementsTool.Web.csprojResolveAssemblyReference.cache
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\obj\Debug\SoftwareRequirementsTool.Web.dll
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\obj\Debug\SoftwareRequirementsTool.Web.pdb

@@ -10,12 +10,11 @@
 
 
         this.createFreshActorPart = function (element) {
-            var view = privates.createFreshView(element);
+            var view = privates.createFreshActorView(element);
 
             var deferred = $q.defer();
 
             actorViewService.create(view, function (cr) {
-                cr.setService(actorViewService);
                 deferred.resolve(cr);
             });
 
@@ -28,7 +27,6 @@
             var deferred = $q.defer();
 
             usecaseViewService.create(view, function (cr) {
-                cr.setService(usecaseViewService);
                 deferred.resolve(cr);
             });
 
@@ -39,8 +37,8 @@
         this.usecaseParts = usecaseViewService.diagramParts;
         this.connectionParts = connectionViewService.diagramParts;
 
-        privates.createFreshView = function (element) {
-            var view = new Entities.BaseView();
+        privates.createFreshActorView = function (element) {
+            var view = new Entities.ActorView();
             privates.initFreshView(view, element);
 
             return view;

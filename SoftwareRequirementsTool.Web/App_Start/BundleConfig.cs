@@ -88,7 +88,7 @@ namespace SoftwareRequirementsTool.Web
             softReqToolCore.IncludeDirectory("~/app/core/api/abstracts", "*.js", true);
             softReqToolCore.IncludeDirectory("~/app/core/api/concrete", "*.js", true);
 
-            softReqToolCore.IncludeDirectory("~/app/core/api/instantiation", "*.js", true);
+            softReqToolCore.IncludeDirectory("~/app/core/instantiation", "*.js", true);
         }
     }
 }

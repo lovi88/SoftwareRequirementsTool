@@ -1,10 +1,10 @@
-﻿(function () {
+﻿(function() {
     "use strict";
 
-    function useCaseDir() {
+    function actor () {
         // Usage:
-        //     <use-case></use-case>
-        // Creates: A UseCase diagram element
+        //     <actor></actor>
+        // Creates:
         // 
         function link(scope, element, attrs) {
             scope.diagramElement.applyDraggable(element);
@@ -12,7 +12,7 @@
 
         var directive = {
             restrict: "EA",
-            templateUrl: "/app/features/modelling/parts/useCase.svg",
+            templateUrl: "/app/features/modelling/parts/actor.svg",
             templateNamespace: "svg",
             link: link,
             replace: true,
@@ -27,7 +27,7 @@
 
     angular
         .module("app")
-        .directive("useCase", useCaseDir);
+        .directive("actor", actor);
 
-    //useCaseDir.$inject = [""];
+    //actor.$inject = [""];
 })();

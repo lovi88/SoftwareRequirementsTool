@@ -7,9 +7,18 @@
         function activate() {
             stateMachineService.redirectIfNoActiveProject();
             stateMachineService.redirectIfNoActiveDiagram();
+
+            CoreServices.useCaseDiagramPartServiceInseance
+                .registerChangeListenerCallback(function (from, data) {
+                    $scope.$evalAsync();
+                });
+
+            CoreServices.actorDiagramPartServiceInseance
+                .registerChangeListenerCallback(function (from, data) {
+                    $scope.$evalAsync();
+                });
         }
         activate();
-
 
         var vm = $scope;
         var privates = {};
@@ -78,7 +87,6 @@
                 //part created
             });
         }
-
 
 
     }
