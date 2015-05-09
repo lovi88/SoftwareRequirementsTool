@@ -2,14 +2,12 @@
     "use strict";
 
     function dialogs($modal) {
-        
         /*
          * returns: the modal instance
          */
-        function createCustomDialog(dialogTitle, dataToPass,templateUrl, dialogController) {
-
+        function createCustomDialog(dialogTitle, dataToPass, templateUrl, dialogController) {
             if (Utils.TypeChecker.isUndefined(templateUrl)) {
-                templateUrl= "/app/blocks/dialogs/name-desc-dialog.html";
+                templateUrl = "/app/blocks/dialogs/name-desc-dialog.html";
             }
 
             if (Utils.TypeChecker.isUndefined(dialogController)) {
@@ -25,7 +23,7 @@
                         //but it has to be returned in success
                         return angular.copy(dataToPass);
                     },
-                    title: function() {
+                    title: function () {
                         return angular.copy(dialogTitle);
                     }
                 }

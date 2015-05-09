@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareRequirementsTool.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareRequirementsTool", "SoftwareRequirementsTool\SoftwareRequirementsTool.csproj", "{C2BA4BED-1378-471D-9571-8A793B9BE7A2}"
 EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "SoftwareRequirementsToolModeling", "SoftwareRequirementsToolModeling\SoftwareRequirementsToolModeling.modelproj", "{4C15A1FF-E921-44E0-B41C-5BF3357F9583}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{C2BA4BED-1378-471D-9571-8A793B9BE7A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2BA4BED-1378-471D-9571-8A793B9BE7A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2BA4BED-1378-471D-9571-8A793B9BE7A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C15A1FF-E921-44E0-B41C-5BF3357F9583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C15A1FF-E921-44E0-B41C-5BF3357F9583}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C15A1FF-E921-44E0-B41C-5BF3357F9583}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C15A1FF-E921-44E0-B41C-5BF3357F9583}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
