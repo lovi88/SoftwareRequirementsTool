@@ -11,8 +11,14 @@ $.connection.hub.error(function (error) {
 
 
 function initAngular() {
-    angular.element(document).ready(function() {
+    console.log("angular init called");
+    
+    angular.element(document).ready(function () {
+
+        console.log("angular init DOM ready");
         angular.bootstrap(document, ["app"]);
+
+        console.log("after bootstrap");
     });
 }
 

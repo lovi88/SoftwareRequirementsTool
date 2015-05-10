@@ -54,7 +54,7 @@
                     <div class="col-md-6">
                         <input ng-model="entity.Activity"
                                ng-disabled="!modifyMode"
-                               id="textinput" name="textinput" type="text" placeholder="Activity or Goal" class="form-control input-md" required="">
+                               id="textinput" name="textinput" type="text" placeholder="Activity, Feature or Goal" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -69,6 +69,32 @@
 
                     </div>
                 </div>
+
+                <hr />
+
+                <!-- Importance Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="importance">Importance: </label>
+                    <div class="col-md-6">
+                        <input ng-model="entity.Importance"
+                               ng-disabled="!modifyMode"
+                               id="importance" name="importance" type="text" placeholder="How important the story is?" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Complexity Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="complexity">Complexity: </label>
+                    <div class="col-md-6">
+                        <input ng-model="entity.Complexity"
+                               ng-disabled="!modifyMode"
+                               id="complexity" name="complexity" type="text" placeholder="How complex the story is?" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+
 
             </fieldset>
         </form>

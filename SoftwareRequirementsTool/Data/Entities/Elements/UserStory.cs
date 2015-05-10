@@ -14,6 +14,9 @@ namespace SoftwareRequirementsTool.Data.Entities.Elements
         public string Activity { get; set; }
         public string BusinessValue { get; set; }
 
+        public string Complexity { get; set; }
+        public string Importance { get; set; }
+
         float _abstractionLevel = 1;
 
         public override float AbstractionLevel

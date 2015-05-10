@@ -7,7 +7,7 @@
         // Creates:
         // 
         function link(scope, element, attrs) {
-            console.log(scope.diagramElement)
+            
         }
 
         var directive = {

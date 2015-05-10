@@ -248,6 +248,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\blocks\logger\consoleLogFix.js" />
     <Content Include="app\features\statemachine\stateController.js" />
     <Content Include="app\features\statemachine\stateMachineService.js" />
     <Content Include="app\blocks\dialogs\dialogs.js" />
@@ -388,6 +389,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\angular-spinner.min.js.map" />
+    <None Include="Properties\PublishProfiles\SzakD.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />

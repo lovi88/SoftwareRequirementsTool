@@ -39,7 +39,7 @@ namespace SoftwareRequirementsTool.Web
             app.MapSignalR(config);
         }
 
-        [Conditional("DEBUG")]
+        //[Conditional("DEBUG")]
         public static void SetDetailedErrorMessages(HubConfiguration config)
         {
             config.EnableDetailedErrors = true;
