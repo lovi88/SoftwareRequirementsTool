@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta name="description" content="Software Requirement Tool">
+
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/angularCss")
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/modelling.css" rel="stylesheet" />
+
+</head>
+<body>
+
+
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/bundles/SignalR")
+    <script src="~/signalr/hubs"></script>
+
+    @Scripts.Render("~/bundles/d3")
+
+    @Scripts.Render("~/bundles/softReqToolCore")
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/bundles/angular")
+
+    @Scripts.Render("~/bundles/softReqToolApp")
+
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
