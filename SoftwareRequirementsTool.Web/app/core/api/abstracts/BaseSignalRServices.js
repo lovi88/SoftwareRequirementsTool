@@ -75,8 +75,6 @@ var CoreServices;
         BaseSignalRService.prototype.initProperty = function () {
             this.propertyAssert(this.propertyName);
         };
-        BaseSignalRService.prototype.init = function () {
-        };
         //called from server or from this.create
         BaseSignalRService.prototype.created = function (element) {
             var elm = Entities.EntityFactory.createComplexFrom(element);
@@ -124,18 +122,11 @@ var CoreServices;
         };
         //It startes all the hubs for all services
         BaseSignalRService.startConnections = function (callback) {
-            var _this = this;
             $.connection.hub.start(function () {
-                _this.initActiveChildServices(callback);
+                if (callback instanceof Function) {
+                    callback();
+                }
             });
-        };
-        BaseSignalRService.initActiveChildServices = function (callback) {
-            this.activeChildServices.forEach(function (item) {
-                item.init();
-            });
-            if (callback instanceof Function) {
-                callback();
-            }
         };
         BaseSignalRService.prototype.propertyAssert = function (propName) {
             if (!this.hasOwnProperty(propName)) {
@@ -182,7 +173,6 @@ var CoreServices;
         BaseSignalRService.prototype.unregisterChangeListenerCallback = function (callback) {
             Utils.ArrayHelpers.deleteFromArray(this.callbacks, callback);
         };
-        BaseSignalRService.activeChildServices = new Array();
         return BaseSignalRService;
     })();
     CoreServices.BaseSignalRService = BaseSignalRService;

@@ -21,11 +21,9 @@ module CoreServices {
 
     export var connectionDiagramPartServiceInseance =
         new CustomService("connectionDiagramPartHub", "diagramParts");
-
 }
 
 module Entities {
     UseCaseView.service = CoreServices.useCaseDiagramPartServiceInseance;
     ActorView.service = CoreServices.actorDiagramPartServiceInseance;
-
 }

@@ -13,7 +13,6 @@ var CoreServices;
             _super.call(this, propertyName);
             this.initHub(hubName);
             this.initCallback = initCallback;
-            CoreServices.BaseSignalRService.activeChildServices.push(this);
         }
         CustomService.prototype.init = function () {
             if (Utils.TypeChecker.isFunction(this.initCallback)) {
@@ -31,10 +30,7 @@ var CoreServices;
             this.projects = new Array();
             this.initProperty();
             this.initHub("projectHub");
-            CoreServices.BaseSignalRService.activeChildServices.push(this);
         }
-        ProjectsService.prototype.init = function () {
-        };
         ProjectsService.getInstance = function () {
             if (this.instance == null) {
                 this.instance = new ProjectsService();
@@ -53,10 +49,7 @@ var CoreServices;
             this.diagrams = new Array();
             this.initProperty();
             this.initHub("diagramHub");
-            CoreServices.BaseSignalRService.activeChildServices.push(this);
         }
-        DiagramService.prototype.init = function () {
-        };
         DiagramService.getInstance = function () {
             if (this.instance == null) {
                 this.instance = new DiagramService();
@@ -75,10 +68,7 @@ var CoreServices;
             this.userStories = new Array();
             this.initProperty();
             this.initHub("userStoryHub");
-            CoreServices.BaseSignalRService.activeChildServices.push(this);
         }
-        UserStoryService.prototype.init = function () {
-        };
         return UserStoryService;
     })(CoreServices.BaseGetAllForService);
     CoreServices.UserStoryService = UserStoryService;

@@ -1,11 +1,7 @@
 ﻿module CoreServices {
-
     export class BaseSignalRService implements ICrudObservableSubject {
-
         protected hub: any;
         protected propertyName;
-
-        static activeChildServices = new Array<any>();
 
         protected observers = new Array<ICrudObserver>();
         protected callbacks = new Array<IEventCallback>();
@@ -48,7 +44,7 @@
         getAll(callback: IArrayWaitCallback) {
             this.hub.server.getAll().done(result => {
                 if (!Utils.TypeChecker.isArray(result)) {
-                    throw { message: "BaseSignalRService.getAll the result from the server vas not an Array", result: result }
+                    throw { message: "BaseSignalRService.getAll the result from the server vas not an Array", result: result };
                 }
 
                 var arr = Entities.EntityFactory.createArrayFrom(result);
@@ -91,11 +87,8 @@
             this.propertyAssert(this.propertyName);
         }
 
-        init() { }
-
         //called from server or from this.create
         protected created(element: IEntity): void {
-
             var elm = Entities.EntityFactory.createComplexFrom(element);
 
             this.touchedElement = elm;
@@ -105,7 +98,6 @@
 
         //called from server or from this.modify
         protected modified(element: IEntity): void {
-
             if (Utils.TypeChecker.isUndefined(element)) {
                 throw "problem in the modified method (undefined element)";
             }
@@ -124,7 +116,6 @@
 
         //called from server or from this.create
         protected deleted(element: IEntity): void {
-
             if (Utils.TypeChecker.isUndefined(element)) {
                 throw "problem in the deleted method";
             }
@@ -157,19 +148,10 @@
         //It startes all the hubs for all services
         static startConnections(callback?: any) {
             $.connection.hub.start(() => {
-                this.initActiveChildServices(callback);
+                if (callback instanceof Function) {
+                    callback();
+                }
             });
-        }
-
-        static initActiveChildServices(callback?: any) {
-
-            this.activeChildServices.forEach(item => {
-                item.init();
-            });
-
-            if (callback instanceof Function) {
-                callback();
-            }
         }
 
         protected propertyAssert(propName: string): void {
@@ -184,7 +166,6 @@
         }
 
         protected creationOccured(element) {
-
             this.observers.forEach(item => {
                 item.created(element);
             });
@@ -229,7 +210,6 @@
         unregisterChangeListenerCallback(callback: IEventCallback) {
             Utils.ArrayHelpers.deleteFromArray(this.callbacks, callback);
         }
-
     }
 
     //It uses the promise library of JQuery (it is the minimal dependency of the core library)
@@ -238,7 +218,6 @@
         constructor(propertyName) {
             super(propertyName);
         }
-
 
         createAsyncPromised(element) {
             var deferred = $.Deferred();
@@ -253,7 +232,6 @@
 
             return deferred.promise();
         }
-
 
         getAllAsyncPromised() {
             var deferred = $.Deferred();
@@ -270,7 +248,6 @@
         }
 
         loadAllToPropertyAsyncPromised() {
-
             var deferred = $.Deferred();
 
             try {
@@ -283,8 +260,6 @@
 
             return deferred.promise();
         }
-
-
     }
 
     export class BaseOpenCloseService extends BaseSignalRPromisedService {
@@ -303,7 +278,6 @@
             this.hub.server.close(entity);
             this.active = null;
         }
-
     }
 
     export class BaseGetAllForService extends BaseSignalRPromisedService {
@@ -313,9 +287,8 @@
 
         getAllForEntity(entity, callback: IArrayWaitCallback) {
             this.hub.server.getAllFor(entity).done(result => {
-
                 if (!(Utils.TypeChecker.isArray(result))) {
-                    throw { message: "BaseSignalRService.getAll the result from the server was not an Array", result: result }
+                    throw { message: "BaseSignalRService.getAll the result from the server was not an Array", result: result };
                 }
 
                 var arr = Entities.EntityFactory.createArrayFrom(result);
@@ -340,7 +313,6 @@
             });
         }
 
-
         getAllForEntityAsyncPromised(entity) {
             var deferred = $.Deferred();
 
@@ -356,7 +328,6 @@
         }
 
         loadAllForEntityToPropertyAsyncPromised(entity) {
-
             var deferred = $.Deferred();
 
             try {
@@ -369,11 +340,9 @@
 
             return deferred.promise();
         }
-
     }
 
     export class BaseOpenCloseGetAllForService extends BaseGetAllForService {
-
         active = null;
 
         constructor(propertyName) {

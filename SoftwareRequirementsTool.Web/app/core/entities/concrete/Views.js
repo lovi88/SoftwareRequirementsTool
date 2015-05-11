@@ -37,7 +37,7 @@ var Entities;
                 //this : actual domElement
                 that.dragStart();
             }).on("drag", function (d) {
-                //hey we're dragging, let's update some stuff    
+                //hey we're dragging, let's update some stuff
                 // ReSharper disable once SuspiciousThisUsage
                 that.dragging(this);
             }).on("dragend", function () {

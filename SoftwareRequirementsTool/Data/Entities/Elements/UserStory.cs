@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 using System.ComponentModel.DataAnnotations.Schema;
-using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 
 namespace SoftwareRequirementsTool.Data.Entities.Elements
 {
@@ -8,16 +7,19 @@ namespace SoftwareRequirementsTool.Data.Entities.Elements
     public class UserStory : AbsElement
     {
         //[Required]
-
         public int ActorId { get; set; }
+
         virtual public Actor Actor { get; set; }
+
         public string Activity { get; set; }
+
         public string BusinessValue { get; set; }
 
         public string Complexity { get; set; }
+
         public string Importance { get; set; }
 
-        float _abstractionLevel = 1;
+        private float _abstractionLevel = 1;
 
         public override float AbstractionLevel
         {

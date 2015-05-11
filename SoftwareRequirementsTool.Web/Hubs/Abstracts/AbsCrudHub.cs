@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNet.SignalR;
 using SoftwareRequirementsTool.Data.Entities;
 using SoftwareRequirementsTool.Data.Repositories.Abstracts;
 using SoftwareRequirementsTool.Data.UnitOfWork;
 using SoftwareRequirementsTool.Utilities.ErrorMessages;
 using SoftwareRequirementsTool.Web.Hubs.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
 {
@@ -27,11 +27,12 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             _groupHelper = GroupHelper.Instance;
         }
 
-
         #region IGenericRepository
 
         abstract public T Create(T entity);
+
         public abstract void Modify(T entity);
+
         public abstract void Delete(T entity);
 
         virtual public T GetById(int id)
@@ -39,7 +40,7 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             return Repository.GetById(id);
         }
 
-        #endregion
+        #endregion IGenericRepository
 
         #region Grouping
 
@@ -57,7 +58,7 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             _groupHelper.RemoveCallerFromGroup(Context.ConnectionId, groupName);
         }
 
-        #endregion
+        #endregion Grouping
 
         #region Template Methods
 
@@ -71,10 +72,8 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             return entity;
         }
 
-
         virtual protected void Modify(T entity, string groupName)
         {
-
             Repository.Update(entity);
             TrySave(ref entity);
 
@@ -82,15 +81,13 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             ModifyCallback(entity, groupName);
         }
 
-
-
         virtual public void Delete(T entity, string groupName)
         {
             Repository.Delete(entity);
             TrySave(ref entity);
         }
 
-        #endregion
+        #endregion Template Methods
 
         #region Template Hooks
 
@@ -126,9 +123,8 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             Clients.Clients(_groupHelper.AllInGroupExcept(groupName, Context.ConnectionId))
                 .modified(entity);
         }
-        
-        #endregion
 
+        #endregion Template Hooks
 
         virtual public IEnumerable<T> GetAll()
         {
@@ -139,7 +135,6 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
                 ? Repository.Get().ToList()
                 : Repository.Get(includeProperties: IncludeProperties).ToList();
         }
-        
 
         protected void SendError(object error)
         {
@@ -165,12 +160,10 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             }
         }
 
-
         virtual protected string GenerateGroupName(IEntity entity)
         {
             return entity.TypeName + "_" + entity.Id;
         }
-
 
         //Future: in production there must be real logging
         virtual protected void LogError(Exception ex, T entity)

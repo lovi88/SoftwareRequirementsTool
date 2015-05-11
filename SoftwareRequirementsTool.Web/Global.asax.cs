@@ -1,10 +1,10 @@
-﻿using System.Web;
+﻿using Microsoft.AspNet.SignalR;
+using Newtonsoft.Json;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Microsoft.AspNet.SignalR;
-using Newtonsoft.Json;
 
 namespace SoftwareRequirementsTool.Web
 {
@@ -13,7 +13,7 @@ namespace SoftwareRequirementsTool.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            
+
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -21,7 +21,7 @@ namespace SoftwareRequirementsTool.Web
             JsonSerializeSettings();
         }
 
-        static void JsonSerializeSettings()
+        private static void JsonSerializeSettings()
         {
             var serializerSettings = new JsonSerializerSettings
             {
@@ -30,8 +30,7 @@ namespace SoftwareRequirementsTool.Web
             };
 
             var serializer = JsonSerializer.Create(serializerSettings);
-            GlobalHost.DependencyResolver.Register(typeof(JsonSerializer), () => serializer); 
-
+            GlobalHost.DependencyResolver.Register(typeof(JsonSerializer), () => serializer);
         }
     }
 }

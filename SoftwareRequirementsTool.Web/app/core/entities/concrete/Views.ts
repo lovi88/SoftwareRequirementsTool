@@ -5,7 +5,6 @@
     export class BaseView
         extends DiagramPart
         implements IView, IDraggable {
-
         Id: number;
         TypeName: string;
 
@@ -18,12 +17,11 @@
         Height: number;
         Center: IPoint;
 
-        
         private dragStartCallbacks = new Array<IEventCallback>();
         private draggingCallbacks = new Array<IEventCallback>();
         private dragEndCallbacks = new Array<IEventCallback>();
         private clickCallbacks = new Array<IEventCallback>();
-        
+
         constructor() {
             super();
 
@@ -49,7 +47,6 @@
         }
 
         applyDraggable(domElement: any): void {
-
             var that = this;
             var drag: any = d3.behavior.drag()
                 .on("dragstart", function (d) {
@@ -58,10 +55,9 @@
                 that.dragStart();
             })
                 .on("drag", function (d) {
-                //hey we're dragging, let's update some stuff    
+                //hey we're dragging, let's update some stuff
                 // ReSharper disable once SuspiciousThisUsage
                 that.dragging(this);
-
             })
                 .on("dragend", function () {
                 //we're done, end some stuff
@@ -72,17 +68,14 @@
         }
 
         dragStart(): void {
-         
             this.dragStartCallbacks.forEach(callback => {
                 callback(this, null);
             });
-
         }
 
         private dragCnt = 0;
 
         dragging(domElement: any): void {
-
             this.d3Dragging(domElement);
 
             if (this.dragCnt % 4 === 2) {
@@ -97,7 +90,6 @@
         }
 
         private d3Dragging(domElement: any): void {
-
             var sel = d3.select(domElement);
             var x = sel.attr("x");
             var y = sel.attr("y");
@@ -113,7 +105,6 @@
         }
 
         dragEnd(): void {
-
             if (this.dragCnt === 0) {
                 console.log("just clicked");
 
@@ -122,9 +113,7 @@
                 });
 
                 DiagramPart.clicked(this);
-
             } else {
-
                 this.dragEndCallbacks.forEach(callback => {
                     callback(this, null);
                 });
@@ -150,11 +139,9 @@
         addDragEndtEventCallback(callback: IEventCallback) {
             Utils.ArrayHelpers.pushIfNotInArray(this.dragEndCallbacks, callback);
         }
-
     }
 
     export class UseCaseView extends BaseView {
-
         Cx = 151;    //center of the ellipse
         Cy = 51;
         Rx = 150;    //radius
@@ -189,7 +176,6 @@
     }
 
     export class ConnectionView extends DiagramPart {
-        
         constructor(element?) {
             super();
 

@@ -50,20 +50,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Entities\AbsEntity.cs" />
+    <Compile Include="Data\Entities\Abstracts\AbsEntity.cs" />
     <Compile Include="Data\Entities\Connections\Connection.cs" />
+    <Compile Include="Data\Entities\Abstracts\IStereotiped.cs" />
+    <Compile Include="Data\Entities\Connections\ConnectionType.cs" />
+    <Compile Include="Data\Entities\Elements\Abstracts\AbsElement.cs" />
     <Compile Include="Data\Entities\Elements\Abstracts\IDiagram.cs" />
-    <Compile Include="Data\Entities\IStereotiped.cs" />
+    <Compile Include="Data\Entities\Elements\Abstracts\IElement.cs" />
     <Compile Include="Data\Entities\ViewElements\Abstracts\AbsDiagramPart.cs" />
     <Compile Include="Data\Entities\ViewElements\ConnectionView.cs" />
     <Compile Include="Data\Entities\ViewElements\Abstracts\IDiagramPart.cs" />
     <Compile Include="Data\Entities\ViewElements\UseCaseView.cs" />
     <Compile Include="Data\Entities\ViewElements\ActorView.cs" />
-    <Compile Include="Data\Entities\IEntity.cs" />
+    <Compile Include="Data\Entities\Abstracts\IEntity.cs" />
     <Compile Include="Data\Entities\Elements\Actor.cs" />
     <Compile Include="Data\Entities\Elements\Diagram.cs" />
-    <Compile Include="Data\Entities\Elements\Abstracts\AbsElement.cs" />
-    <Compile Include="Data\Entities\Elements\Abstracts\IElement.cs" />
     <Compile Include="Data\Entities\ViewElements\Abstracts\IView.cs" />
     <Compile Include="Data\Entities\Elements\Project.cs" />
     <Compile Include="Data\Entities\Elements\UseCase.cs" />
@@ -72,7 +73,7 @@
     <Compile Include="Data\Entities\ViewElements\Stereotype.cs" />
     <Compile Include="Data\Entities\ViewElements\Abstracts\AbsView.cs" />
     <Compile Include="Data\IComparableByAbstraction.cs" />
-    <Compile Include="Data\Repositories\Abstracts\DiagramPartRepository.cs" />
+    <Compile Include="Data\Repositories\DiagramPartRepository.cs" />
     <Compile Include="Data\Repositories\DiagramRepository.cs" />
     <Compile Include="Data\Repositories\Abstracts\GenericRepository.cs" />
     <Compile Include="Data\Repositories\Abstracts\IGenericRepository.cs" />
@@ -84,7 +85,7 @@
     <Compile Include="Data\Repositories\UserStoryRepository.cs" />
     <Compile Include="Utilities\ErrorMessages\ErrorMessageHelper.cs" />
     <Compile Include="Utilities\IGenericCRUD.cs" />
-    <Compile Include="Data\SoftwareRequirementsToolContext.cs" />
+    <Compile Include="Data\EFContext\SoftwareRequirementsToolContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\GenericEventArgs.cs" />
   </ItemGroup>

@@ -3,7 +3,6 @@
 
     function modellingController($scope, diagramPartService, actorsService, usecaseService,
         diagramsService, projectService, stateMachineService, notificationService) {
-
         function activate() {
             stateMachineService.redirectIfNoActiveProject();
             stateMachineService.redirectIfNoActiveDiagram();
@@ -31,7 +30,6 @@
         vm.usecaseParts = diagramPartService.usecaseParts;
         vm.connectionParts = diagramPartService.connectionParts;
 
-
         //actor functions
         vm.actors = actorsService.actors;
         vm.selectedActor = null;
@@ -43,7 +41,6 @@
         };
 
         vm.useActor = function () {
-
             if (Utils.TypeChecker.isUndefinedOrNull(vm.selectedActor)) {
                 notificationService.showWarning("You have to choose an actor in order to use it.");
                 return;
@@ -72,7 +69,6 @@
 
         vm.selectedUseCase = null;
         vm.useUseCase = function () {
-
             if (Utils.TypeChecker.isUndefinedOrNull(vm.selectedUseCase)) {
                 notificationService.showWarning("You have to choose a use case in order to use it.");
                 return;
@@ -111,18 +107,18 @@
                 Utils.ArrayHelpers.pushIfNotInArray(vm.selectedViews, from);
 
                 if (vm.selectedViews.length === 2) {
-                    if ((vm.selectedViews[0] instanceof Entities.BaseView) && (vm.selectedViews[1] instanceof Entities.BaseView)) {
+                    if ((vm.selectedViews[0] instanceof Entities.BaseView) &&
+                    (vm.selectedViews[1] instanceof Entities.BaseView)) {
                         var con = new Entities.Connection(vm.selectedViews[0], vm.selectedViews[1]);
                         privates.addConnectionToDiagram(con);
 
                         vm.assocCreation = false;
                     }
                 }
-
             }
 
             $scope.$evalAsync();
-        }
+        };
         Entities.DiagramPart.addClickedCallback(clickHandler);
 
         privates.addConnectionToDiagram = function (connectionElement) {
@@ -131,14 +127,13 @@
             //TODO: to real create
             Utils.ArrayHelpers.pushIfNotInArray(CoreServices.connectionDiagramPartServiceInseance.diagramParts, conView);
 
-           //$scope.$evalAsync();
+            //$scope.$evalAsync();
         };
 
-
-        vm.clearSelected = function() {
+        vm.clearSelected = function () {
             vm.selectedView = null;
             Utils.ArrayHelpers.clearArray(vm.selectedViews);
-        }
+        };
     }
 
     angular
@@ -146,5 +141,4 @@
         .controller("modellingController", modellingController);
 
     modellingController.$inject = ["$scope", "diagramPartService", "actorsService", "usecaseService", "diagramsService", "projectService", "stateMachineService", "notificationService"];
-
 })();

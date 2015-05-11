@@ -1,13 +1,12 @@
-﻿(function() {
+﻿(function () {
     'use strict';
 
-    function association () {
+    function association() {
         // Usage:
         //     <association></association>
         // Creates:
-        // 
+        //
         function link(scope, element, attrs) {
-            
         }
 
         var directive = {

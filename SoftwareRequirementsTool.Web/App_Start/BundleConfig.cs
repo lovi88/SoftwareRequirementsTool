@@ -35,20 +35,17 @@ namespace SoftwareRequirementsTool.Web
             bundles.Add(new StyleBundle("~/Content/angularCss").Include(
                       "~/Content/Angular.css"));
 
-
             bundles.Add(new ScriptBundle("~/bundles/d3").Include(
                       "~/Scripts/d3/d3.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/SignalR").Include(
                     "~/Scripts/jquery.signalR-2.2.0.min.js"));
 
-
             // The Core Business Logic in Typescript
             var softReqToolCore = new ScriptBundle("~/bundles/softReqToolCore");
 
             IncludeSoftReqToolCore(softReqToolCore);
             bundles.Add(softReqToolCore);
-
 
             // App Files
             var softReqToolApp = new ScriptBundle("~/bundles/softReqToolApp");
@@ -63,7 +60,6 @@ namespace SoftwareRequirementsTool.Web
                       "~/Content/font-awesome.css",
                       "~/Content/animate.css", //http://daneden.github.io/animate.css/
                       "~/Content/site.css"));
-
         }
 
         private static void IncludeSoftReqToolApp(Bundle softReqToolApp)

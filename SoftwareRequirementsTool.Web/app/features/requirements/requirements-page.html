@@ -5,7 +5,9 @@
             <h2>{{title}}</h2>
             <button ng-disabled="inCreation"
                     ng-click="create()"
-                    class="btn btn-success btn-lg">Create New</button>
+                    class="btn btn-success btn-lg">
+                Create New
+            </button>
         </div>
     </div>
 
@@ -28,7 +30,6 @@
                                  cancel="creationCancelled(entity)">
             </userstory-jumbotron>
         </div>
-
     </div>
     <div class="container-fluid text-center jumbotron"
          ng-show="userStories.length>2 && !inCreation">
@@ -37,11 +38,8 @@
                 class="btn btn-success btn-lg center-block">
             Create New
         </button>
-
     </div>
-
 </div>
-
 
 <!--<div>
     As a SuperUser <br />

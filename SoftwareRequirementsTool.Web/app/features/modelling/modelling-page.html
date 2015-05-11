@@ -10,7 +10,6 @@
                 <h3>Modelling toolbar</h3>
                 <hr />
 
-
                 <!-- diagram elements -->
                 <!--Actor-->
                 <div class="row">
@@ -20,7 +19,6 @@
                             ng-options="actor.Name for actor in actors"
                             ng-disabled="actors.length == 0">
                         <option value="" ng-select="selected">-- choose one to use --</option>
-
                     </select>
 
                     <button class="btn"
@@ -30,7 +28,6 @@
                     </button>
 
                     <button class="btn" ng-click="createActor()">New Actor</button>
-
                 </div>
 
                 <!-- UseCase -->
@@ -41,7 +38,6 @@
                             ng-options="usecase.Name for usecase in usecases"
                             ng-disabled="usecases.length == 0">
                         <option value="" ng-select="selected">-- choose one to use --</option>
-
                     </select>
 
                     <button class="btn"
@@ -51,7 +47,6 @@
                     </button>
 
                     <button class="btn" ng-click="createUseCase()">New UseCase</button>
-
                 </div>
 
                 <hr />
@@ -65,11 +60,9 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Click to the first diagram element in the connection than the second one</h3>
                     </div>
-
                 </div>
 
                 <hr />
-
             </div>
 
             <!--selected element-->
@@ -82,7 +75,6 @@
                     <!--<button class="btn" style="margin: 5px">Delete Selected View</button>
 
                     <button class="btn" style="margin: 5px">Delete Selected Element</button>-->
-
                 </div>
 
                 <h3>Selected View</h3>
@@ -100,9 +92,7 @@
                 <p>
                     Description: {{selectedView.Element.Description}}
                 </p>
-
             </div>
-
         </div>
 
         <!--Modelling Area-->
@@ -112,14 +102,11 @@
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000">
 
-
                     <g ng-repeat="part in connectionParts" width="100%" height="100%">
                         <association diagram-element="part"> </association>
                     </g>
 
-
                     <!--<association ng-repeat="part in connectionParts" diagram-element="part"> </association>-->
-
 
                     <g ng-repeat="part in usecaseParts">
                         <use-case diagram-element="part"> </use-case>
@@ -128,13 +115,8 @@
                     <g ng-repeat="part in actorParts">
                         <actor diagram-element="part"> </actor>
                     </g>
-
-
                 </svg>
-
             </div>
-
         </div>
-
     </div>
 </div>

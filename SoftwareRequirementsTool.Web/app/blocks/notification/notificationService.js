@@ -2,7 +2,7 @@
     "use strict";
 
     //uses: Bootstrap Notify
-    function notificationService($http) {
+    function notificationService() {
         $.notifyDefaults({
             delay: 3000,
             mouse_over: "pause",
@@ -64,7 +64,6 @@
         this.showWarning = showWarning;
         this.showError = showError;
         this.showSuccess = showSuccess;
-        
     }
 
     angular

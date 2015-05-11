@@ -12,10 +12,8 @@
                  ng-attr-rx="{{diagramElement.Rx}}"
                  ng-attr-ry="{{diagramElement.Ry}}" />
 
-
-        <text text-anchor="middle" class="diagram-text" x="50%" y="50%" >
+        <text text-anchor="middle" class="diagram-text" x="50%" y="50%">
             {{diagramElement.Element.Name}}
         </text>
     </g>
-
 </svg>
