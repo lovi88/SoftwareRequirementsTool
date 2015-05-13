@@ -175,8 +175,6 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
                 entity
             };
             SendError(err);
-
-            throw ex;
         }
     }
 }

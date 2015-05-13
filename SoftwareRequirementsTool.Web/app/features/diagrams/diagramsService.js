@@ -45,6 +45,12 @@
         this.delete = deleteEntity;
         this.create = create;
 
+        this.makeFreshDiagram = function() {
+            var diag = new Entities.Diagram();
+            diag.ContainerProject = stateMachineService.activeProject;
+            return diag;
+        }
+
         //privates
         //...
 

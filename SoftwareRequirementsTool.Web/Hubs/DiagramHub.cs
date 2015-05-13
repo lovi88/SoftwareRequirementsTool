@@ -7,9 +7,7 @@ namespace SoftwareRequirementsTool.Web.Hubs
     public class DiagramHub : AbsContainedByProjectOpenCloseCrudHub<Diagram>
     {
         public DiagramHub(UnitOfWork unitOfWork)
-            : base(unitOfWork, unitOfWork.DiagramRepository)
-        {
-        }
+            : base(unitOfWork, unitOfWork.DiagramRepository) { }
 
     }
 }

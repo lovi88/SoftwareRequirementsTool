@@ -8,11 +8,11 @@ namespace SoftwareRequirementsTool.Data.Repositories.Abstracts
     public interface IGenericRepository<TEntity> where TEntity : class, IEntity
     {
         IQueryable<TEntity> Get(
-            Expression<Func<TEntity, bool>> filter,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
-            string includeProperties);
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            string includeProperties = "");
 
-        TEntity GetById(int id, string includeProperties);
+        TEntity GetById(int id, string includeProperties = "");
         void Insert(TEntity entity);
         void Delete(int id);
         void Delete(TEntity entityToDelete);

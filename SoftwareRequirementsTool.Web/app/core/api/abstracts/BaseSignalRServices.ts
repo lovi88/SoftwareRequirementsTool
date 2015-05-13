@@ -1,13 +1,13 @@
 ﻿module CoreServices {
     export class BaseSignalRService implements ICrudObservableSubject {
         protected hub: any;
-        protected propertyName;
+        protected propertyName: string;
 
         protected observers = new Array<ICrudObserver>();
         protected callbacks = new Array<IEventCallback>();
 
         //this is for use to communicate between create/created; modify/modified
-        protected touchedElement;
+        protected touchedElement: any;
 
         constructor(propertyName) {
             this.propertyName = propertyName;
@@ -70,6 +70,22 @@
 
         clear() {
             this[this.propertyName].splice(0, this[this.propertyName].length);
+        }
+
+        registerObserver(observer: ICrudObserver) {
+            Utils.ArrayHelpers.pushIfNotInArray(this.observers, observer);
+        }
+
+        unregisterObserver(observer: ICrudObserver) {
+            Utils.ArrayHelpers.deleteFromArray(this.observers, observer);
+        }
+
+        registerChangeListenerCallback(callback: IEventCallback) {
+            Utils.ArrayHelpers.pushIfNotInArray(this.callbacks, callback);
+        }
+
+        unregisterChangeListenerCallback(callback: IEventCallback) {
+            Utils.ArrayHelpers.deleteFromArray(this.callbacks, callback);
         }
 
         //Sets the concrete hub (and the CRUD client functions) from name, for it's descendant types
@@ -195,21 +211,6 @@
             });
         }
 
-        registerObserver(observer: ICrudObserver) {
-            Utils.ArrayHelpers.pushIfNotInArray(this.observers, observer);
-        }
-
-        unregisterObserver(observer: ICrudObserver) {
-            Utils.ArrayHelpers.deleteFromArray(this.observers, observer);
-        }
-
-        registerChangeListenerCallback(callback: IEventCallback) {
-            Utils.ArrayHelpers.pushIfNotInArray(this.callbacks, callback);
-        }
-
-        unregisterChangeListenerCallback(callback: IEventCallback) {
-            Utils.ArrayHelpers.deleteFromArray(this.callbacks, callback);
-        }
     }
 
     //It uses the promise library of JQuery (it is the minimal dependency of the core library)

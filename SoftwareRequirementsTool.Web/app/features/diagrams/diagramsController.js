@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    function diagramsController($scope, dialogs, diagramsService, projectService, stateMachineService) {
+    function diagramsController($scope, dialogs, diagramsService, stateMachineService) {
         /* jshint validthis:true */
 
         var vm = $scope;
@@ -26,8 +26,7 @@
         activated();
 
         vm.create = function () {
-            var diag = new Entities.Diagram();
-            diag.ContainerProject = projectService.getActive();
+            var diag = diagramsService.makeFreshDiagram();
 
             var modalInstance = dialogs.createCustomDialog(
                 "Create Diagram",
@@ -70,5 +69,5 @@
         .module("app")
         .controller("diagramsController", diagramsController);
 
-    diagramsController.$inject = ["$scope", "dialogs", "diagramsService", "projectService", "stateMachineService"];
+    diagramsController.$inject = ["$scope", "dialogs", "diagramsService", "stateMachineService"];
 })();

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SoftwareRequirementsTool.Data.EFContext;
 using SoftwareRequirementsTool.Data.Entities;
 using SoftwareRequirementsTool.Data.Repositories.Abstracts;
 

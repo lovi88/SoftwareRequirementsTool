@@ -91,7 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Business\" />
-    <Folder Include="Providers\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>

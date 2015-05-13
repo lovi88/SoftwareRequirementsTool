@@ -62,6 +62,18 @@ var CoreServices;
         BaseSignalRService.prototype.clear = function () {
             this[this.propertyName].splice(0, this[this.propertyName].length);
         };
+        BaseSignalRService.prototype.registerObserver = function (observer) {
+            Utils.ArrayHelpers.pushIfNotInArray(this.observers, observer);
+        };
+        BaseSignalRService.prototype.unregisterObserver = function (observer) {
+            Utils.ArrayHelpers.deleteFromArray(this.observers, observer);
+        };
+        BaseSignalRService.prototype.registerChangeListenerCallback = function (callback) {
+            Utils.ArrayHelpers.pushIfNotInArray(this.callbacks, callback);
+        };
+        BaseSignalRService.prototype.unregisterChangeListenerCallback = function (callback) {
+            Utils.ArrayHelpers.deleteFromArray(this.callbacks, callback);
+        };
         //Sets the concrete hub (and the CRUD client functions) from name, for it's descendant types
         BaseSignalRService.prototype.initHub = function (hubName) {
             var _this = this;
@@ -160,18 +172,6 @@ var CoreServices;
             this.callbacks.forEach(function (item) {
                 item(_this, element);
             });
-        };
-        BaseSignalRService.prototype.registerObserver = function (observer) {
-            Utils.ArrayHelpers.pushIfNotInArray(this.observers, observer);
-        };
-        BaseSignalRService.prototype.unregisterObserver = function (observer) {
-            Utils.ArrayHelpers.deleteFromArray(this.observers, observer);
-        };
-        BaseSignalRService.prototype.registerChangeListenerCallback = function (callback) {
-            Utils.ArrayHelpers.pushIfNotInArray(this.callbacks, callback);
-        };
-        BaseSignalRService.prototype.unregisterChangeListenerCallback = function (callback) {
-            Utils.ArrayHelpers.deleteFromArray(this.callbacks, callback);
         };
         return BaseSignalRService;
     })();

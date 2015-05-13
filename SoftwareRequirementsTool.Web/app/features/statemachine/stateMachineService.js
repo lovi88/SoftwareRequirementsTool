@@ -121,7 +121,7 @@
         }
 
         function redirectIfNoActiveDiagram() {
-            if (that.activeProject == null) {
+            if (that.activeDiagram == null) {
                 //notificationService.showInfo("There is no active diagram, so we redirected you to the Diagrams page");
                 $state.go("diagrams");
             }

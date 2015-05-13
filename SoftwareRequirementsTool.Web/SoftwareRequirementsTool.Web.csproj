@@ -259,8 +259,6 @@
     <Content Include="app\blocks\replace_utility\replaceUtilities.js" />
     <Content Include="app\blocks\utils\angularUtils.js" />
     <Content Include="app\features\actors\actorsService.js" />
-    <Content Include="app\features\authentication\login.html" />
-    <Content Include="app\features\authentication\loginCtrl.js" />
     <Content Include="app\features\diagrams\diagramsController.js" />
     <Content Include="app\features\diagrams\diagramsService.js" />
     <Content Include="app\features\modelling\parts\actor.js" />

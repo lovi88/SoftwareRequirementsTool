@@ -7,7 +7,7 @@ using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 using SoftwareRequirementsTool.Data.Entities.ViewElements;
 using SoftwareRequirementsTool.Data.Entities.ViewElements.Abstracts;
 
-namespace SoftwareRequirementsTool.Data
+namespace SoftwareRequirementsTool.Data.EFContext
 {
 
 

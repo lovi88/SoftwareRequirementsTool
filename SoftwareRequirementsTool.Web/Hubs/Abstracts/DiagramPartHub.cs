@@ -24,6 +24,8 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
         public override void Modify(TPart entity)
         {
             Modify(entity, GenerateGroupName(entity.Diagram));
+            //ModifyCallback(entity, GenerateGroupName(entity.Diagram));
+
         }
 
         public override void Delete(TPart entity)

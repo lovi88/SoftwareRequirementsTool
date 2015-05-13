@@ -6,10 +6,18 @@
 
         $scope.title = title;
         $scope.data = data;
+        $scope.hasError = false;
 
         $scope.save = function () {
+
             if ($scope.data.Name) {
+
+                console.log("n")
+                $scope.hasError = false;
                 $modalInstance.close($scope.data);
+            } else {
+                console.log("noname")
+                $scope.hasError = true;
             }
         }
 
