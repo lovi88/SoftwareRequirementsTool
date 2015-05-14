@@ -1,5 +1,6 @@
 ﻿using SoftwareRequirementsTool.Data.EFContext;
 using SoftwareRequirementsTool.Data.Entities;
+using SoftwareRequirementsTool.Data.Entities.Abstracts;
 using SoftwareRequirementsTool.Data.Repositories.Abstracts;
 
 namespace SoftwareRequirementsTool.Data.Repositories

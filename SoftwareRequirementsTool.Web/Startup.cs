@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using System.Diagnostics;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Ninject;
 using Owin;
@@ -35,7 +36,7 @@ namespace SoftwareRequirementsTool.Web
             app.MapSignalR(config);
         }
 
-        //[Conditional("DEBUG")]
+        [Conditional("DEBUG")]
         public static void SetDetailedErrorMessages(HubConfiguration config)
         {
             config.EnableDetailedErrors = true;

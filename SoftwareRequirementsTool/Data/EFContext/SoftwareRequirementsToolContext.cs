@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Diagnostics;
-using SoftwareRequirementsTool.Data.Entities;
+using SoftwareRequirementsTool.Data.Entities.Abstracts;
 using SoftwareRequirementsTool.Data.Entities.Connections;
 using SoftwareRequirementsTool.Data.Entities.Elements;
 using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;

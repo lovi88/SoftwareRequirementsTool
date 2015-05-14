@@ -263,17 +263,11 @@
     <Content Include="app\features\diagrams\diagramsService.js" />
     <Content Include="app\features\modelling\parts\actor.js" />
     <Content Include="app\features\modelling\parts\association.js" />
-    <Content Include="app\features\modelling\arch\class.svg" />
     <Content Include="app\features\modelling\parts\association.svg" />
     <Content Include="app\features\modelling\parts\actor.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\features\modelling\arch\draggingService.js" />
-    <Content Include="app\features\modelling\arch\modelingArea.js" />
-    <Content Include="app\features\modelling\arch\modelling-area.html" />
     <Content Include="app\blocks\svg_modelling_elements\UseCase.svg" />
-    <Content Include="app\features\modelling\arch\testDirective.html" />
-    <Content Include="app\features\modelling\arch\testDirective.js" />
     <Content Include="app\features\modelling\parts\useCaseDir.js" />
     <Content Include="app\features\modelling\parts\useCase.svg" />
     <Content Include="app\features\modelling\diagramPartService.js" />

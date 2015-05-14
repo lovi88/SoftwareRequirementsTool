@@ -1,12 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      class="draggable"
+     width="200"
      ng-attr-x="{{diagramElement.X}}"
      ng-attr-y="{{diagramElement.Y}}"
-     ng-attr-width="{{diagramElement.Width}}"
-     ng-attr-height="{{diagramElement.Height}}"
+     ng-attr-height="{{diagramElement.Height + 10}}"
      preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <text text-anchor="middle" class="diagram-text" x="50%" y="99%">
+    <!--ng-attr-width="{{diagramElement.Width}}"-->
+
+    <text class="diagram-text" x="" y="99%">
         {{diagramElement.Element.Name}}
     </text>
 

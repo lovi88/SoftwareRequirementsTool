@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using SoftwareRequirementsTool.Data.Entities.Abstracts;
 
 namespace SoftwareRequirementsTool.Data.Entities.ViewElements
 {

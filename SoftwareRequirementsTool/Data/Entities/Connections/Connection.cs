@@ -1,6 +1,7 @@
 ﻿using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 using SoftwareRequirementsTool.Data.Entities.ViewElements;
 using System.ComponentModel.DataAnnotations.Schema;
+using SoftwareRequirementsTool.Data.Entities.Abstracts;
 
 namespace SoftwareRequirementsTool.Data.Entities.Connections
 {

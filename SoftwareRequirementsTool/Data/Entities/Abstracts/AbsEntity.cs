@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Core.Objects;
 
-namespace SoftwareRequirementsTool.Data.Entities
+namespace SoftwareRequirementsTool.Data.Entities.Abstracts
 {
     [Table("AbsEntities")]
     public abstract class AbsEntity:IEntity
@@ -12,6 +13,13 @@ namespace SoftwareRequirementsTool.Data.Entities
         {
             get
             {
+                // TODO: if TypeName -> return
+                //if (!(String.IsNullOrWhiteSpace()))
+                //{
+                    
+                //}
+
+                // TODO: in not TN -> create
                 var fullName = GetType().FullName;
                 
                 string name;

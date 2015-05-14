@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
+using SoftwareRequirementsTool.Data.Entities.Abstracts;
 using SoftwareRequirementsTool.Data.Entities.Elements.Abstracts;
 
 namespace SoftwareRequirementsTool.Data.Entities.Elements
