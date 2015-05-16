@@ -249,6 +249,23 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\blocks\logger\consoleLogFix.js" />
+    <Content Include="app\core\api\abstracts\ApiCommunicationInterfaces.js" />
+    <Content Include="app\core\api\abstracts\BaseSignalRServices.js" />
+    <Content Include="app\core\api\concrete\ConcreteServices.js" />
+    <Content Include="app\core\entities\abstracts\BaseEntities.js" />
+    <Content Include="app\core\entities\abstracts\EntityInterfaces.js" />
+    <Content Include="app\core\entities\abstracts\ModellingInterfaces.js" />
+    <Content Include="app\core\entities\abstracts\Point.js" />
+    <Content Include="app\core\entities\concrete\Connection.js" />
+    <Content Include="app\core\entities\concrete\Diagram.js" />
+    <Content Include="app\core\entities\concrete\EntityFactory.js" />
+    <Content Include="app\core\entities\concrete\Project.js" />
+    <Content Include="app\core\entities\concrete\Views.js" />
+    <Content Include="app\core\instantiation\ServiceInstances.js" />
+    <Content Include="app\core\utils\ArrayHelpers.js" />
+    <Content Include="app\core\utils\EventHandlingInterfaces.js" />
+    <Content Include="app\core\utils\objectHelpers.js" />
+    <Content Include="app\core\utils\TypeChecks.js" />
     <Content Include="app\features\statemachine\stateController.js" />
     <Content Include="app\features\statemachine\stateMachineService.js" />
     <Content Include="app\blocks\dialogs\dialogs.js" />
@@ -267,7 +284,6 @@
     <Content Include="app\features\modelling\parts\actor.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\blocks\svg_modelling_elements\UseCase.svg" />
     <Content Include="app\features\modelling\parts\useCaseDir.js" />
     <Content Include="app\features\modelling\parts\useCase.svg" />
     <Content Include="app\features\modelling\diagramPartService.js" />
@@ -279,6 +295,7 @@
     <Content Include="app\layout\mainmenu\menuRoutes.js" />
     <Content Include="app\features\requirements\userstory-jumbotron.html" />
     <Content Include="app\features\requirements\userstoryJumbotron.js" />
+    <Content Include="app\services\baseCRUDServices.js" />
     <Content Include="app\widgets\entity-jumbotron.html" />
     <Content Include="app\features\projects\projectsController.js" />
     <Content Include="app\blocks\dialogs\nameDescDialogController.js" />
@@ -385,6 +402,24 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\angular-spinner.min.js.map" />
+    <Content Include="app\core\api\abstracts\ApiCommunicationInterfaces.js.map" />
+    <Content Include="app\core\api\abstracts\BaseSignalRServices.js.map" />
+    <Content Include="app\core\api\concrete\ConcreteServices.js.map" />
+    <Content Include="app\core\entities\concrete\Connection.js.map" />
+    <Content Include="app\core\entities\concrete\Diagram.js.map" />
+    <Content Include="app\core\entities\concrete\EntityFactory.js.map" />
+    <Content Include="app\core\entities\concrete\Project.js.map" />
+    <Content Include="app\core\entities\concrete\Views.js.map" />
+    <Content Include="app\core\entities\abstracts\BaseEntities.js.map" />
+    <Content Include="app\core\entities\abstracts\EntityInterfaces.js.map" />
+    <Content Include="app\core\entities\abstracts\ModellingInterfaces.js.map" />
+    <Content Include="app\core\entities\abstracts\Point.js.map" />
+    <Content Include="app\core\instantiation\ServiceInstances.js.map" />
+    <Content Include="app\core\utils\ArrayHelpers.js.map" />
+    <Content Include="app\core\utils\EventHandlingInterfaces.js.map" />
+    <Content Include="app\core\utils\objectHelpers.js.map" />
+    <Content Include="app\core\utils\TypeChecks.js.map" />
+    <Content Include="app\services\baseCRUDServices.js.map" />
     <None Include="Properties\PublishProfiles\SzakD.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
