@@ -141,3 +141,5 @@ E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\obj\Debug\SoftwareRequirementsTool.Web.dll
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\obj\Debug\SoftwareRequirementsTool.Web.pdb
 E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\app\features\modelling\parts\actor.svg
+E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\fonts\glyphicons-halflings-regular.woff2
+E:\AA_NIK\AA_SzakDogaSolution\SoftwareRequirementsTool\SoftwareRequirementsTool.Web\bin\app\core\api\abstracts\ApiCommunicationInterfaces.js

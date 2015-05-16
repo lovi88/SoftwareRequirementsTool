@@ -249,7 +249,9 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\blocks\logger\consoleLogFix.js" />
-    <Content Include="app\core\api\abstracts\ApiCommunicationInterfaces.js" />
+    <Content Include="app\core\api\abstracts\ApiCommunicationInterfaces.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="app\core\api\abstracts\BaseSignalRServices.js" />
     <Content Include="app\core\api\concrete\ConcreteServices.js" />
     <Content Include="app\core\entities\abstracts\BaseEntities.js" />
@@ -395,7 +397,9 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\d3\LICENSE" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
