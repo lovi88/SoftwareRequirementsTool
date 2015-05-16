@@ -19,7 +19,7 @@ namespace SoftwareRequirementsTool.Data.Entities.Abstracts
                     
                 //}
 
-                // TODO: in not TN -> create
+                // TODO: if not TN -> create
                 var fullName = GetType().FullName;
                 
                 string name;
