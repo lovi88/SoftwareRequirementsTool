@@ -4,6 +4,8 @@
     function stateMachineService($state, $q, $sessionStorage, notificationService) {
 
         var privates = {};
+
+        CoreServices.BaseSignalRService.errorMessageService = notificationService;
         privates.projectCoreService = CoreServices.projectsServiceInstance;
         privates.diagramCoreService = CoreServices.diagramsServiceInstance;
 

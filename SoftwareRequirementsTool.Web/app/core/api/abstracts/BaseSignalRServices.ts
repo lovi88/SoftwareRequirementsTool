@@ -9,6 +9,8 @@
         //this is for use to communicate between create/created; modify/modified
         protected touchedElement: any;
 
+        static errorMessageService;
+
         constructor(propertyName) {
             this.propertyName = propertyName;
         }
@@ -36,8 +38,17 @@
         }
 
         deleteEntity(element, callback?) {
-            this.hub.server.delete(element);
-            this.deleted(element);
+
+            this.hub.server.delete(element).done((result) => {
+                if (result === true) {
+                    this.deleted(element);
+                } else {
+                    if (!(Utils.TypeChecker.isUndefined(BaseSignalRService.errorMessageService))) {
+                        BaseSignalRService.errorMessageService.showError("Deletion failed!<br /> If the element contains other elements you must delete them before");
+                    }
+                }
+            });
+
         }
 
         resetFromServer(element) {
@@ -157,9 +168,16 @@
             return elm1.Id === elm2.Id;
         }
 
-        protected errorFromHub(error) {
+        protected fatalFromHub(error) {
             alert(error.message + "\n To avoid inconsistency we need to reload the page");
             location.reload();
+        }
+
+        protected errorFromHub(error) {
+
+            if (!(Utils.TypeChecker.isUndefinedOrNull(BaseSignalRService.errorMessageService))) {
+                BaseSignalRService.errorMessageService.showError(error.message);
+            }
         }
 
         protected infoFromHub(info) {

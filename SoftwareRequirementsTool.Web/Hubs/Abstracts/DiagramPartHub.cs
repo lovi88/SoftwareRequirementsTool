@@ -33,9 +33,9 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             Refresh(entity, GenerateGroupName(entity.Diagram));
         }
 
-        public override void Delete(TPart entity)
+        public override bool Delete(TPart entity)
         {
-            Delete(entity, GenerateGroupName(entity.Diagram));
+            return Delete(entity, GenerateGroupName(entity.Diagram));
         }
 
         protected override void BeforeCallBack(ref TPart entity)

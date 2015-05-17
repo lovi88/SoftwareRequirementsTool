@@ -26,9 +26,9 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             Refresh(entity, GenerateGroupName(entity.ContainerProject));
         }
 
-        public override void Delete(T entity)
+        public override bool Delete(T entity)
         {
-            Delete(entity, GenerateGroupName(entity.ContainerProject));
+            return Delete(entity, GenerateGroupName(entity.ContainerProject));
         }
 
         #endregion

@@ -6,6 +6,7 @@ using SoftwareRequirementsTool.Utilities.ErrorMessages;
 using SoftwareRequirementsTool.Web.Hubs.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
@@ -35,7 +36,7 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
 
         public abstract void Refresh(T entity);
 
-        public abstract void Delete(T entity);
+        public abstract bool Delete(T entity);
 
         virtual public T GetById(int id)
         {
@@ -70,7 +71,7 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             TrySave(ref entity);
 
             BeforeCallBack(ref entity);
-            CreateCallback(entity, groupName);
+            CreateBroadcast(entity, groupName);
             return entity;
         }
 
@@ -88,10 +89,17 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             ModifyBroadcast(entity, groupName);
         }
 
-        virtual public void Delete(T entity, string groupName)
+        virtual public bool Delete(T entity, string groupName)
         {
             Repository.Delete(entity);
-            TrySave(ref entity);
+            var saveResult = TrySave(ref entity);
+
+            if (saveResult)
+            {
+                DeleteBroadcast(entity, groupName);    
+            }
+
+            return saveResult;
         }
 
         #endregion Template Methods
@@ -99,24 +107,31 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
         #region Template Hooks
 
         // create & modify & delete -> save hook
-        protected virtual void TrySave(ref T entity)
+        protected virtual bool TrySave(ref T entity)
         {
             try
             {
                 UnitOfWork.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                SendError(new {message = "Violation of of database constraints",entity});
             }
             catch (Exception ex)
             {
                 LogError(ex, entity);
                 UnitOfWork.Dispose();
             }
+
+            return false;
         }
 
         //create & modify hook
         protected abstract void BeforeCallBack(ref T entity);
 
         //create hook
-        protected virtual void CreateCallback(T entity, string groupName)
+        protected virtual void CreateBroadcast(T entity, string groupName)
         {
             //Clients.OthersInGroup(groupName).created(entity);
             Clients.Clients(_groupHelper.AllInGroupExcept(groupName, Context.ConnectionId))
@@ -129,6 +144,14 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             //Clients.OthersInGroup(groupName).modified(entity);
             Clients.Clients(_groupHelper.AllInGroupExcept(groupName, Context.ConnectionId))
                 .modified(entity);
+        }
+
+        //delete hook
+        protected virtual void DeleteBroadcast(T entity, string groupName)
+        {
+            //Clients.OthersInGroup(groupName).modified(entity);
+            Clients.Clients(_groupHelper.AllInGroupExcept(groupName, Context.ConnectionId))
+                .deleted(entity);
         }
 
         #endregion Template Hooks
@@ -146,6 +169,11 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
         protected void SendError(object error)
         {
             Clients.Caller.errorFromHub(error);
+        }
+
+        protected void SendFatal(object error)
+        {
+            Clients.Caller.fatalFromHub(error);
         }
 
         protected void SendInfo(object info, string groupName = "", bool justOthers = false)
@@ -181,7 +209,7 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
                 message = msg,
                 entity
             };
-            SendError(err);
+            SendFatal(err);
         }
     }
 }

@@ -32,8 +32,17 @@ var CoreServices;
             this.modified(element);
         };
         BaseSignalRService.prototype.deleteEntity = function (element, callback) {
-            this.hub.server.delete(element);
-            this.deleted(element);
+            var _this = this;
+            this.hub.server.delete(element).done(function (result) {
+                if (result === true) {
+                    _this.deleted(element);
+                }
+                else {
+                    if (!(Utils.TypeChecker.isUndefined(BaseSignalRService.errorMessageService))) {
+                        BaseSignalRService.errorMessageService.showError("Deletion failed!<br /> If the element contains other elements you must delete them before");
+                    }
+                }
+            });
         };
         BaseSignalRService.prototype.resetFromServer = function (element) {
             this.hub.server.getById(element.id).done(function (result) {
@@ -129,9 +138,14 @@ var CoreServices;
         BaseSignalRService.prototype.isEqualById = function (elm1, elm2) {
             return elm1.Id === elm2.Id;
         };
-        BaseSignalRService.prototype.errorFromHub = function (error) {
+        BaseSignalRService.prototype.fatalFromHub = function (error) {
             alert(error.message + "\n To avoid inconsistency we need to reload the page");
             location.reload();
+        };
+        BaseSignalRService.prototype.errorFromHub = function (error) {
+            if (!(Utils.TypeChecker.isUndefinedOrNull(BaseSignalRService.errorMessageService))) {
+                BaseSignalRService.errorMessageService.showError(error.message);
+            }
         };
         BaseSignalRService.prototype.infoFromHub = function (info) {
             console.log(info);

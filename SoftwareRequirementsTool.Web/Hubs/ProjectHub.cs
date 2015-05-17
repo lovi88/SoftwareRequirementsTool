@@ -21,9 +21,9 @@ namespace SoftwareRequirementsTool.Web.Hubs
             Modify(entity, DefaultAuthenticatedGroup);
         }
 
-        public override void Delete(Project entity)
+        public override bool Delete(Project entity)
         {
-            Delete(entity, DefaultAuthenticatedGroup);
+            return Delete(entity, DefaultAuthenticatedGroup);
         }
 
         protected override void BeforeCallBack(ref Project entity)
