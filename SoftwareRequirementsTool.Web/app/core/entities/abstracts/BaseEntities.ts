@@ -31,6 +31,8 @@
 
         save(): void { }
 
+        refresh(): void { }
+
         isValid() {
             if (Utils.TypeChecker.isUndefinedOrNull(this.Name)) {
                 return false;

@@ -28,6 +28,8 @@ var Entities;
         }
         BaseElement.prototype.save = function () {
         };
+        BaseElement.prototype.refresh = function () {
+        };
         BaseElement.prototype.isValid = function () {
             if (Utils.TypeChecker.isUndefinedOrNull(this.Name)) {
                 return false;

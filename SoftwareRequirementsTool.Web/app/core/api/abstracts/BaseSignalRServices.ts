@@ -30,6 +30,11 @@
             this.modified(element);
         }
 
+        refresh(element, callback?) {
+            this.hub.server.refresh(element);
+            this.modified(element);
+        }
+
         deleteEntity(element, callback?) {
             this.hub.server.delete(element);
             this.deleted(element);

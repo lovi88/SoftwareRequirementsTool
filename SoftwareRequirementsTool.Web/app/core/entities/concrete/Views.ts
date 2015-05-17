@@ -78,7 +78,7 @@
             this.d3Dragging(domElement);
 
             if (this.dragCnt % 4 === 2) {
-                this.save();
+                this.refresh();
 
                 this.draggingCallbacks.forEach(callback => {
                     callback(this, null);
@@ -155,6 +155,10 @@
             UseCaseView.service.modify(this);
         }
 
+        refresh() {
+            UseCaseView.service.refresh(this);
+        }
+
         deleteElement(): void {
             UseCaseView.service.deleteEntity(this);
         }
@@ -167,6 +171,10 @@
         static service;
         save() {
             ActorView.service.modify(this);
+        }
+
+        refresh() {
+            ActorView.service.refresh(this);
         }
 
         deleteElement(): void {

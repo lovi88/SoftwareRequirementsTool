@@ -33,6 +33,8 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
 
         public abstract void Modify(T entity);
 
+        public abstract void Refresh(T entity);
+
         public abstract void Delete(T entity);
 
         virtual public T GetById(int id)
@@ -78,7 +80,12 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
             TrySave(ref entity);
 
             BeforeCallBack(ref entity);
-            ModifyCallback(entity, groupName);
+            ModifyBroadcast(entity, groupName);
+        }
+
+        virtual protected void Refresh(T entity, string groupName)
+        {
+            ModifyBroadcast(entity, groupName);
         }
 
         virtual public void Delete(T entity, string groupName)
@@ -117,7 +124,7 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
         }
 
         //modify hook
-        protected virtual void ModifyCallback(T entity, string groupName)
+        protected virtual void ModifyBroadcast(T entity, string groupName)
         {
             //Clients.OthersInGroup(groupName).modified(entity);
             Clients.Clients(_groupHelper.AllInGroupExcept(groupName, Context.ConnectionId))

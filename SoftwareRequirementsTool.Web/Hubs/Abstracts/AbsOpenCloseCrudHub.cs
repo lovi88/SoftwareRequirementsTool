@@ -21,5 +21,10 @@ namespace SoftwareRequirementsTool.Web.Hubs.Abstracts
         {
             RemoveCallerFromGroup(GenerateGroupName(entity));
         }
+
+        public override void Refresh(T entity)
+        {
+            Refresh(entity, GenerateGroupName(entity));
+        }
     }
 }

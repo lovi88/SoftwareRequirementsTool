@@ -56,7 +56,7 @@ var Entities;
             var _this = this;
             this.d3Dragging(domElement);
             if (this.dragCnt % 4 === 2) {
-                this.save();
+                this.refresh();
                 this.draggingCallbacks.forEach(function (callback) {
                     callback(_this, null);
                 });
@@ -118,6 +118,9 @@ var Entities;
         UseCaseView.prototype.save = function () {
             UseCaseView.service.modify(this);
         };
+        UseCaseView.prototype.refresh = function () {
+            UseCaseView.service.refresh(this);
+        };
         UseCaseView.prototype.deleteElement = function () {
             UseCaseView.service.deleteEntity(this);
         };
@@ -133,6 +136,9 @@ var Entities;
         }
         ActorView.prototype.save = function () {
             ActorView.service.modify(this);
+        };
+        ActorView.prototype.refresh = function () {
+            ActorView.service.refresh(this);
         };
         ActorView.prototype.deleteElement = function () {
             ActorView.service.deleteEntity(this);

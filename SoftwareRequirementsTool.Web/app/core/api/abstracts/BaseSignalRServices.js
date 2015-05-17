@@ -27,6 +27,10 @@ var CoreServices;
             this.hub.server.modify(element);
             this.modified(element);
         };
+        BaseSignalRService.prototype.refresh = function (element, callback) {
+            this.hub.server.refresh(element);
+            this.modified(element);
+        };
         BaseSignalRService.prototype.deleteEntity = function (element, callback) {
             this.hub.server.delete(element);
             this.deleted(element);
